@@ -12,7 +12,7 @@ algo llega al cliente.
 | `luptecx-reportar-error` | Convierte el mensaje, audio o captura del cliente en un issue estándar en GitHub y una tarea en Notion, con severidad. No toca código | — | Felipe | Pendiente | 1 |
 | `luptecx-corregir-error` | Reproducir → prueba que falla → arreglo → revisión contra `origin/main` → push con la suite en verde → CI en verde → despliegue → aviso al cliente → registro; si el error era evitable, retrospectiva | `depurar`, `probar-primero`, `revisar-cambios`, `verificar-antes-de-terminar`, `luptecx-desplegar`, `retrospectiva` | Camilo | Pendiente | 1 |
 | `luptecx-nueva-funcionalidad` | Decide si está en el alcance o se cobra, estima, actualiza la especificación y el plan, programa con bandera de activación y deja el CHANGELOG | `planificar-desarrollo` (modo cambio), `construir-por-piezas` | Camilo | Pendiente | 1 |
-| `luptecx-desplegar` | Lista previa, CI en verde, commits que van a salir y su revisión contra la última etiqueta, horario prohibido, respaldo, despliegue con `desplegar.py`, etiqueta, prueba de humo y cómo revertir | `revisar-cambios`, `verificar-antes-de-terminar` | Camilo | Pendiente | 1 |
+| `luptecx-desplegar` | Lista previa (CHANGELOG, revisión contra la última etiqueta, CI, migraciones, configuración y plantillas), despliegue con `desplegar.py` corrido por quien despliega, prueba de humo, aviso y cómo revertir | `revisar-cambios`, `verificar-antes-de-terminar` | Camilo | ✅ | — |
 | `luptecx-reporte-mensual` | Informe de resultados al cliente (métricas del bot y de publicidad) con el estilo visual | `luptecx-estilo-visual`, `luptecx-comunicacion-cliente` | Felipe | Pendiente | 3 |
 
 Al crear una skill de esta lista: carpeta `skills/mantener/<nombre>/SKILL.md`, siguiendo

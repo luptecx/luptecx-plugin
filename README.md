@@ -43,6 +43,7 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 | construir | `planificar-desarrollo` | Especificación, arquitectura y plan de piezas antes de programar |
 | construir | `construir-por-piezas` | Una pieza: prueba, explicación, revisión, verificación y push |
 | construir | `cierre-de-proyecto` | Auditoría y limpieza del repositorio al cerrar o entregar un proyecto |
+| mantener | `luptecx-desplegar` | Lista previa, despliegue con `desplegar.py`, prueba de humo, aviso al cliente y cómo revertir |
 
 ## El flujo de desarrollo
 
@@ -89,8 +90,8 @@ para subir el plugin como archivo si alguna vez el marketplace no está disponib
    de este archivo. Una división nueva va también en la lista `skills` de
    `.claude-plugin/plugin.json`.
 3. `claude plugin validate .` tiene que pasar.
-4. Subir la versión en `.claude-plugin/plugin.json` (`0.3.0` → `0.4.0` si agrega o cambia
-   comportamiento; `0.3.1` si solo corrige redacción).
+4. Subir la versión en `.claude-plugin/plugin.json` (`0.4.0` → `0.5.0` si agrega o cambia
+   comportamiento; `0.4.1` si solo corrige redacción).
 5. Commit con tipo (`funcionalidad: …`, `correccion: …`) y push a `main`.
 6. Avisar al otro socio. Cada uno, en **Customize › Plugins**, abre el marketplace `luptecx`
    y elige **Check for updates** (o deja activada la sincronización automática).
