@@ -39,6 +39,7 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 | base | `escribir-skills` | Cómo escribir skills, `CLAUDE.md` y normas para Claude |
 | vender | `presentacion-ventas-contenido` | Guion de propuestas: diagnóstico + ROI, reencuadre y tres niveles de precio |
 | vender | `luptecx-estilo-visual` | Diseño de cualquier presentación o PDF de LUPTECX (dirección B «Contraste») |
+| construir | `luptecx-codigo` | Convenciones de la empresa: idioma, flujo de git, estructura, pruebas, datos y las invariantes de todo bot de WhatsApp |
 | construir | `planificar-desarrollo` | Especificación, arquitectura y plan de piezas antes de programar |
 | construir | `construir-por-piezas` | Una pieza: prueba, explicación, revisión, verificación y push |
 | construir | `cierre-de-proyecto` | Auditoría y limpieza del repositorio al cerrar o entregar un proyecto |
@@ -76,8 +77,8 @@ nombre ya lo usa Claude Code y taparía al nuestro.
    de este archivo. Una división nueva va también en la lista `skills` de
    `.claude-plugin/plugin.json`.
 3. `claude plugin validate .` tiene que pasar.
-4. Subir la versión en `.claude-plugin/plugin.json` (`0.2.0` → `0.3.0` si agrega o cambia
-   comportamiento; `0.2.1` si solo corrige redacción).
+4. Subir la versión en `.claude-plugin/plugin.json` (`0.3.0` → `0.4.0` si agrega o cambia
+   comportamiento; `0.3.1` si solo corrige redacción).
 5. Commit con tipo (`funcionalidad: …`, `correccion: …`) y push a `main`.
 6. Avisar al otro socio, empaquetar (`python empaquetar.py`) y que los dos instalen el
    `.plugin` nuevo.
