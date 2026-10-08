@@ -1,0 +1,17 @@
+{
+  "name": "luptecx",
+  "owner": {
+    "name": "LUPTECX",
+    "email": "camilob@luptecx.com"
+  },
+  "metadata": {
+    "description": "Plugins de LUPTECX. Cada push a main es la versión nueva para los dos socios."
+  },
+  "plugins": [
+    {
+      "name": "luptecx",
+      "source": "./",
+      "description": "Skills de LUPTECX por etapa del cliente (vender, construir, mantener, administrar) y las disciplinas de base que usan todas."
+    }
+  ]
+}

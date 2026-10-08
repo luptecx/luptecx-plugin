@@ -69,6 +69,18 @@ se usa en cada cambio, y recomienda correr también `/code-review` cuando el cam
 dinero, fechas, el webhook o datos del cliente. Por eso no se llama `code-review`: ese
 nombre ya lo usa Claude Code y taparía al nuestro.
 
+## Cómo se instala
+
+El repositorio es también un marketplace (`.claude-plugin/marketplace.json`):
+
+1. En claude.ai o en la app de escritorio: **Customize › Plugins › Add marketplace** y
+   escribir `luptecx/luptecx-plugin`.
+2. Instalar el plugin `luptecx` de ese marketplace.
+
+Queda guardado en la cuenta, así que llega igual al chat, a Cowork y a Claude Code. Las
+versiones nuevas llegan con **Check for updates**. `python empaquetar.py` sigue sirviendo
+para subir el plugin como archivo si alguna vez el marketplace no está disponible.
+
 ## Cómo se cambia una skill
 
 1. `git pull` y cambio en `skills/<división>/<skill>/`, siguiendo
@@ -80,8 +92,8 @@ nombre ya lo usa Claude Code y taparía al nuestro.
 4. Subir la versión en `.claude-plugin/plugin.json` (`0.3.0` → `0.4.0` si agrega o cambia
    comportamiento; `0.3.1` si solo corrige redacción).
 5. Commit con tipo (`funcionalidad: …`, `correccion: …`) y push a `main`.
-6. Avisar al otro socio, empaquetar (`python empaquetar.py`) y que los dos instalen el
-   `.plugin` nuevo.
+6. Avisar al otro socio. Cada uno, en **Customize › Plugins**, abre el marketplace `luptecx`
+   y elige **Check for updates** (o deja activada la sincronización automática).
 
 Las skills que vienen de repositorios de terceros, y qué se les cambió, están en
 [CREDITOS.md](CREDITOS.md); sus licencias, en `licencias/`.
