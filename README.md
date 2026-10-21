@@ -54,7 +54,7 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 | construir | `cierre-de-proyecto` | Auditoría y limpieza del repositorio al cerrar o entregar un proyecto |
 | administrar | `luptecx-comunicacion-cliente` | Borradores de todo mensaje al cliente con la voz de LUPTECX: errores e incidentes, avances, cobro, decir que no e incentivar a comprar. Claude redacta; el socio aprueba y manda |
 | administrar | `luptecx-caso-portafolio` | Ficha del Portafolio, caso de una página con cifras con fuente y post de LinkedIn; anónimo sin permiso, y siempre aprobado por el cliente |
-| administrar | `luptecx-cierre-mensual` | Pagos esperados al empezar el mes; al cerrarlo, registrar, cuadrar contra extractos, revisar, liquidar 50/50 (lo calcula Notion) y cerrar |
+| administrar | `luptecx-cierre-mensual` | Pagos esperados al empezar el mes; al cerrarlo, registrar, cuadrar contra extractos, revisar, liquidar 50/50 (lo calcula Notion) y cerrar. Las comisiones con aliados van como gasto antes del 50/50 (`aliados.md`) |
 | mantener | `luptecx-reportar-error` | Lo que reporta o pide un cliente → issue de GitHub + tarea de Notion enlazados, con severidad y plazo; sin tocar código |
 | mantener | `luptecx-corregir-error` | Del issue al cliente: depurar, prueba de regresión, revisión, CI, despliegue y cierre del issue con la versión |
 | mantener | `luptecx-nueva-funcionalidad` | Del pedido al cliente: ¿encaja?, tamaño y prioridad, planificar, construir por piezas, desplegar y avisar |
