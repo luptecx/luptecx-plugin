@@ -44,6 +44,7 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 | base | `probar-primero` | Prueba que falla, código mínimo, en las costuras acordadas |
 | base | `verificar-antes-de-terminar` | Evidencia antes de decir «listo», con la definición de terminado |
 | base | `revisar-cambios` | Revisión en dos ejes, estándares y especificación, antes del push y de desplegar |
+| base | `revisar-seguridad` | Modelo de amenazas al planificar y revisión de seguridad de cada cambio que toca una frontera (entrada externa, datos personales, secretos, dependencias, IA), con OWASP y el `/security-review` de Claude Code |
 | base | `retrospectiva` | Solo a mano. Convierte lo que salió mal en candados y normas |
 | base | `traspasar-sesion` | Solo a mano. Resume la sesión para seguir en una limpia |
 | base | `escribir-skills` | Cómo escribir skills, `CLAUDE.md` y normas para Claude |
@@ -73,6 +74,9 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 documento de LUPTECX escrito en Markdown: el contrato, el acta de entrega y el manual del
 cliente. Llena los `{{campos}}` desde un `datos.json`, se niega si falta uno y resalta en
 amarillo lo pendiente. Se corre con `uv run --script`.
+
+`plugins/luptecx/herramientas/asegurar_claude.py` aplica los ajustes de seguridad de
+LUPTECX a Claude Code en el PC donde se corre (ver «Cómo se instala»).
 
 ## El flujo de desarrollo
 
@@ -128,6 +132,18 @@ el marketplace y `luptecx@luptecx` activado: quien abra el repositorio en Claude
 lo tenga recibe el aviso para instalarlo. Un plugin de tipo se activa ahí mismo
 (`"luptecx-bot-whatsapp@luptecx": true`), solo en los proyectos que lo necesitan.
 
+**Ajustes de seguridad de cada PC** (una vez por PC, después de instalar el plugin):
+Claude no lee secretos en ninguna carpeta (.env, credenciales, llaves, `~/.ssh`, el token de
+`gh`, Bitwarden) y nadie lo arranca saltándose los permisos. En PowerShell:
+
+```powershell
+python (Get-ChildItem "$HOME\.claude\plugins\cache\luptecx\luptecx\*\herramientas\asegurar_claude.py" | Select-Object -Last 1).FullName
+```
+
+Es idempotente, guarda una copia de la configuración de antes y cuenta desde la próxima
+sesión. El aislamiento (`/sandbox`) de Claude Code no funciona en Windows nativo, solo en
+WSL2: por eso los permisos y el hook de secretos son la barrera.
+
 Las versiones nuevas: `claude plugin marketplace update luptecx` en Claude Code, o
 **Check for updates** en la app. `python empaquetar.py` sigue sirviendo para subir el
 plugin como archivo si alguna vez el marketplace no está disponible.
@@ -162,5 +178,8 @@ Las skills que vienen de repositorios de terceros, y qué se les cambió, están
   hook del plugin (`hooks/`) se lo impide a Claude en Claude Code, junto con
   `reset --hard`, `clean -f`, `branch -D`, `checkout .` y `restore .`. GitHub no lo puede
   impedir: en el plan gratis, `main` de un repositorio privado no se puede proteger.
-- Los secretos viven en Bitwarden, nunca en chats, Notion, repositorios ni OneDrive.
+- Los secretos viven en Bitwarden, nunca en chats, Notion, repositorios ni OneDrive. El
+  hook `bloquear-secretos.sh` le impide a Claude leerlos o imprimirlos por comando (.env,
+  credenciales, llaves, variables con tokens, `gh auth token`); sus casos están en
+  `hooks/probar_bloquear_secretos.py`, que se corre antes de cambiarlo.
 - Nada se prueba contra datos reales ni contra las cuentas o números reales de un cliente.
