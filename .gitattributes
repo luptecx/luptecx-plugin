@@ -1,0 +1,3 @@
+# Los scripts de los hooks los corre bash: con fin de línea CRLF (el que pone git en
+# Windows con core.autocrlf) fallan.
+*.sh text eol=lf
