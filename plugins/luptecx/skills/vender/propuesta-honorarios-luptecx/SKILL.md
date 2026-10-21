@@ -1,44 +1,66 @@
 ---
 name: "propuesta-honorarios-luptecx"
-description: "Redacta y diseña propuestas de honorarios o cotizaciones formales de LUPTECX como documento PDF tipo carta comercial: membrete, alcance, desglose de honorarios, condiciones y firmas."
+description: "Hacer una cotización de LUPTECX (propuesta de honorarios) en PDF tipo carta comercial: alcance, desglose de precios, forma de pago, condiciones y firma de aceptación. Úsala solo cuando un cliente o posible cliente pida una cotización o haya que mandarle una propuesta de honorarios («hazme la cotización para…», «cotízale a…», «nos pidieron precios», «la propuesta de honorarios de…»). No es la presentación de ventas ni el contrato."
 ---
 
-# Propuesta de honorarios LUPTECX
+# Cotización (propuesta de honorarios) LUPTECX
 
-Esta skill produce **el documento formal que el cliente firma para contratar**. Es una carta comercial en PDF tamaño carta, de 2 a 3 páginas, con membrete de LUPTECX. Dice qué se va a hacer, cuánto cuesta cada concepto y en qué condiciones.
+Esta skill hace **cotizaciones**: el documento con qué se haría, cuánto cuesta cada concepto
+y en qué condiciones, para un cliente que pidió precios o que ya conversó el precio y
+necesita la propuesta de honorarios formal. Es una carta comercial en PDF tamaño carta, de
+2 a 3 páginas, con membrete de LUPTECX. El cliente la acepta firmando; el contrato viene
+después, con `luptecx:luptecx-contrato-servicio`.
 
 **No es una presentación.** No usa el estilo de las slides (`luptecx-estilo-visual`): sin fondos negros, tarjetas, cifras gigantes ni portada. Debe verse como un documento de una firma de servicios profesionales: blanco, sobrio, texto corrido, secciones numeradas y tablas de líneas finas.
 
-**Cuándo usarla:** propuestas de honorarios, cotizaciones formales y propuestas económicas, de uno o varios servicios: agente de IA, automatizaciones, desarrollo, publicidad con un aliado.
+**Cuándo usarla:** solo para cotizaciones y propuestas de honorarios, de uno o varios
+servicios (un asistente o agente, una automatización, un desarrollo, publicidad).
 
 **Cuándo no:**
-- **Para convencer a un cliente que todavía no decide**, se usa la presentación de ventas (`presentacion-ventas-contenido`). La propuesta de honorarios llega después, con el precio ya conversado.
-- **Para un contrato**, porque la propuesta firmada es una aceptación comercial, no un contrato revisado por un abogado.
+- **Para convencer a un cliente que todavía no decide:** eso es la presentación de ventas
+  (`luptecx:presentacion-ventas-contenido`).
+- **Para el contrato:** `luptecx:luptecx-contrato-servicio`. La cotización firmada es una
+  aceptación comercial, no un contrato revisado por un abogado.
 
 ---
 
 ## Paso 1 · Reunir la información
 
-Primero revisa lo que ya existe: la conversación, la memoria, las presentaciones o estudios de precio del cliente y las propuestas anteriores. Después pregunta **en una sola tanda** lo que falte. Usa AskUserQuestion si está disponible.
+Primero revisa lo que ya existe: la conversación, el cliente en el CRM de Notion, sus
+reuniones y la presentación de ventas que se le mostró. Después pregunta **en una sola
+tanda** lo que falte. Usa AskUserQuestion si está disponible.
+
+**Los precios salen del Portafolio** de Notion, igual que en
+`presentacion-ventas-contenido` (Paso 5): la ficha del producto, con sus tres niveles. Si el
+producto no tiene ficha o le falta un precio, se pregunta y, con el permiso del usuario, se
+escribe en la ficha antes de usarlo. Si el usuario quiere otro precio para este cliente, se
+usa el suyo y se le dice cuál dice el Portafolio. Un servicio a la medida que no es un
+producto lleva los precios que dé el usuario.
+
+**Los datos de LUPTECX** (razón social, NIT, representante, dirección) salen de la sección
+«Datos de LUPTECX» de `luptecx:luptecx-contrato-servicio`, la misma fuente del contrato. Lo
+que diga `[POR CONFIRMAR]` va como marcador visible, nunca inventado.
 
 | Dato | Pregunta | Si no hay respuesta |
 |---|---|---|
 | Destinatario | Nombre completo, cargo y empresa de quien recibe y firma | `[Apellido]`, `[Cargo]` |
 | Servicios | ¿Qué servicios entran? | No se arma sin esto |
-| Quién presta cada servicio | Si hay un aliado: ¿va bajo LUPTECX y lo factura LUPTECX, o se factura aparte? | Pregunta siempre |
-| Precio de cada concepto | Pago único y mensualidad de cada servicio | `[PRECIO]` y avisar |
+| Quién presta cada servicio | Si hay un aliado (por ejemplo, la publicidad): ¿va bajo LUPTECX y lo cobra LUPTECX, o se cobra aparte? | Pregunta siempre |
+| Precio de cada concepto | Pago único y mensualidad de cada servicio, del Portafolio | `[PRECIO]` y avisar |
 | IVA | ¿Precios con IVA incluido, más IVA, o LUPTECX no es responsable de IVA? | `[IVA por confirmar con el contador]` |
 | Forma de pago | ¿50/50 el pago único? ¿Mensualidad anticipada? | La del Paso 4, avisando |
 | Permanencia | ¿Sin permanencia o con un mínimo de meses? | Pregunta siempre |
 | Número y vigencia | ¿Qué consecutivo sigue? ¿Cuántos días vale la oferta? | `LTX-AAAA-[NNN]`, 30 días |
-| NIT de LUPTECX | — | `[NIT]` |
+| Datos de LUPTECX | Los de `luptecx-contrato-servicio` | `[Razón social]`, `[NIT]` |
 | Quién firma por LUPTECX | Nombre y cargo | El representante legal |
 | Contexto del cliente | Datos de la reunión para el entendimiento de la necesidad | Solo lo conocido |
 
 Reglas:
 - **Nunca inventes precios, cifras del cliente, el NIT ni condiciones.** Usa marcadores visibles y lístalos al entregar.
 - Los precios deben coincidir con lo que se le presentó al cliente. Si hay diferencia, pregunta.
-- Por defecto, todo va bajo LUPTECX. Un aliado se nombra solo si el usuario lo pide.
+- Por defecto, todo va bajo LUPTECX. Un aliado se nombra solo si el usuario lo pide, y lo
+  que gana el aliado (`aliados.md` de `luptecx-cierre-mensual`) **nunca** va en la cotización:
+  es un acuerdo interno.
 
 ---
 
@@ -49,7 +71,7 @@ La propuesta se lee de corrido, de arriba abajo. **Objetivo: 2 a 3 páginas.** S
 **Encabezado (primera página):**
 1. **Membrete:**
    - a la izquierda, el logo;
-   - a la derecha, LUPTECX S.A.S., NIT, ciudad, teléfono, correo y web;
+   - a la derecha, la razón social de LUPTECX, NIT, ciudad, teléfono, correo y web;
    - debajo, una línea dorada fina.
 2. **Ciudad y fecha:** `Bogotá D.C., 20 de octubre de 2026`.
 3. **Destinatario:** tratamiento (Señor/Señora), nombre en negrita, cargo, empresa y ciudad, cada uno en su línea.
@@ -100,7 +122,7 @@ Los honorarios van **justo después del alcance**: el lector ve qué recibe y en
 **Forma de pago por defecto** (confirmar con el usuario):
 - **Pago único:** 50 % a la aceptación y 50 % a la salida en vivo.
 - **Mensualidad:** por anticipado, dentro de los primeros cinco (5) días de cada mes, desde la salida en vivo.
-- **Medio:** transferencia a la cuenta de LUPTECX S.A.S., contra cuenta de cobro o factura electrónica.
+- **Medio:** transferencia a la cuenta de LUPTECX, contra cuenta de cobro o factura electrónica.
 
 **Condiciones generales por defecto** (confirmar con el usuario; quitar las que no apliquen):
 1. **Duración y terminación:** según la permanencia acordada. Si no hay, cualquiera de las partes termina con aviso escrito de treinta (30) días.
@@ -124,7 +146,7 @@ Al entregar, recuérdale al usuario que el IVA, la retención y las condiciones 
 | Color | Texto `#1A1A1A`; secundario `#5E5A52`; líneas `#D9D4C7`; fondo de encabezados de tabla y fila total `#F6F4EF`. **Dorado solo en dos lugares:** la línea del membrete (`#D4A018`) y el número de cada sección (`#86660C`). |
 | Secciones | Título de 11,5 pt con su número en dorado y una línea fina debajo. Subtítulos de 9,5 pt. |
 | Tablas | Sin bordes verticales. Encabezado en mayúsculas pequeñas sobre fondo suave, con línea negra debajo. Filas separadas por líneas finas. Números alineados a la derecha, en cifras tabulares. Una tabla nunca se parte entre páginas. |
-| Pie (todas las páginas) | `LUPTECX S.A.S. · Propuesta LTX-AAAA-NNN` a la izquierda; `Página X de Y` a la derecha. |
+| Pie (todas las páginas) | `LUPTECX · Cotización LTX-AAAA-NNN` a la izquierda; `Página X de Y` a la derecha. |
 | Prohibido | Fondos de color o negros, tarjetas, sombras, íconos, cifras grandes, portada, más de un color de acento. |
 
 **Logo:** usa `logo-claro.png` de la guía de estilo (Artifact `action: "read"`, `url: https://claude.ai/artifact/DVYbGuTpXnKVdiXzbCLcfY`, `path: "logo-claro.png"`). Cópialo a la carpeta de la propuesta. Nunca lo redibujes. Si no se puede descargar, pídeselo al usuario.
@@ -182,7 +204,7 @@ td .d{display:block;color:var(--gris);font-size:8.5pt;line-height:1.35}
 
 <div class="mem">
   <img src="logo-claro.png" alt="LUPTECX">
-  <div class="emp"><b>LUPTECX S.A.S.</b><br>NIT [NIT] · Bogotá D.C., Colombia<br>[celular] · [correo]@luptecx.com · luptecx.com</div>
+  <div class="emp"><b>[Razón social]</b><br>NIT [NIT] · Bogotá D.C., Colombia<br>[celular] · [correo]@luptecx.com · luptecx.com</div>
 </div>
 
 <div class="carta">
@@ -248,7 +270,7 @@ td .d{display:block;color:var(--gris);font-size:8.5pt;line-height:1.35}
 <div class="cierre">
   <p>Cordialmente,</p>
   <div class="firmas">
-    <div><b>[Nombre]</b><br>[Cargo]<br><span>LUPTECX S.A.S.</span></div>
+    <div><b>[Nombre]</b><br>[Cargo]<br><span>[Razón social]</span></div>
     <div><b>Acepto,</b><br>Nombre y C.C.: ________________________<br><span>[Empresa del cliente] · Fecha: ____________</span></div>
   </div>
 </div>
@@ -281,7 +303,7 @@ numero = sys.argv[2] if len(sys.argv) > 2 else ""
 pdf = html.with_suffix(".pdf")
 pie = ('<div style="width:100%;font-family:Arial,sans-serif;font-size:7.5pt;color:#5E5A52;'
        'padding:0 22mm;display:flex;justify-content:space-between">'
-       f'<span>LUPTECX S.A.S. · Propuesta {numero}</span>'
+       f'<span>LUPTECX · Cotización {numero}</span>'
        '<span>Página <span class="pageNumber"></span> de <span class="totalPages"></span></span></div>')
 with sync_playwright() as p:
     b = p.chromium.launch()
@@ -315,9 +337,13 @@ Mira **cada página** con la herramienta Read y verifica:
 
 ## Paso 8 · Entrega y versiones
 
-- Nombre del archivo: `Propuesta-LUPTECX-<Cliente>-<NNN>.pdf`. Envíalo con SendUserFile. Si hay una carpeta conectada en el computador del usuario, guárdalo también ahí.
+- Nombre del archivo: `Cotizacion-LUPTECX-<Cliente>-<NNN>.pdf`. Envíalo con SendUserFile. Si hay una carpeta conectada en el computador del usuario, guárdalo también ahí.
 - **Nunca sobrescribas una versión anterior.** Cada cambio va en un archivo nuevo (`…-v2`), y se guarda el HTML de cada versión.
 - **Nunca borres archivos sin preguntar.**
+- **Rastro en Notion:** en el CRM, el cliente pasa a **Propuesta Enviada** (si estaba antes
+  en el embudo), Ultimo Contacto = hoy, y en su ficha una línea con el número de la
+  cotización, los totales y la vigencia. Si el usuario todavía no la va a enviar, se anota
+  igual y se dice «sin enviar».
 - En la respuesta, en pocas líneas:
   - qué incluye la propuesta y los totales;
   - los marcadores pendientes;

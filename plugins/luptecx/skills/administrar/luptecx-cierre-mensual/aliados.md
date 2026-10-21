@@ -29,7 +29,9 @@ $600.000, LUPTECX $400.000), pero se confirma con cada cliente.
 ## Cómo se registra
 
 La comisión se debe **cuando el cliente paga**, no antes: un pago del cliente En Mora no
-genera comisión hasta que entra.
+genera comisión hasta que entra. Si el pago inicial se paga por partes (por ejemplo, la
+mitad al empezar y la mitad al salir en vivo), se pregunta en qué cuota se le paga al
+aliado su parte del onboarding, y se anota en la ficha del cliente en el CRM.
 
 | Caso | Ingreso (Client Payments) | Gasto (Business Expenses) |
 |---|---|---|

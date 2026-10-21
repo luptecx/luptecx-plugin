@@ -12,7 +12,7 @@ disciplinas que usan todas las etapas:
 ```
 plugins/luptecx/skills/
 ├── base/          entrevistar, modelar, depurar, probar, revisar, verificar…
-├── vender/        diagnóstico → propuesta → honorarios → contrato
+├── vender/        diagnóstico → presentación → cotización → contrato
 ├── construir/     nuevo proyecto → planificar → construir por piezas → entrega → cierre
 ├── mantener/      reportar y corregir errores, funcionalidades, desplegar, reporte mensual
 └── administrar/   comunicación con el cliente, cierre mensual, portafolio
@@ -48,7 +48,7 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 | base | `traspasar-sesion` | Solo a mano. Resume la sesión para seguir en una limpia |
 | base | `escribir-skills` | Cómo escribir skills, `CLAUDE.md` y normas para Claude |
 | vender | `presentacion-ventas-contenido` | Guion de propuestas: diagnóstico + ROI, reencuadre y tres niveles de precio que salen del Portafolio |
-| vender | `propuesta-honorarios-luptecx` | Propuesta de honorarios o cotización formal en PDF tipo carta comercial: membrete, alcance, desglose, condiciones y firmas |
+| vender | `propuesta-honorarios-luptecx` | Solo cotizaciones (propuestas de honorarios) en PDF tipo carta comercial, con los precios del Portafolio |
 | vender | `luptecx-diagnostico` | Prepara la reunión de diagnóstico y después ordena lo dicho, saca los datos de la propuesta y dice si el cliente encaja |
 | vender | `luptecx-contrato-servicio` | Contrato en Word desde la propuesta aceptada: carátula, Condiciones Generales y anexo de datos personales. Borrador hasta la revisión del abogado |
 | vender | `luptecx-estilo-visual` | Diseño de cualquier presentación o PDF de LUPTECX (dirección B «Contraste») |
