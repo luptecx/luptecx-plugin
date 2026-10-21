@@ -1,5 +1,5 @@
 {
-  "description": "Bloquea los comandos de git que borran trabajo o se saltan los candados (push forzado, --no-verify, reset --hard, clean -f, branch -D, checkout . y restore .)",
+  "description": "Bloquea los comandos de git que borran trabajo o se saltan los candados (push forzado, --no-verify, reset --hard, clean -f, branch -D, checkout . y restore .) y los que leen o imprimen secretos (.env, credenciales, llaves, variables con tokens, el token de gh)",
   "hooks": {
     "PreToolUse": [
       {
@@ -8,6 +8,10 @@
           {
             "type": "command",
             "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/bloquear-git-peligroso.sh\""
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/bloquear-secretos.sh\""
           }
         ]
       }

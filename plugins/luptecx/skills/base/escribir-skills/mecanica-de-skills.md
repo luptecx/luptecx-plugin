@@ -32,6 +32,9 @@ variados e inventados, nunca los de un cliente.
 
 ## Hooks del plugin
 
+Dos hoy: `bloquear-git-peligroso.sh` y `bloquear-secretos.sh`. Un cambio al de secretos se
+prueba con `python hooks/probar_bloquear_secretos.py` (sus casos van en esas dos listas).
+
 Los hooks de Claude Code que trae el plugin viven en `hooks/hooks.json`, con su script al
 lado, y corren en todos los proyectos donde esté instalado. Solo para candados que valen en
 cualquier proyecto; lo de un proyecto va en su `.pre-commit-config.yaml` o su CI. En
