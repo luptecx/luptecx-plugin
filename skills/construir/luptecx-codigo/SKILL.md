@@ -1,24 +1,37 @@
 ---
 name: luptecx-codigo
-description: Convenciones de código y de trabajo de LUPTECX, la fuente única para todos los proyectos. Úsala al escribir, revisar o reorganizar código de un proyecto de LUPTECX; al crear archivos, módulos o pruebas nuevos; al decidir cómo nombrar algo o dónde ponerlo; al tocar un bot de WhatsApp (webhook, plantillas de Meta, fechas, deduplicación); o cuando `revisar-cambios` necesite los estándares de la empresa.
+description: Convenciones de código y de trabajo de LUPTECX, la fuente única para todos los proyectos. Úsala al escribir, revisar o reorganizar código de un proyecto de LUPTECX; al crear archivos, módulos o pruebas nuevos; al decidir cómo nombrar algo o dónde ponerlo; o cuando `revisar-cambios` necesite los estándares de la empresa.
 ---
 
 # Convenciones de LUPTECX
 
-Valen para todos los proyectos. El `CLAUDE.md` de cada proyecto agrega lo suyo
-(arquitectura, invariantes del negocio, comandos, decisiones del dueño) y **puede
-desviarse** de una regla de aquí solo si deja escrita la decisión, con su fecha y el
-porqué. Lo escrito en el proyecto gana.
+Cada proyecto de LUPTECX es distinto. Lo que sigue vale para **todos**; lo propio de un
+stack o de un tipo de proyecto está en referencias aparte, y se lee solo la que toca.
+
+El `CLAUDE.md` de cada proyecto agrega lo suyo (arquitectura, invariantes del negocio,
+comandos, decisiones del dueño) y **puede desviarse** de una regla de aquí solo si deja
+escrita la decisión, con su fecha y el porqué. Lo escrito en el proyecto gana.
 
 Junto a cada regla se dice quién la vigila: 🔒 una máquina (hook, CI, prueba) o 👁 la
 revisión (`luptecx:revisar-cambios`). Lo que puede vigilar una máquina no se deja a criterio.
 
-## Stack por defecto
+## Qué referencias leer
 
-Python, FastAPI, SQLAlchemy con migraciones de Alembic, pytest, Docker con Caddy, y
-PostgreSQL en producción (SQLite en desarrollo y pruebas). Un proyecto nuevo nace de
-`luptecx/luptecx-plantilla`. Otro stack se puede usar, pero queda como decisión en
-`docs/decisiones/`.
+El `CLAUDE.md` del proyecto declara, en su bloque «Reglas de LUPTECX», su **stack** y su
+**tipo**. Lee las referencias que correspondan antes de escribir o revisar código:
+
+| El proyecto declara | Lee |
+|---|---|
+| Stack: Python | [stack-python.md](stack-python.md) y, si usa FastAPI, la skill oficial `fastapi` |
+| Automatización con n8n | La skill `n8n-workflow-patterns` de `czlonkowski/n8n-skills`, si está instalada |
+| Otro stack | Nada más: se decide con el usuario y queda en `docs/decisiones/` |
+
+Lo propio de un **tipo** de proyecto no vive aquí. Si se repite en varios proyectos, va en
+un plugin de tipo aparte (por ejemplo, `luptecx-bot-whatsapp`), que el proyecto activa en
+su `.claude/settings.json` y cuyas reglas se suman a estas. Si no hay plugin para el tipo,
+lo propio del proyecto queda en su especificación y en `docs/decisiones/`.
+
+Si el `CLAUDE.md` no lo declara, pregúntalo y agrégalo.
 
 ## Idioma 👁
 
@@ -34,37 +47,49 @@ producción son tres candados que se cumplen solos:
 
 | Regla | Quién la vigila |
 |---|---|
-| El mensaje de commit empieza por un tipo: `inicio`, `funcionalidad`, `correccion`, `pruebas`, `documentacion`, `refactorizacion`, seguido de `: ` | 🔒 hook `commit-msg` |
-| La suite pasa antes de subir | 🔒 hook `pre-push` y CI en cada push a `main` |
-| A producción solo llega lo que se despliega con `herramientas/desplegar.py` | 🔒 el script (franja prohibida, pruebas, respaldo) |
+| El mensaje de commit empieza por un tipo: `inicio`, `funcionalidad`, `correccion`, `pruebas`, `documentacion`, `refactorizacion`, seguido de `: ` | 🔒 candado de commit y CI |
+| La suite pasa antes de subir | 🔒 candado de push y CI en cada push a `main` |
+| A producción solo llega lo que se despliega con `herramientas/desplegar.py` | 🔒 el script (franja prohibida, CI en verde, respaldo, etiqueta) |
 
-- Los hooks viven en `.githooks/` y se activan una vez por clon:
-  `git config core.hooksPath .githooks`.
+- Los candados viven en `.pre-commit-config.yaml` y se activan una vez por clon con
+  `prek install` (los proyectos anteriores a la plantilla de procesos usan `.githooks/` y
+  `git config core.hooksPath .githooks`). El CI los repite, así que no activarlos no los
+  salta: solo hace que el error aparezca más tarde.
 - Antes de empezar, `git pull --rebase` (o `git config pull.rebase true` una vez): dos
   personas trabajan en la misma rama.
 - **Nunca** `git push --force` a `main` ni `--no-verify`. Si un hook falla, se arregla la
-  causa.
+  causa. 🔒 el hook del plugin se lo impide a Claude (también `reset --hard`, `clean -f`,
+  `branch -D`, `checkout .` y `restore .`).
 - Ramas solo para trabajo largo o experimental (`funcionalidad/<que-hace>`), que se
   integran a `main` con merge local y push.
-- Commits pequeños, un propósito cada uno. Una reestructuración va en su propio commit
-  `refactorizacion:`, sin cambiar comportamiento.
+- Los workflows de GitHub pasan por actionlint y zizmor (🔒 candado de commit y CI), y
+  las acciones van fijadas por hash.
+- Commits pequeños, un propósito cada uno, con un título que diga qué cambió. Una
+  reestructuración va en su propio commit `refactorizacion:`, sin cambiar comportamiento.
 - Cada versión desplegada lleva su etiqueta (`v1.4.0`) y su entrada en `CHANGELOG.md`.
 - Subir no es desplegar: al cliente solo llega lo que Camilo despliega.
 
 La **definición de terminado** está en `luptecx:verificar-antes-de-terminar`.
 
-## Estructura del repositorio 👁
+## Documentos del repositorio 👁
+
+Todo proyecto tiene, sin importar su stack:
 
 ```
-app/            código de la aplicación
-pruebas/        suite automatizada (pytest)
-herramientas/   scripts de operación: desplegar, configurar, inspeccionar
-migraciones/    Alembic
-docs/           ESPECIFICACION, ARQUITECTURA, PUESTA_EN_PRODUCCION, GLOSARIO, decisiones/
-.githooks/      commit-msg y pre-push
+CLAUDE.md                 corto: «Reglas de LUPTECX» (con stack y tipo) y lo propio del proyecto
+CHANGELOG.md              qué cambió en cada versión, para quien lo lea dentro de un año
+docs/ESPECIFICACION.md    qué hace y para quién (planificar-desarrollo)
+docs/ARQUITECTURA.md      cómo está hecho y el plan de piezas
+docs/PUESTA_EN_PRODUCCION.md
+docs/GLOSARIO.md          palabras del negocio (modelar-dominio)
+docs/decisiones/          decisiones difíciles de revertir, con fecha
+.pre-commit-config.yaml   los candados (prek)
+.secrets.baseline         lo que detect-secrets ya revisó
+.env.ejemplo              cada variable de configuración, sin valores reales
 ```
 
-- `CLAUDE.md` en la raíz, corto: el bloque «Reglas de LUPTECX» y lo propio del proyecto.
+- El `CLAUDE.md` apunta a estos documentos en vez de copiarlos, y no pasa de ~100 líneas:
+  lo que se puede ver en el código, en `--help` o en los documentos no se repite.
 - Configuración por variables de entorno, con `.env.ejemplo` versionado y `.env` nunca.
 - Scripts de prueba manual desechables no se quedan en el repositorio: o se vuelven una
   prueba de la suite o se borran.
@@ -73,76 +98,32 @@ docs/           ESPECIFICACION, ARQUITECTURA, PUESTA_EN_PRODUCCION, GLOSARIO, de
 
 El cómo está en `luptecx:probar-primero`. Las reglas de empresa:
 
-- Viven en `pruebas/`, con nombres en español que dicen el comportamiento:
-  `test_un_lote_sin_valor_se_rechaza`. 👁
-- **Ninguna prueba sale a la red** (WhatsApp, Google, Meta van con dobles). 👁
-- **Ninguna prueba depende de archivos que solo existen en un PC** (`.env`,
-  `credentials.json`, `.venv`, una hoja real): si pasa en el PC y falla en el CI, la prueba
-  está mal escrita. 🔒 CI
-- Si cambió un modelo, hay migración. 🔒 `pruebas/test_migraciones.py`
-- La suite también corre contra PostgreSQL cuando lo que se prueba depende del motor.
+- Nombres en español que dicen el comportamiento: `test_un_lote_sin_valor_se_rechaza`. 👁
+- **Ninguna prueba sale a la red**: cada integración externa (mensajería, una hoja de
+  cálculo, un modelo de IA, una API del cliente) va con un doble. 👁
+- **Ninguna prueba depende de archivos que solo existen en un PC** (`.env`, credenciales,
+  el entorno virtual, una hoja real): si pasa en el PC y falla en el CI, la prueba está mal
+  escrita. 🔒 CI
+- Si el proyecto tiene base de datos y cambió un modelo, hay migración, y una prueba lo
+  vigila. 🔒
+
+## Fechas 👁
+
+Los clientes están en Colombia. **Fechas de negocio en `America/Bogota`, marcas de
+auditoría en UTC.** Nunca una fecha u hora sin zona: el servidor corre en UTC y después de
+las 7 p. m. en Colombia ya es el día siguiente. Cada stack dice cómo lo vigila una máquina.
 
 ## Datos y secretos
 
 - **Ningún secreto en el repositorio**, en los logs ni en los mensajes. Los secretos viven
-  en Bitwarden; el repositorio solo dice *dónde* están. 👁 · 🔒 pendiente: escáner de
-  secretos en el pre-push y el CI.
+  en Bitwarden; el repositorio solo dice *dónde* están. 👁 · 🔒 detect-secrets en el
+  candado de commit y en el CI. Un falso positivo se marca en la línea con
+  `# pragma: allowlist secret` y el porqué.
 - **Ningún dato real de clientes en el repositorio**, ni siquiera anonimizado. 👁
-- **Nunca se apuntan herramientas ni pruebas a datos de producción** de un cliente ni a su
-  número real de WhatsApp: siempre a una copia y al número de prueba. 👁
+- **Nunca se apuntan herramientas ni pruebas a datos de producción** de un cliente: siempre
+  a una copia y a cuentas o números de prueba. 👁
 - Datos personales (teléfonos, cédulas, nombres): solo lo necesario, nunca en logs, y con
   el tratamiento que diga la especificación (Ley 1581 de 2012). 👁
-- `.env`, credenciales y `respaldos/` en `.gitignore`. 🔒 `.gitignore` de la plantilla
-
-## Detalles de plataforma
-
-- Los `.sh` llevan finales de línea LF. 🔒 `.gitattributes`
-- **Un solo worker de Uvicorn**: el planificador de tareas y los límites por usuario viven
-  en memoria. Con varios workers cada tarea corre N veces. 👁
-
-## Si el proyecto es un bot de WhatsApp
-
-### Arquitectura 👁
-
-```
-WhatsApp → whatsapp_router → deduplica por message_id → conversacion (lógica del negocio)
-        → servicios del proyecto → mensajes (redacta) → whatsapp_service (envía)
-```
-
-- `whatsapp_router` solo autentica, traduce el payload, deduplica y descarta lo que llega
-  tarde. Responde 200 de inmediato y atiende en segundo plano.
-- `conversacion` es el **único** módulo que conoce a la vez base de datos, servicios del
-  negocio y WhatsApp. El estado de cada conversación se guarda en la base de datos, nunca
-  en memoria.
-- `mensajes` es el **único** que redacta textos para el usuario. La conversación decide qué
-  mensaje toca; no redacta.
-- El envío está tras `ProveedorWhatsApp`: un proveedor real (Cloud API de Meta) y uno de
-  pruebas que acumula. Nadie lo esquiva.
-- Cada excepción lleva el detalle técnico (para el log) y un `mensaje_usuario` (para
-  WhatsApp).
-
-### Invariantes de todo bot
-
-1. **Fechas de negocio en `America/Bogota`, marcas de auditoría en UTC.** Nunca
-   `datetime.now()` sin zona: el servidor corre en UTC y después de las 7 p. m. en
-   Colombia ya es el día siguiente. 👁 · 🔒 pendiente: regla `DTZ` de `ruff`.
-2. **Deduplicación por `message_id` con restricción única en la base de datos.** Meta
-   reintenta los webhooks; sin esto una acción se ejecuta dos veces. Si la acción tiene
-   confirmación, el estado se consume **antes** de ejecutar, para que una segunda
-   confirmación no duplique. 👁
-3. **Todo mensaje proactivo va por `enviar_plantilla`, nunca por `enviar_texto`.** Meta
-   rechaza el texto libre pasadas 24 h desde el último mensaje del usuario (error 131047).
-   Los parámetros de una plantilla no llevan saltos de línea. Una plantilla aprobada no se
-   edita: un texto nuevo es una plantilla nueva. Nunca se pone en el `.env` el nombre de una
-   plantilla que Meta no haya aprobado (error 132001: ese día no sale ningún aviso). 👁
-4. **El webhook se autentica con la firma de Meta y con nada más.** Solo se acepta sin
-   firma cuando `META_APP_SECRET` está vacío, y la configuración de producción no deja
-   arrancar así. No se agrega una segunda vía de autenticación: la que sobra acaba siendo
-   la que está vacía. 👁
-5. **Desde el 01/10/2026 Meta cobra cada mensaje de servicio:** lo que se pueda decir en
-   una sola burbuja (texto con sus botones) va en una. 👁
-
-### Producción
-
-- Antes de publicar, `web/privacidad.html` describe lo que hace este bot (lo exige Meta).
-- Monitoreo: endpoint `/salud` y aviso a Healthchecks de las tareas programadas.
+- `.env`, credenciales y respaldos en `.gitignore`. 🔒 `.gitignore` de la plantilla
+- Una dependencia nueva se justifica: ¿la librería estándar o una que ya está no alcanza?
+  👁 · 🔒 pip-audit en el CI (stack Python) y Dependabot.
