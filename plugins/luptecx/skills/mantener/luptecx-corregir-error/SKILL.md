@@ -61,8 +61,9 @@ verde y el commit está hecho.
 ## 3. Revisar
 
 Invoca `luptecx:revisar-cambios` contra `origin/main`. Si el arreglo toca dinero, fechas,
-el webhook o datos del cliente, corre también `/code-review`; si toca autenticación,
-secretos o entrada que viene de afuera, también `/security-review`. Un 🔴 vuelve al paso 2.
+el webhook o datos del cliente, corre también `/code-review`; si toca entrada externa,
+autenticación, secretos, datos personales, dependencias o IA, también
+`luptecx:revisar-seguridad`. Un 🔴 vuelve al paso 2.
 
 **Terminado cuando:** la revisión no tiene 🔴.
 

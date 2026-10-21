@@ -34,6 +34,16 @@ en sistemas del cliente.>
 | Costura | Qué comportamiento prueba | Qué atrapa | Qué no atrapa |
 |---|---|---|---|
 
+## Amenazas y datos
+<Con `luptecx:revisar-seguridad` (paso 1). Si el proyecto no recibe nada de afuera ni
+guarda datos personales, una línea que lo diga.>
+
+| Frontera | Qué entra | Riesgos (STRIDE) | Control | Prueba de abuso |
+|---|---|---|---|---|
+
+**Activos:** <…> · **Datos personales:** <qué, dónde, cuánto tiempo, cómo se borra> ·
+**Proveedores que reciben datos:** <…>
+
 ## Plan de piezas
 | # | Pieza (comportamiento) | Depende de | Criterios (RF) | Costura | Estado |
 |---|---|---|---|---|---|

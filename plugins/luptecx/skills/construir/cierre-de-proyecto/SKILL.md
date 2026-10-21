@@ -108,6 +108,9 @@ mantener. Tiene dos partes, y las dos se hacen:
    Especificación, pasan tal cual al informe de cierre, por separado, para que un eje no
    tape al otro.
 
+3. **Seguridad** — invoca `luptecx:revisar-seguridad` en modo **proyecto entero**. Su
+   tabla pasa tal cual al informe de cierre, en «Calidad y riesgos».
+
 Si tienes `/code-review`, acepta una carpeta como objetivo y sirve de segunda mirada sobre
 el código de la aplicación. Cada hallazgo va con `archivo:línea` y qué pasaría si no se
 arregla.

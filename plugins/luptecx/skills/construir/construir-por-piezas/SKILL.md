@@ -77,7 +77,12 @@ Invoca `luptecx:revisar-cambios` con el punto fijo en el commit anterior a la pi
 `origin/main`). Atiende los hallazgos como dice esa skill. Si el informe recomienda
 `/code-review`, ofrécelo.
 
-**Terminado cuando** no queda ningún 🔴 y el usuario decidió qué hacer con los 🟠.
+Si la pieza toca entrada externa, autenticación, secretos, archivos subidos, datos
+personales, dependencias o un modelo de IA, invoca además `luptecx:revisar-seguridad` con
+el mismo punto fijo.
+
+**Terminado cuando** no queda ningún 🔴 en ninguna de las revisiones y el usuario decidió
+qué hacer con los 🟠.
 
 ## 5. Verificar
 

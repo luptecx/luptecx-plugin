@@ -85,15 +85,19 @@ presentar.
 
 Escribe o actualiza `docs/ARQUITECTURA.md` con la plantilla de
 [plantilla-arquitectura.md](plantilla-arquitectura.md): estructura, flujo de datos, modelo
-de datos, decisiones de diseño y **costuras de prueba** (dónde se va a probar cada
-comportamiento). Para decidir dónde van los módulos y sus interfaces, usa el vocabulario de
-[diseno-de-modulos.md](diseno-de-modulos.md).
+de datos, decisiones de diseño, **costuras de prueba** (dónde se va a probar cada
+comportamiento) y **amenazas y datos**. Para decidir dónde van los módulos y sus interfaces,
+usa el vocabulario de [diseno-de-modulos.md](diseno-de-modulos.md).
+
+Si lo que se planifica recibe datos de afuera, guarda datos personales o usa un modelo de
+IA, la sección «Amenazas y datos» sale del paso 1 de `luptecx:revisar-seguridad`, y sus
+casos de abuso pasan al plan de piezas como pruebas.
 
 Tú propones; el usuario decide. Si hay varias formas razonables, preséntalas con pros y
 contras y una recomendación. Las decisiones difíciles de revertir van además a
 `docs/decisiones/`.
 
-**Terminado cuando** el usuario aprobó la arquitectura, costuras incluidas.
+**Terminado cuando** el usuario aprobó la arquitectura, costuras y amenazas incluidas.
 
 ## 5. Plan de piezas
 

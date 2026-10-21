@@ -28,6 +28,10 @@ Cada punto con su evidencia (`luptecx:verificar-antes-de-terminar`):
       Si falta, se escribe con el usuario, commit `documentacion:` y push.
 - [ ] **Revisión de lo que sale:** `luptecx:revisar-cambios` con punto fijo en la última
       etiqueta (`git describe --tags --abbrev=0`). Un 🔴 detiene el despliegue.
+- [ ] **Seguridad de lo que sale:** `luptecx:revisar-seguridad` con el mismo punto fijo si
+      lo que sale toca alguna frontera (entrada externa, datos personales, secretos,
+      dependencias, IA). La **primera** puesta en producción la revisa en modo proyecto
+      entero. Un 🔴 detiene el despliegue.
 - [ ] **CI en verde** para ese commit: `gh run list --commit <hash>`.
 - [ ] **Migración:** si la versión trae una, la suite corrió también contra PostgreSQL y el
       usuario sabe que volver atrás será restaurar el respaldo, no `--version`.
