@@ -17,6 +17,10 @@ Una división nueva se agrega también a la lista `skills` de `plugins/luptecx/.
 sin eso no carga. Al agregar o quitar una skill, se actualiza la tabla del `README.md` de
 su división y la del `README.md` del plugin.
 
+**La descripción va entre comillas dobles** si lleva `#` o `: `: sin comillas, el YAML del
+encabezado la corta o deja la skill sin cargar. `plugins/luptecx/herramientas/revisar_encabezados.py` lo
+comprueba.
+
 **Ninguna skill del plugin general es de un proyecto ni de un tipo de proyecto**
 (decisión del 21/10/2026). Los proyectos son distintos: bots, agentes, automatizaciones,
 scripts. Lo que solo sirve a un tipo (una plataforma, sus reglas, sus accesos) va en un

@@ -139,7 +139,11 @@ plugin como archivo si alguna vez el marketplace no está disponible.
 2. Si es nueva o cambió de lugar, actualizar la tabla del `README.md` de su división y la
    de este archivo. Una división nueva va también en la lista `skills` de
    `plugins/luptecx/.claude-plugin/plugin.json`.
-3. `claude plugin validate .` tiene que pasar.
+3. Desde la raíz del repositorio, `claude plugin validate .` y
+   `uv run --script plugins/luptecx/herramientas/revisar_encabezados.py` tienen que pasar.
+   El segundo revisa lo que el primero no ve: que el encabezado de cada `SKILL.md` sea YAML
+   válido y que la descripción no quede cortada (un `#` o un `: ` en el texto la rompen;
+   entonces va entre comillas dobles).
 4. Subir la versión en `plugins/luptecx/.claude-plugin/plugin.json` (`0.4.0` → `0.5.0` si agrega o cambia
    comportamiento; `0.4.1` si solo corrige redacción).
 5. Commit con tipo (`funcionalidad: …`, `correccion: …`) y push a `main`.

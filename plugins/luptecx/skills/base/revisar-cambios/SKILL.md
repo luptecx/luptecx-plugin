@@ -1,6 +1,6 @@
 ---
 name: revisar-cambios
-description: Revisión de un cambio en dos ejes, estándares del proyecto y especificación, contra un punto fijo. Úsala antes de hacer push de un cambio que toca `app/`, antes de desplegar (contra la última etiqueta), al terminar una pieza, cuando se pida revisar si un cambio cumple las normas o lo que se pidió, o cuando otra skill necesite revisar el proyecto entero. No es para cazar bugs línea por línea: eso es `/code-review`.
+description: "Revisión de un cambio en dos ejes, estándares del proyecto y especificación, contra un punto fijo. Úsala antes de hacer push de un cambio que toca `app/`, antes de desplegar (contra la última etiqueta), al terminar una pieza, cuando se pida revisar si un cambio cumple las normas o lo que se pidió, o cuando otra skill necesite revisar el proyecto entero. No es para cazar bugs línea por línea: eso es `/code-review`."
 ---
 
 # Revisar cambios
