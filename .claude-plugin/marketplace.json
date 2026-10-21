@@ -5,13 +5,18 @@
     "email": "camilob@luptecx.com"
   },
   "metadata": {
-    "description": "Plugins de LUPTECX. Cada push a main es la versión nueva para los dos socios."
+    "description": "Plugins de LUPTECX: luptecx (general, para todo proyecto) y los opcionales por tipo de proyecto. Cada push a main es la versión nueva para los dos socios."
   },
   "plugins": [
     {
       "name": "luptecx",
       "source": "./",
       "description": "Skills de LUPTECX por etapa del cliente (vender, construir, mantener, administrar) y las disciplinas de base que usan todas."
+    },
+    {
+      "name": "luptecx-bot-whatsapp",
+      "source": "./extras/luptecx-bot-whatsapp",
+      "description": "Opcional, por proyecto. Reglas para proyectos que conversan por WhatsApp con la Cloud API de Meta."
     }
   ]
 }
