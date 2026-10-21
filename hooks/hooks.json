@@ -1,0 +1,16 @@
+{
+  "description": "Bloquea los comandos de git que borran trabajo o se saltan los candados (push forzado, --no-verify, reset --hard, clean -f, branch -D, checkout . y restore .)",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/bloquear-git-peligroso.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
