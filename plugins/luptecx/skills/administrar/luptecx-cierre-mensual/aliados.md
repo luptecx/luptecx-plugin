@@ -5,26 +5,31 @@ persona externa con la que LUPTECX comparte ingresos: vende un servicio suyo a n
 clientes, o nos trae clientes. No es socio: lo que se le paga es un gasto, y la utilidad que
 se reparte 50/50 es lo que queda después.
 
-## Acuerdos vigentes
+## Dónde están los acuerdos
 
-| Aliado | Qué hace | Lo que gana LUPTECX | Lo que gana el aliado | Desde |
-|---|---|---|---|---|
-| Steven (publicidad) | Maneja la publicidad que pagan algunos de nuestros clientes | 40 % del onboarding de la publicidad (el primer mes) y 20 % de cada mes siguiente | El resto: 60 % del onboarding y 80 % de cada mes siguiente | 21/10/2026 |
-| Steven, como vendedor | Nos trae un cliente que compra un producto de LUPTECX | El resto: 60 % del pago inicial y 80 % de cada mensualidad | 40 % del pago inicial y 20 % de cada mensualidad | 21/10/2026 |
+Los acuerdos son de la empresa y **no se escriben en el plugin** (su repositorio es
+público): viven en la base **Aliados** de Notion, dentro de Finanzas, con su identificador en
+la página «Mapa de Notion para Claude» de Recursos (búscala por ese nombre con el conector de Notion). Cada fila es un acuerdo:
 
-Los porcentajes **no tienen límite de tiempo**: se pagan mientras el cliente pague.
+| Campo | Qué dice |
+|---|---|
+| Acuerdo, Aliado, Caso | Con quién y en qué caso: «Le vendemos su servicio» o «Nos trae un cliente» |
+| Aliado: % del onboarding, Aliado: % de cada mes | Lo que gana el aliado; LUPTECX gana el resto |
+| Onboarding usual | Cuánto del pago inicial suele ser la parte del aliado; se confirma con cada cliente |
+| Límite, Desde, Estado | Hasta cuándo se paga, desde cuándo y si sigue Vigente |
+| Clientes | Los clientes del CRM a los que aplica el acuerdo |
+| Notas | Lo que no cabe en los campos (cifras de un cliente, excepciones) |
 
-Un acuerdo nuevo o un cambio de porcentajes se anota aquí y en el Registro de decisiones de
-Notion, con su fecha. Un cambio no toca los meses ya cerrados.
+Un acuerdo nuevo o un cambio de porcentajes se escribe en esa base y en el Registro de
+decisiones, con su fecha. Un cambio no toca los meses ya cerrados.
 
 ## Qué cliente tiene un acuerdo
 
-Lo dice el CRM de Notion: en la ficha del cliente, **cuál aliado** y **por qué** (le vendemos
-su publicidad, o él nos trajo al cliente). Si el CRM no lo dice, se le pregunta al usuario
-una vez por cliente y se anota en el CRM. Para la publicidad hace falta además **cuánto del
-cobro es publicidad**: sale de la carátula o de la propuesta; si no lo dice, se pregunta. Lo
-usual es que **$1.000.000 del pago inicial** sea el onboarding de la publicidad (Steven
-$600.000, LUPTECX $400.000), pero se confirma con cada cliente.
+El campo **Clientes** de la base Aliados. Si un cliente no aparece en ningún acuerdo y el
+usuario dice que tiene uno, se agrega ahí. Para la parte del aliado hace falta además
+**cuánto del cobro le corresponde** (por ejemplo, qué parte es publicidad): sale de la
+carátula, de la propuesta o de las Notas del acuerdo; si no, se pregunta y se anota en las
+Notas.
 
 ## Cómo se registra
 

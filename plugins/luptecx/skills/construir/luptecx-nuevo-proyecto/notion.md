@@ -5,16 +5,16 @@ Se lee en el paso 2 de `luptecx-nuevo-proyecto`, en el paso 5 de
 
 ## Bases
 
-| Base | Base de datos | Origen de datos (`data_source_id`) | Campos que se usan |
-|---|---|---|---|
-| Proyectos | `2ef1aff9-02bf-815e-b84a-e057c0e72e4d` | `2ef1aff9-02bf-811c-9a7d-000b1fdd53ec` | Project Name, Project Description, Fase, Status, Priority, Deadline, Clients, Portafolio, Repositorio |
-| Tasks | `2ef1aff9-02bf-8191-b400-ee6759aa97ef` | `2ef1aff9-02bf-81a3-b3a0-000b054b217a` | In, Tipo, Severidad, Priority, Project, Assignee, Due Date, completed, Enlace GitHub |
-| Clientes (CRM) | `2ef1aff9-02bf-81f3-9d3b-c767185c3431` | `2ef1aff9-02bf-8163-a7f1-000b3db7966f` | Empresa, Estado, Proyectos, Ultimo Contacto, Reuniones |
-| Reuniones | `2ef1aff9-02bf-81ca-bf28-c109099b81cd` | `2ef1aff9-02bf-8115-b3a5-000b8e5b8356` | Todas Las reuniones (título), Clients, Project, Meeting Date, Tipo, Estado |
-| Portafolio | `2ef1aff9-02bf-803c-bd6d-f5b2dd1a73b9` | `2ef1aff9-02bf-81bf-b073-000b08c1ec51` | El producto vendido |
+Los identificadores (base, origen de datos y el de Camilo como persona) están en
+la página «Mapa de Notion para Claude» de Recursos (búscala por ese nombre con el conector de Notion). No se copian al plugin: su repositorio es público.
 
-Camilo en Notion: `08147e30-0dfc-48d9-ba35-8ed5dadc47d4`. Los identificadores no son
-secretos; ahorran buscar entre todas las bases del espacio.
+| Base | Campos que se usan |
+|---|---|
+| Proyectos | Project Name, Project Description, Fase, Status, Priority, Deadline, Clients, Portafolio, Repositorio |
+| Tasks | In, Tipo, Severidad, Priority, Project, Assignee, Due Date, completed, Enlace GitHub |
+| Clientes (CRM) | Empresa, Estado, Proyectos, Ultimo Contacto, Reuniones |
+| Reuniones | Todas Las reuniones (título), Clients, Project, Meeting Date, Tipo, Estado |
+| Portafolio | El producto vendido |
 
 ## Plantillas
 

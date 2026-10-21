@@ -112,8 +112,8 @@ Muestra la cuenta en palabras simples: "100 chats/día × 30 días × 40 % sin r
 
 **Los precios salen del Portafolio**, nunca de la conversación, de la memoria ni de una
 propuesta anterior: el Portafolio es la única cifra. Si la presentación es de LUPTECX, léelos
-con el conector de Notion de la base «Portafolio Automatizaciones»
-(`2ef1aff9-02bf-803c-bd6d-f5b2dd1a73b9`), en la ficha del producto que se propone:
+con el conector de Notion de la base «Portafolio Automatizaciones» (su identificador está
+en la página «Mapa de Notion para Claude» de Recursos (búscala por ese nombre con el conector de Notion)), en la ficha del producto que se propone:
 
 | Nivel | Pago inicial | Mensualidad |
 |---|---|---|

@@ -177,9 +177,8 @@ Sigue: luptecx:luptecx-corregir-error con el issue
 
 ## Referencia
 
-- **Base Tasks de Notion:** `2ef1aff9-02bf-8191-b400-ee6759aa97ef`. **Base Proyectos:**
-  `2ef1aff9-02bf-815e-b84a-e057c0e72e4d` (campos Clients, Fase y Repositorio). No son
-  secretos; ahorran buscar entre todas las bases del espacio.
+- **Bases Tasks y Proyectos** (campos Clients, Fase y Repositorio): sus identificadores
+  están en la página «Mapa de Notion para Claude» de Recursos (búscala por ese nombre con el conector de Notion).
 - Si un proyecto no tiene **Repositorio** en Notion, se pregunta cuál es y se llena el
   campo, para que la próxima vez no haga falta.
 - Los títulos del cuerpo son los del formulario del repositorio. Si el formulario cambia,
