@@ -9,8 +9,10 @@ se reparte 50/50 es lo que queda después.
 
 | Aliado | Qué hace | Lo que gana LUPTECX | Lo que gana el aliado | Desde |
 |---|---|---|---|---|
-| Aliado de publicidad (nombre por confirmar) | Maneja la publicidad que pagan algunos de nuestros clientes | 40 % del onboarding de la publicidad (el primer mes) y 20 % de cada mes siguiente | El resto: 60 % del onboarding y 80 % de cada mes siguiente | 21/10/2026 |
-| El mismo aliado, como vendedor | Nos trae un cliente que compra un producto de LUPTECX | El resto: 60 % del pago inicial y 80 % de cada mensualidad | 40 % del pago inicial y 20 % de cada mensualidad | 21/10/2026 |
+| Steven (publicidad) | Maneja la publicidad que pagan algunos de nuestros clientes | 40 % del onboarding de la publicidad (el primer mes) y 20 % de cada mes siguiente | El resto: 60 % del onboarding y 80 % de cada mes siguiente | 21/10/2026 |
+| Steven, como vendedor | Nos trae un cliente que compra un producto de LUPTECX | El resto: 60 % del pago inicial y 80 % de cada mensualidad | 40 % del pago inicial y 20 % de cada mensualidad | 21/10/2026 |
+
+Los porcentajes **no tienen límite de tiempo**: se pagan mientras el cliente pague.
 
 Un acuerdo nuevo o un cambio de porcentajes se anota aquí y en el Registro de decisiones de
 Notion, con su fecha. Un cambio no toca los meses ya cerrados.
@@ -20,7 +22,9 @@ Notion, con su fecha. Un cambio no toca los meses ya cerrados.
 Lo dice el CRM de Notion: en la ficha del cliente, **cuál aliado** y **por qué** (le vendemos
 su publicidad, o él nos trajo al cliente). Si el CRM no lo dice, se le pregunta al usuario
 una vez por cliente y se anota en el CRM. Para la publicidad hace falta además **cuánto del
-cobro es publicidad**: sale de la carátula o de la propuesta; si no lo dice, se pregunta.
+cobro es publicidad**: sale de la carátula o de la propuesta; si no lo dice, se pregunta. Lo
+usual es que **$1.000.000 del pago inicial** sea el onboarding de la publicidad (Steven
+$600.000, LUPTECX $400.000), pero se confirma con cada cliente.
 
 ## Cómo se registra
 

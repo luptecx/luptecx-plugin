@@ -10,7 +10,7 @@ import zipfile
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent
-EXCLUIR = {".git", "dist", "__pycache__", ".github"}
+EXCLUIR = {".git", "dist", "__pycache__", ".github", ".ruff_cache", "extras"}  # extras: plugins de tipo, van aparte
 FUERA_DEL_PAQUETE = {"empaquetar.py"}
 
 

@@ -109,8 +109,13 @@ claude plugin marketplace add luptecx/luptecx-plugin
 claude plugin install luptecx@luptecx
 ```
 
-**En la app de escritorio o claude.ai:** **Customize › Plugins › Add marketplace**,
-escribir `luptecx/luptecx-plugin` e instalar `luptecx`. Llega igual al chat y a Cowork.
+**En la app de escritorio o claude.ai (chat y Cowork):** primero se quita el `luptecx`
+que esté subido como archivo. Luego **Customize › Plugins › Add marketplace**, escribir
+`luptecx/luptecx-plugin` e instalar `luptecx`. Como el repositorio es privado, puede pedir
+conectar la cuenta de GitHub. Si el marketplace no carga, se sube el archivo:
+`python empaquetar.py` deja `dist/luptecx-<versión>.plugin` (sin los plugins de tipo de
+`extras/`), y en **Customize › Plugins** se sube ese archivo. Subido así no se actualiza
+solo: cada versión nueva se vuelve a subir.
 
 **En cada proyecto**, además, la plantilla de procesos genera `.claude/settings.json` con
 el marketplace y `luptecx@luptecx` activado: quien abra el repositorio en Claude Code y no
