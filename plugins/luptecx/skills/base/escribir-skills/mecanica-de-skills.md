@@ -13,7 +13,7 @@ cliente donde se usa:
 | `mantener` | Errores, funcionalidades, despliegue, reportes al cliente |
 | `administrar` | Cierre mensual, comunicación con el cliente, portafolio |
 
-Una división nueva se agrega también a la lista `skills` de `.claude-plugin/plugin.json`;
+Una división nueva se agrega también a la lista `skills` de `plugins/luptecx/.claude-plugin/plugin.json`;
 sin eso no carga. Al agregar o quitar una skill, se actualiza la tabla del `README.md` de
 su división y la del `README.md` del plugin.
 

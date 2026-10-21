@@ -10,7 +10,7 @@ Las skills van en carpetas por **etapa del cliente**, más una de **base** con l
 disciplinas que usan todas las etapas:
 
 ```
-skills/
+plugins/luptecx/skills/
 ├── base/          entrevistar, modelar, depurar, probar, revisar, verificar…
 ├── vender/        diagnóstico → propuesta → contrato
 ├── construir/     nuevo proyecto → planificar → construir por piezas → entrega → cierre
@@ -21,6 +21,11 @@ skills/
 Cada carpeta tiene su `README.md` con las skills que ya existen y las pendientes del plan
 de estandarización. Las de etapa dicen *qué* se hace; las de base, *cómo* se hace bien.
 Una sola skill por función, y **ninguna es de un proyecto ni de un tipo de proyecto**.
+
+El plugin general vive en `plugins/luptecx/` (manifiesto, skills, hooks, herramientas,
+créditos y licencias). En la raíz quedan solo el marketplace, este README y
+`empaquetar.py`: la app de claude.ai no carga un plugin cuya carpeta es la raíz del
+repositorio, porque esa carpeta contiene también el marketplace y los plugins de tipo.
 
 Lo que solo sirve a un tipo de proyecto va en un **plugin de tipo** aparte, en `extras/`,
 que se activa solo en los proyectos de ese tipo. Hoy hay uno:
@@ -63,7 +68,7 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 
 ## Herramientas
 
-`herramientas/md_a_word.py` arma en Word (y en PDF, si el PC tiene Word) cualquier
+`plugins/luptecx/herramientas/md_a_word.py` arma en Word (y en PDF, si el PC tiene Word) cualquier
 documento de LUPTECX escrito en Markdown: el contrato, el acta de entrega y el manual del
 cliente. Llena los `{{campos}}` desde un `datos.json`, se niega si falta uno y resalta en
 amarillo lo pendiente. Se corre con `uv run --script`.
@@ -128,20 +133,20 @@ plugin como archivo si alguna vez el marketplace no está disponible.
 
 ## Cómo se cambia una skill
 
-1. `git pull` y cambio en `skills/<división>/<skill>/`, siguiendo
+1. `git pull` y cambio en `plugins/luptecx/skills/<división>/<skill>/`, siguiendo
    `luptecx:escribir-skills` (y su `mecanica-de-skills.md`).
 2. Si es nueva o cambió de lugar, actualizar la tabla del `README.md` de su división y la
    de este archivo. Una división nueva va también en la lista `skills` de
-   `.claude-plugin/plugin.json`.
+   `plugins/luptecx/.claude-plugin/plugin.json`.
 3. `claude plugin validate .` tiene que pasar.
-4. Subir la versión en `.claude-plugin/plugin.json` (`0.4.0` → `0.5.0` si agrega o cambia
+4. Subir la versión en `plugins/luptecx/.claude-plugin/plugin.json` (`0.4.0` → `0.5.0` si agrega o cambia
    comportamiento; `0.4.1` si solo corrige redacción).
 5. Commit con tipo (`funcionalidad: …`, `correccion: …`) y push a `main`.
 6. Avisar al otro socio. Cada uno, en **Customize › Plugins**, abre el marketplace `luptecx`
    y elige **Check for updates** (o deja activada la sincronización automática).
 
 Las skills que vienen de repositorios de terceros, y qué se les cambió, están en
-[CREDITOS.md](CREDITOS.md); sus licencias, en `licencias/`.
+[CREDITOS.md](plugins/luptecx/CREDITOS.md); sus licencias, en `plugins/luptecx/licencias/`.
 
 ## Acuerdos del equipo que las skills dan por hechos
 

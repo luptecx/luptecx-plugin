@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "luptecx",
-      "source": "./",
+      "source": "./plugins/luptecx",
       "description": "Skills de LUPTECX por etapa del cliente (vender, construir, mantener, administrar) y las disciplinas de base que usan todas."
     },
     {
