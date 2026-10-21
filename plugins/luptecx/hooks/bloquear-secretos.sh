@@ -8,6 +8,16 @@
 # Recibe el JSON del hook por la entrada estándar. Sale con 2 (y el motivo en stderr, que
 # Claude lee) para bloquear, y con 0 para dejar pasar.
 
+# Las herramientas de Git Bash, aunque el hook arranque sin ellas en el PATH. Si aun así
+# faltan, se bloquea: un hook que no puede revisar no deja pasar (falla cerrado).
+PATH="/usr/bin:/bin:$PATH"
+for herramienta in cat grep sed head; do
+  command -v "$herramienta" >/dev/null 2>&1 || {
+    echo "BLOQUEADO por el plugin luptecx: el hook no encontró «$herramienta» para revisar el comando. Revisa la instalación de Git Bash." >&2
+    exit 2
+  }
+done
+
 entrada=$(cat)
 
 # El comando, sin depender de jq: el valor de "command" con sus escapes de JSON.
