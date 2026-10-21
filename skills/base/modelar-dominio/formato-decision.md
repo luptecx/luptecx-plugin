@@ -27,17 +27,17 @@ Solo cuando aportan de verdad:
 
 ## Qué sí merece una decisión
 
-- **La forma de la arquitectura:** «Cada cliente tiene su propia hoja de Google Sheets y
-  el bot escribe ahí; no hay base de datos central de cobros.»
-- **Elecciones con amarre:** base de datos, proveedor de WhatsApp, servidor, forma de
+- **La forma de la arquitectura:** «Cada cliente tiene su propia hoja de cálculo y
+  el servicio escribe ahí; no hay base de datos central.»
+- **Elecciones con amarre:** base de datos, proveedor externo, servidor, forma de
   despliegue. No cada librería: solo las que costaría semanas cambiar.
-- **Límites y alcance:** «Los datos del conductor viven en la hoja del cliente; nuestra
-  base solo guarda el identificador.» Los *no* valen tanto como los *sí*.
+- **Límites y alcance:** «Los datos de los usuarios viven en el sistema del cliente;
+  nuestra base solo guarda el identificador.» Los *no* valen tanto como los *sí*.
 - **Desvíos a propósito del camino obvio:** «SQL a mano en vez de ORM en el reporte
   porque…». Evitan que el siguiente «arregle» algo que era deliberado.
-- **Restricciones que no se ven en el código:** «Los mensajes proactivos solo salen por
-  plantilla aprobada porque Meta bloquea el número si no.» «Nada se despliega entre 6:00 y
-  9:00 porque es la hora de cobro.»
+- **Restricciones que no se ven en el código:** «Los avisos solo salen por el canal que el
+  proveedor aprobó, porque si no bloquea la cuenta.» «Nada se despliega entre 6:00 y 9:00
+  porque es la hora de más uso.»
 - **Alternativas rechazadas por razones sutiles:** si no se escriben, alguien las volverá a
   proponer en seis meses.
 

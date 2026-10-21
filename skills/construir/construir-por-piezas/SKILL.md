@@ -28,7 +28,31 @@ costura se prueba.
 ## 2. Construir con prueba primero
 
 Invoca `luptecx:probar-primero` en la costura acordada. Mientras construyes, corre seguido
-el archivo de pruebas que estás tocando; al final, la suite completa.
+el archivo de pruebas que estás tocando; al final, la suite completa. Nunca pasan más de
+~100 líneas nuevas sin correr las pruebas.
+
+**Lo más simple que funcione.** Tres líneas parecidas son mejores que una abstracción
+prematura. Nada para requisitos hipotéticos: solo lo que pide la pieza.
+
+**Solo lo que la pieza pide.** Lo que veas mejorable fuera de la pieza (un import sin uso,
+un nombre confuso, un módulo que pide refactorización) no se toca: se anota y se le
+muestra al usuario al final, para que decida si es otra tarea:
+
+```
+VISTO, SIN TOCAR:
+- app/mensajes.py tiene una constante sin uso (fuera de esta pieza)
+```
+
+**Bandera de activación** cuando la pieza cambia algo que el cliente ya usa, o cuando la
+funcionalidad se construye en varias piezas y no puede verse a medias. La bandera es una
+variable de configuración (`FUNCION_<NOMBRE>`), **apagada por defecto**, con su línea en
+`.env.ejemplo`; las pruebas cubren los dos estados. Se enciende por proyecto cuando la
+funcionalidad está completa, y se retira (con su rama de código vieja) en la versión
+siguiente a encenderla. Una funcionalidad pequeña y aislada no la necesita.
+
+**Cada pieza se puede revertir sola.** Primero lo que se agrega (archivos, funciones,
+columnas que admiten vacío), después lo que se modifica, y nunca borrar y reemplazar algo en
+el mismo commit. Una migración lleva su `downgrade`.
 
 Si a mitad de la pieza descubres que la especificación está mal o le falta algo,
 **detente**: no improvises un requisito. Plantéalo al usuario y, si cambia el
@@ -62,7 +86,10 @@ Invoca `luptecx:verificar-antes-de-terminar` con la definición de terminado del
 ## 6. Subir
 
 1. Si la pieza cambió el comportamiento, una línea en `CHANGELOG.md`.
-2. Commit con tipo, y en el cuerpo la pieza:
+2. **Un commit por cosa.** Si la pieza mezcla una refactorización con la funcionalidad,
+   van en commits separados (`refactorizacion:` primero). El título dice qué cambió para
+   quien lo lea en el historial; «cambios», «nuevas formas» o «arreglos» no lo dicen.
+   Commit con tipo, y en el cuerpo la pieza:
    ```
    funcionalidad: el bot resume el lote antes de confirmarlo
 

@@ -44,7 +44,7 @@ pregunta que depende de otra que sigue abierta en esta misma ronda va en una ron
   `CLAUDE.md`, la especificación, la tarea de Notion, la configuración) no se le pregunta al
   usuario: se mira. Si puedes lanzar subagentes, manda uno a buscarlo y sigue con las
   preguntas que no dependen de ese dato; si no, búscalo tú antes de la ronda.
-- **Las decisiones son del usuario.** Alcance, prioridades, lo que se cobra aparte, qué
+- **Las decisiones son del usuario.** Alcance, prioridades, qué incluye el servicio, qué
   pasa cuando algo falla, qué se deja fuera: se proponen con recomendación y se espera la
   respuesta.
 

@@ -11,7 +11,8 @@ Subir a `main` no es desplegar: al cliente solo llega lo que pasa por
 etiqueta); esta skill es lo que lo rodea: preparar la versión, que la persona correcta lo
 corra y comprobar después. Lo que hace el script, paso a paso, está en su docstring.
 
-**Despliega Camilo.** Felipe solo en una emergencia, siguiendo `docs/RECUPERACION.md`.
+**Despliega Camilo.** Felipe solo en una emergencia (un caso Crítico y Camilo sin responder
+en 1 hora), siguiendo `docs/RECUPERACION.md` del proyecto.
 
 ## 1. Lista previa
 
@@ -32,8 +33,11 @@ Cada punto con su evidencia (`luptecx:verificar-antes-de-terminar`):
       usuario sabe que volver atrás será restaurar el respaldo, no `--version`.
 - [ ] **Configuración nueva:** cada variable nueva ya está en el `.env` del servidor (desde
       Bitwarden) antes de desplegar; si no, el arranque de producción se detiene.
-- [ ] **Plantillas de Meta:** si la versión manda una plantilla nueva, Meta ya la aprobó y su
-      nombre está en el `.env`. Nunca el nombre de una plantilla sin aprobar.
+- [ ] **Aprobaciones externas:** si la versión usa algo que una plataforma tiene que
+      aprobar (una plantilla de mensaje, un permiso, una app), ya está aprobado y su
+      nombre está en el `.env`. Nunca el nombre de algo sin aprobar.
+- [ ] **Plugins de tipo:** si el proyecto activa uno (por ejemplo
+      `luptecx-bot-whatsapp`), su lista «Antes de desplegar» también.
 
 Presenta la lista con ✅ / ❌ y para en el primer ❌.
 
@@ -46,7 +50,8 @@ las escribe.
    `C:\Windows\System32\OpenSSH\ssh-add.exe $env:USERPROFILE\.ssh\id_ed25519`
    (el `ssh` de Git Bash no usa ese agente).
 2. Pide que corra, en la carpeta del proyecto:
-   `.\.venv\Scripts\python.exe herramientas\desplegar.py`
+   `uv run python herramientas\desplegar.py` (en los proyectos anteriores a la plantilla
+   de procesos, `.\.venv\Scripts\python.exe herramientas\desplegar.py`)
    y que responda la confirmación después de leer la lista de commits que salen.
 3. Si tienes acceso a su terminal, lee la salida; si no, pídele que te la pegue.
 
@@ -60,16 +65,18 @@ El script ya comprobó `/salud`. Además:
 - [ ] `git log -1 --oneline` en el servidor coincide con la etiqueta nueva.
 - [ ] Los trabajos programados son los mismos que antes (los lista `/salud`).
 - [ ] El log de la app, sin errores en los primeros minutos.
-- [ ] Si el cambio se ve en WhatsApp, probarlo con un teléfono del equipo. Nunca se escribe
-      como si fuera el cliente ni desde su número.
+- [ ] Si el cambio lo ve el usuario final, probarlo con una cuenta o un teléfono del
+      equipo. Nunca se actúa como si fuera el cliente ni desde sus cuentas.
 
 ## 4. Después
 
 1. La tarea de Notion pasa a Done, con el enlace a la etiqueta o al commit en
-   **Enlace GitHub**.
-2. Si el cliente pidió el cambio o lo va a notar, se le avisa. Usa
-   `luptecx:luptecx-comunicacion-cliente` si está instalada; si no, redacta un mensaje
-   corto y el usuario lo aprueba antes de mandarlo.
+   **Enlace GitHub**. Si ese campo ya apunta a un issue, se deja el issue y el issue se
+   cierra con la versión (`luptecx:luptecx-corregir-error`, paso 6).
+2. Si el cliente pidió el cambio o lo va a notar, se le avisa con
+   `luptecx:luptecx-comunicacion-cliente` («Funcionalidad nueva» o «Error corregido»). Si
+   el despliegue detiene el servicio, el aviso previo es «Mantenimiento programado». El
+   usuario lo aprueba y lo manda.
 3. El usuario descarga la llave del agente: `ssh-add -D`.
 
 ## Si algo sale mal
@@ -77,7 +84,8 @@ El script ya comprobó `/salud`. Además:
 - **La salud no responde o el bot falla:** volver a la versión anterior,
   `herramientas\desplegar.py --version <anterior>` (el script la sugiere en su mensaje).
 - **Hay una migración en medio:** el script se niega a volver por código. Se restaura el
-  respaldo previo siguiendo «Recuperación ante desastre» del README del proyecto, y se
-  despliega desde ahí.
+  respaldo previo siguiendo `docs/RECUPERACION.md` (caso 3; en los proyectos anteriores a
+  la plantilla de procesos, «Recuperación ante desastre» del README), y se despliega desde
+  ahí.
 - Se abre una tarea de tipo Error en Notion con lo que pasó. Si el error era evitable,
   `/luptecx:retrospectiva` en esta misma sesión, para convertirlo en candado.

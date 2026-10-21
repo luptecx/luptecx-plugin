@@ -1,7 +1,7 @@
 """Lazo de reproducción con una persona en medio (plantilla).
 
 Para errores que solo se reproducen si alguien hace algo a mano, por ejemplo mandar un
-mensaje desde el número de prueba de WhatsApp. Claude copia este archivo fuera del
+mensaje desde una cuenta de prueba. Claude copia este archivo fuera del
 repositorio, edita los pasos y lo corre; la persona sigue las instrucciones en la
 terminal y al final las respuestas quedan impresas como CLAVE=valor para que Claude las lea.
 

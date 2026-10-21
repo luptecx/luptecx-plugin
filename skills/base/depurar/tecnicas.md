@@ -9,12 +9,12 @@ Muchos errores se manifiestan en lo profundo de la cadena de llamadas (se escrib
 pestaña equivocada, se guarda una fecha corrida un día). El instinto es arreglar donde
 aparece el error; eso es tratar el síntoma.
 
-1. **Observa el síntoma:** «el cobro de M3 quedó en la fila de M2».
+1. **Observa el síntoma:** «el pago del pedido 103 quedó en la fila del 102».
 2. **Encuentra la causa inmediata:** qué línea escribe en esa fila.
 3. **Pregunta quién la llamó, y con qué valor:**
-   `escribir_cobro(pestana, fila)` ← `registrar_lote()` ← `confirmar()` ← el webhook.
+   `escribir_pago(pestana, fila)` ← `registrar_pagos()` ← `confirmar()` ← el webhook.
 4. **Sigue subiendo** hasta encontrar dónde nació el valor malo (por ejemplo, un índice
-   calculado antes de ordenar las líneas del lote).
+   calculado antes de ordenar los pagos).
 5. **Arregla en el origen**, no donde explotó.
 
 Si no se puede rastrear a mano, instrumenta **antes** de la operación peligrosa:
@@ -22,8 +22,8 @@ Si no se puede rastrear a mano, instrumenta **antes** de la operación peligrosa
 ```python
 import sys, traceback
 
-def escribir_cobro(pestana: str, fila: int, valor: int) -> None:
-    print(f"[DEPURAR-7c1e] escribir_cobro pestana={pestana} fila={fila}", file=sys.stderr)
+def escribir_pago(pestana: str, fila: int, valor: int) -> None:
+    print(f"[DEPURAR-7c1e] escribir_pago pestana={pestana} fila={fila}", file=sys.stderr)
     traceback.print_stack(file=sys.stderr)
     ...
 ```

@@ -133,9 +133,12 @@ por defecto.
    registrada que lo justifica). Si choca con una decisión del usuario, se le pregunta a él.
 4. **Si propone algo «más profesional» que nadie usa**, busca si se usa. Si no se usa, la
    respuesta es quitarlo, no completarlo.
-5. **Arregla en orden:** 🔴, luego lo simple, luego lo complejo. Uno a la vez, con la
+5. **Una diferencia con la especificación** se resuelve con el usuario, una por una: o se
+   cambia el código para que cumpla, o se cambia la especificación porque lo construido es
+   lo correcto. Las dos opciones son válidas; lo que no vale es dejarlas distintas.
+6. **Arregla en orden:** 🔴, luego lo simple, luego lo complejo. Uno a la vez, con la
    prueba correspondiente en verde después de cada uno.
-6. **Responde con hechos:** «Corregido: <qué cambió y dónde>». Sin agradecimientos ni
+7. **Responde con hechos:** «Corregido: <qué cambió y dónde>». Sin agradecimientos ni
    «¡tienes toda la razón!»: el código muestra que se atendió.
 
 Si el usuario decide no arreglar algo, queda escrito en el informe como riesgo asumido.

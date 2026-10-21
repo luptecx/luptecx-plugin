@@ -19,7 +19,7 @@ archivos de configuración.
 ## Dónde van las pruebas: las costuras
 
 Una **costura** es la frontera pública donde se observa el comportamiento sin meterse
-adentro: la función que recibe el mensaje del webhook, el servicio que registra un lote, el
+adentro: la función que recibe el mensaje del webhook, el servicio que registra un pedido, el
 comando. Las pruebas viven en costuras, nunca contra los internos.
 
 - **Funcionalidad nueva:** antes de la primera prueba, propón las costuras con una línea de
@@ -43,16 +43,16 @@ pruebas primero y todo el código después prueba comportamiento *imaginado*.
 Un comportamiento, nombre claro en español, código real.
 
 ```python
-def test_lote_con_gasto_resta_el_gasto_del_total():
-    lote = interpretar_lote("M3 190000 gasto 30000 aceite")
+def test_pedido_con_descuento_resta_el_descuento_del_total():
+    pedido = interpretar_pedido("3 tornillos 6000 descuento 1000")
 
-    assert lote.total_neto == 160_000
+    assert pedido.total_neto == 5_000
 ```
 
 ### 2. Verificar el rojo (obligatorio)
 
 ```bash
-pytest pruebas/test_lotes.py::test_lote_con_gasto_resta_el_gasto_del_total -q
+pytest pruebas/test_pedidos.py::test_pedido_con_descuento_resta_el_descuento_del_total -q
 ```
 
 Confirma que **falla** (no que da error de sintaxis o de importación) y que falla **por la
@@ -79,8 +79,8 @@ Repite con la siguiente prueba.
 
 ## Dobles de prueba: solo en los bordes
 
-Usa dobles **solo en los bordes del sistema**: la API de WhatsApp (el proveedor y su doble
-de pruebas), Google Sheets, la red, el reloj. Nunca dobles de tus propios módulos. Las
+Usa dobles **solo en los bordes del sistema**: una API externa (el proveedor y su doble de
+pruebas), una hoja de cálculo, la red, el reloj. Nunca dobles de tus propios módulos. Las
 pruebas no salen a la red ni tocan datos reales de clientes.
 
 Las reglas para que una prueba atrape errores de verdad (nombrar el fallo que atrapa,

@@ -1,9 +1,9 @@
 # Plantilla de `docs/ARQUITECTURA.md`
 
 Responde *cómo* se construye: qué va dónde, cómo se conectan las partes y en qué orden se
-construye. Si el repositorio sale de `luptecx-plantilla`, la estructura base (`app/`,
-`pruebas/`, `herramientas/`, `docs/`, `migraciones/`) ya está decidida: aquí solo va lo
-propio del proyecto.
+construye. Si el repositorio sale de la plantilla de procesos (`luptecx-plantilla`), lo
+común ya está (en Python, `app/`, `pruebas/` y, si se despliega, `herramientas/`): aquí va
+lo propio del proyecto, como su base de datos, sus integraciones y sus módulos.
 
 ```markdown
 # Arquitectura: <nombre del proyecto>
@@ -12,7 +12,7 @@ propio del proyecto.
 <Árbol con una línea por archivo importante: qué responsabilidad tiene.>
 
 ## Flujo de datos
-### <Camino principal, por ejemplo: llega un lote por WhatsApp>
+### <Camino principal, por ejemplo: llega un pedido nuevo>
 1. …
 2. …
 ### <Otros caminos: alertas programadas, comandos de administración>
@@ -37,7 +37,7 @@ en sistemas del cliente.>
 ## Plan de piezas
 | # | Pieza (comportamiento) | Depende de | Criterios (RF) | Costura | Estado |
 |---|---|---|---|---|---|
-| 1 | <El dueño manda `M1 190k` y recibe el resumen del lote> | — | RF-01, RF-03 | `procesar_mensaje` | ⬜ |
+| 1 | <El cliente escribe su pedido y recibe el resumen con el total> | — | RF-01, RF-03 | `procesar_mensaje` | ⬜ |
 | 2 | … | 1 | … | … | ⬜ |
 ```
 

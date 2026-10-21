@@ -40,7 +40,8 @@ Antes de escribir, revisa qué se sabe del cliente: la conversación, la memoria
 | Valor de un cliente o venta | 4, 9 | ¿Ticket promedio o margen por venta? ¿Cuántos leads cierran de cada 10? |
 | Herramientas actuales | 5, 6 | ¿Usan WhatsApp Business, Excel, algún CRM o sistema contable? |
 | Alcance que se ofrece | 5, 6, 8 | ¿Qué incluye cada nivel? |
-| Precios y forma de pago | 8, 9 | Pago inicial, mensualidad y qué no está incluido |
+| Producto del Portafolio | 8, 9 | ¿Cuál de los productos del Portafolio se propone? (los precios salen de ahí, ver Paso 5) |
+| Forma de pago | 8 | ¿Cómo se paga el inicial? ¿Desde cuándo corre la mensualidad? ¿Qué no está incluido? |
 | Siguiente paso deseado | 10 | ¿Reunión, piloto, firma? ¿Con qué fecha? |
 
 - **Pregunta todo lo que haga falta** para hacer bien la presentación. No hay límite de preguntas: vale cualquier pregunta que cambie el contenido, las cifras, el tono o el alcance.
@@ -84,7 +85,7 @@ Puedes quitar o fusionar slides si el caso no las necesita. Por ejemplo, sin dat
 - **Sin jerga técnica** (API, LLM, webhook, n8n, modelo de IA) salvo que el público sea técnico. Se dice qué pasa, no con qué se hace.
 - **Trato:** mantén el que usa el usuario con ese cliente (tú o ustedes). Por defecto, "ustedes" para empresas.
 - **Promesas:** solo lo que depende de quien vende y se puede medir ("respuesta en menos de 1 minuto, 24/7"). Nada de "garantizamos más ventas" ni "garantizamos leads al menor costo": el cierre depende del equipo del cliente, y eso ya queda dicho en la slide 7.
-- **Palabras vacías prohibidas:** "soluciones innovadoras", "de vanguardia", "transformación digital", "potenciamos", "sinergia", "de clase mundial".
+- **Palabras vacías prohibidas:** "soluciones innovadoras", "de vanguardia", "transformación digital", "potenciamos", "sinergia", "de clase mundial", "revolucionario", "10x", "garantizado" sin decir en qué condiciones, "valor de $X" sin con qué se compara. Lo específico vende más que lo superlativo: cifras, plazos y resultados concretos.
 
 ---
 
@@ -109,13 +110,50 @@ Muestra la cuenta en palabras simples: "100 chats/día × 30 días × 40 % sin r
 
 ## Paso 5 · Precios (slide 8)
 
-- **Tres niveles:** Esencial, Recomendado y Completo, o nombres propios del servicio. El del medio es el que se quiere vender y va marcado como recomendado.
-- Se diseña de arriba hacia abajo: primero el Completo, que ancla el precio alto; luego se quita alcance para el Recomendado y el Esencial. Cada nivel incluye todo el anterior y añade 1–3 cosas visibles.
-- Cada nivel lleva nombre, precio (pago inicial y mensualidad si aplica), una frase de para quién es y máximo 3 puntos de lo que incluye.
-- **Qué no está incluido**, en una línea visible: pauta publicitaria, costos de terceros como la API de WhatsApp o licencias, contenido que debe entregar el cliente.
-- Vigencia de la propuesta ("Precios válidos hasta el 31 de octubre de 2026") e IVA incluido o no.
-- **Si el usuario no ha dado precios, no los inventes:** deja `[PRECIO]` y avisa.
-- Si el usuario pide un solo precio, respétalo.
+**Los precios salen del Portafolio**, nunca de la conversación, de la memoria ni de una
+propuesta anterior: el Portafolio es la única cifra. Si la presentación es de LUPTECX, léelos
+con el conector de Notion de la base «Portafolio Automatizaciones»
+(`2ef1aff9-02bf-803c-bd6d-f5b2dd1a73b9`), en la ficha del producto que se propone:
+
+| Nivel | Pago inicial | Mensualidad |
+|---|---|---|
+| Esencial | `Setup Esencial` | `Mensualidad Esencial` |
+| Recomendado | `Precio Setup` | `Mensualidad` |
+| Completo | `Setup Completo` | `Mensualidad Completo` |
+
+- **El producto no tiene ficha:** para y ofrece crearla. Los precios los pone el usuario y
+  se escriben en la ficha; la propuesta se arma después, leyendo de ahí.
+- **Falta un precio en la ficha:** pregúntalo y, con el permiso del usuario, escríbelo en
+  la ficha antes de usarlo. Así la próxima propuesta lo encuentra.
+- **El usuario quiere otro precio para este cliente:** se usa el suyo, y las notas del
+  presentador dicen «precio especial; el Portafolio dice $X».
+- Si la presentación es de otra marca, los precios los da el usuario: sin ellos, `[PRECIO]`
+  y se avisa. Nunca se inventa una cifra.
+
+**Los tres niveles.** Esencial, Recomendado y Completo, o nombres propios del servicio que
+digan el resultado, no la herramienta. El del medio es el que se quiere vender y va marcado
+como recomendado. Lo que incluye cada uno se define en cada propuesta con lo que salió del
+diagnóstico: primero el Completo, que ancla el precio alto; luego se quita alcance para el
+Recomendado y el Esencial. Cada nivel incluye todo el anterior y añade 1–3 cosas visibles, y
+lleva nombre, precio, una frase de para quién es y máximo 3 puntos de lo que incluye.
+
+**Lo que completa la oferta:**
+- **Qué no está incluido**, en una línea visible: pauta publicitaria, costos de terceros
+  como plataformas de mensajería, de IA o licencias, contenido que debe entregar el cliente.
+- **Garantía con condiciones**, solo sobre lo que depende de LUPTECX y se puede medir
+  («si el primer mes el bot no responde en menos de un minuto, el mes siguiente no se
+  cobra»). Nunca sobre ventas o resultados que dependen del cliente. La propones; la
+  aprueba el usuario.
+- **Urgencia real:** la vigencia con una fecha que se va a respetar («Precios válidos hasta
+  el 31 de octubre de 2026»). Cupos o descuentos por tiempo solo si son verdad.
+- **Forma de pago:** cómo se paga el inicial (por ejemplo, la mitad al firmar y la mitad al
+  entregar) y desde cuándo corre la mensualidad. IVA incluido o no.
+- **No se descuenta para cerrar.** Si el precio es la objeción, se cambia el valor (otro
+  nivel, menos alcance, otra forma de pago), no la cifra: un descuento deja el servicio
+  anclado como barato.
+
+Si el usuario pide un solo precio en vez de tres niveles, respétalo; sale igual del
+Portafolio (el Recomendado).
 
 ---
 
@@ -144,6 +182,6 @@ Notas del presentador: 2–4 frases de lo que se dice en voz alta
 3. ¿Cada número tiene fuente o está marcado como estimado? ¿Las cuentas se hicieron con código?
 4. ¿Ninguna slide tiene más de una idea, más de 30 palabras de cuerpo o más de 4 viñetas?
 5. ¿Hay promesas que dependen del cliente? Quítalas.
-6. ¿La inversión (slide 8) tiene 3 niveles con uno recomendado, lo que no incluye y la vigencia? ¿El retorno (slide 9) usa exactamente esos precios?
+6. ¿La inversión (slide 8) tiene 3 niveles con uno recomendado, lo que no incluye, la vigencia y la forma de pago? ¿Cada precio coincide con la ficha del Portafolio (o está marcado como precio especial)? ¿El retorno (slide 9) usa exactamente esos precios?
 7. ¿El cierre pide **una** acción concreta con fecha?
 8. ¿Hay marcadores `[POR CONFIRMAR]` o `[PRECIO]` pendientes? Avísale al usuario.

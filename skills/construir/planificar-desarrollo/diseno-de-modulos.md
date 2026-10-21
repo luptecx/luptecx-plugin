@@ -17,7 +17,7 @@ a su vez sigue a John Ousterhout (*A Philosophy of Software Design*) y Michael F
 - **Costura:** el lugar donde se puede cambiar el comportamiento sin editar ese lugar; ahí
   vive la interfaz, y ahí se prueba.
 - **Adaptador:** lo concreto que cumple una interfaz en una costura. El proveedor real de
-  Meta y su doble de pruebas son dos adaptadores de la misma costura.
+  una API externa y su doble de pruebas son dos adaptadores de la misma costura.
 
 ## Principios
 
@@ -30,19 +30,19 @@ a su vez sigue a John Ousterhout (*A Philosophy of Software Design*) y Michael F
   costura. Si quieres probar *por debajo* de la interfaz, el módulo tiene la forma
   equivocada.
 - **Un adaptador es una costura hipotética; dos, una real.** No crees una costura si nada
-  cambia a través de ella. El proveedor de WhatsApp sí la merece: tiene el real y el doble
+  cambia a través de ella. El proveedor de una API externa sí la merece: tiene el real y el doble
   de pruebas.
-- **Recibe las dependencias, no las crees.** `procesar_lote(lote, proveedor)` se prueba;
-  una función que construye su propio cliente de Meta por dentro, no.
+- **Recibe las dependencias, no las crees.** `procesar_pedido(pedido, proveedor)` se prueba;
+  una función que construye su propio cliente de la API por dentro, no.
 - **Devuelve resultados en vez de producir efectos** cuando se pueda: calcular por un
   lado, escribir por otro.
 
-## Para los bots de WhatsApp de LUPTECX
+## Costuras que se repiten en casi todo proyecto
 
-Las costuras que casi siempre conviene tener, porque se repiten en cada bot:
-
-- El **proveedor de WhatsApp** (enviar mensaje, enviar plantilla), con su doble de pruebas.
-- El **almacenamiento del cliente** (Google Sheets u otro), con su doble.
+- Cada **proveedor externo** (una API, la mensajería, un modelo de IA), con su doble de
+  pruebas.
+- El **almacenamiento del cliente** (una hoja, su sistema), con su doble.
 - El **reloj** (la hora de Bogotá inyectada), para probar fechas y alertas sin esperar.
-- Un solo módulo de **textos al cliente** (`mensajes.py`), para que lo que se le dice al
-  cliente esté en un sitio.
+- Un solo módulo de **textos al usuario**, para que lo que se le dice esté en un sitio.
+
+Un plugin de tipo de proyecto (por ejemplo, `luptecx-bot-whatsapp`) puede sumar las suyas.

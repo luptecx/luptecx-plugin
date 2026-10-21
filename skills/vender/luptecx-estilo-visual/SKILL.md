@@ -19,8 +19,8 @@ Los archivos están publicados junto a la guía. Descárgalos con Artifact `acti
 
 | Archivo | Qué es | Dónde se usa |
 |---|---|---|
-| `logo-claro.png` | "LT" negro y "x" dorada, fondo transparente | Sobre crema o papel |
-| `logo-oscuro.png` | "LT" crema y "x" dorada, fondo transparente | Sobre negro |
+| `logo-claro.png` | "LT" negro y "x" dorada, con la palabra LUPTECX debajo; fondo transparente | Sobre crema o papel |
+| `logo-oscuro.png` | "LT" crema y "x" dorada, con la palabra LUPTECX debajo; fondo transparente | Sobre negro |
 | `logo-cuadro.png` | El logo dentro de su cuadro crema | Solo si hace falta un sello (avatar, esquina de un documento) |
 
 Reglas:

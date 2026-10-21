@@ -31,7 +31,23 @@ Lee lo que ya existe antes de preguntar: `CLAUDE.md`, `docs/` (especificación,
 arquitectura, `GLOSARIO.md`, `decisiones/`), la propuesta aceptada o la tarea de Notion si
 el usuario la da, y el código que se va a tocar.
 
-**Terminado cuando** puedes decir en dos líneas qué existe hoy y qué se quiere cambiar.
+Antes de preguntar nada, **escribe los supuestos** que estás haciendo y muéstralos: lo que
+no se dice en voz alta es el malentendido más caro.
+
+```
+SUPUESTOS:
+1. Lo usa el dueño desde su celular, no sus empleados
+2. Los datos siguen en la hoja del cliente, no en una base nueva
+→ Corrígeme ahora o sigo con estos.
+```
+
+Si el pedido trae **varias capacidades que se pueden probar por separado** (por ejemplo,
+registro, recordatorios y reportes), primero propón un mapa corto, una tabla con cada
+capacidad, de cuál depende y en qué orden se construye, y que el usuario lo apruebe. Cada
+capacidad sigue después este flujo por su cuenta.
+
+**Terminado cuando** puedes decir en dos líneas qué existe hoy y qué se quiere cambiar, y el
+usuario vio tus supuestos.
 
 ## 2. Entrevista
 
@@ -40,11 +56,11 @@ del negocio y las decisiones de diseño mientras se habla. Ramas que casi siempr
 
 - ¿Qué problema resuelve y para quién? ¿Quién lo usa: el equipo, el dueño, sus empleados,
   los clientes del cliente?
-- ¿Qué entra y qué sale? ¿Por qué canal (WhatsApp, hoja de cálculo, web)?
-- ¿Qué está dentro del alcance contratado y qué se cobra aparte?
+- ¿Qué entra y qué sale? ¿Por qué canal (mensajería, correo, hoja de cálculo, web)?
+- ¿Qué está dentro del alcance del proyecto y qué ya sería otro producto? (Las funcionalidades nuevas del mismo producto no se cobran aparte: van en la mensualidad.)
 - ¿Qué pasa cuando algo falla: quién se entera y cómo?
 - ¿Qué datos personales toca, dónde se guardan y por cuánto tiempo (Ley 1581)?
-- Restricciones: integraciones (Meta, Google), horario en que no se puede tocar producción,
+- Restricciones: integraciones con terceros y sus límites, horario en que no se puede tocar producción,
   dependencias permitidas, servidor.
 
 **Terminado cuando** la frontera de la entrevista está vacía y el usuario confirmó el
@@ -54,10 +70,14 @@ resumen de decisiones.
 
 Escribe o actualiza `docs/ESPECIFICACION.md` con la plantilla de
 [plantilla-especificacion.md](plantilla-especificacion.md). Usa las palabras del glosario.
-Cada requisito es verificable y tiene al menos un criterio de aceptación medible. Las
-decisiones del dueño van con su fecha, junto a la regla que deciden.
+Cada requisito es verificable y tiene al menos un criterio de aceptación medible. Un pedido
+vago se convierte en criterios medibles y se le pregunta al usuario si son los correctos:
+«que sea más rápido» pasa a «el comprobante llega en menos de 3 segundos con 20 vehículos».
+Las decisiones del dueño van con su fecha, junto a la regla que deciden.
 
-Preséntala y espera la aprobación. Si hay cambios, se actualiza y se vuelve a presentar.
+Preséntala con sus preguntas abiertas y **para ahí**: ni arquitectura ni código en el mismo
+turno. Se sigue cuando el usuario la aprueba. Si hay cambios, se actualiza y se vuelve a
+presentar.
 
 **Terminado cuando** el usuario aprobó la especificación tal como quedó escrita.
 
@@ -81,8 +101,8 @@ Divide el trabajo en **rebanadas verticales** (*balas trazadoras*): cada pieza a
 todas las capas que necesita (modelo, servicio, webhook, mensaje, prueba) para entregar un
 comportamiento completo, angosto pero verificable de punta a punta.
 
-- **Una pieza = un comportamiento que se puede demostrar**, no un archivo. «El conductor
-  manda `M1 190k` y el bot responde con el resumen» es una pieza; «escribir
+- **Una pieza = un comportamiento que se puede demostrar**, no un archivo. «El cliente
+  escribe su pedido y recibe el resumen con el total» es una pieza; «escribir
   `configuracion.py`» no lo es.
 - Cada pieza cabe en **una sesión** de trabajo.
 - Si conviene reorganizar algo antes («hacer fácil el cambio, y luego hacer el cambio

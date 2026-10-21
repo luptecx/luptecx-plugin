@@ -23,7 +23,7 @@ cosa que puede romper producción tiene un candado.**
   escondidas entre archivos? → Un puntero en el `CLAUDE.md` del proyecto. *Cuando* la
   sesión tardó en encontrar algo.
 - **Candados automáticos.** ¿Una comprobación automática habría atrapado el error? Mira
-  primero lo que el proyecto ya tiene (`.githooks/`, el workflow del CI, `pytest.ini`,
+  primero lo que el proyecto ya tiene (`.pre-commit-config.yaml` o `.githooks/`, el workflow del CI, `pytest.ini`,
   `ruff`): un candado que existe pero no está conectado o está roto es el hallazgo, no
   inventar otro. Un proyecto sin hooks activos o sin CI es un hallazgo por sí solo. *Cuando*
   Claude cometió un error que una máquina podía ver.

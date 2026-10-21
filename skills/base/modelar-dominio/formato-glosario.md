@@ -9,23 +9,23 @@
 
 ## Personas
 
-**Dueño de flota**:
-Quien contrata el bot y administra los vehículos que alquila.
-_Evitar_: cliente, administrador
+**Consultorio**:
+Quien contrata el servicio y atiende a los pacientes.
+_Evitar_: cliente, empresa
 
-**Conductor**:
-Persona que alquila un vehículo y paga el canon semanal.
-_Evitar_: arrendatario (en conversación), usuario
+**Paciente**:
+Persona que pide y recibe una cita.
+_Evitar_: usuario, cliente
 
-## Cobros
+## Citas
 
-**Canon**:
-Pago semanal que hace un conductor por el vehículo que alquila.
-_Evitar_: cuota, mensualidad
+**Cita**:
+Hora reservada con un profesional que el paciente ya confirmó.
+_Evitar_: turno, reserva
 
-**Lote**:
-Un solo mensaje de WhatsApp con varios cobros, uno por línea, que se confirma de una vez.
-_Evitar_: paquete, batch
+**Reprogramación**:
+Cambio de hora o de profesional de una cita ya confirmada; no crea una cita nueva.
+_Evitar_: cancelación, cita nueva
 ```
 
 ## Reglas
@@ -36,7 +36,7 @@ _Evitar_: paquete, batch
 - **Solo términos de este negocio.** Conceptos generales de programación (reintento,
   zona horaria, webhook) no van, aunque el proyecto los use mucho. Antes de agregar un
   término pregúntate: ¿es propio de este cliente o es de programación?
-- **Agrupa por temas** cuando aparezcan grupos naturales (Personas, Cobros, Vehículos). Si
+- **Agrupa por temas** cuando aparezcan grupos naturales (Personas, Citas, Pagos). Si
   todos los términos son de un mismo tema, una lista plana está bien.
-- **El nombre en el código sigue al glosario.** Si el glosario dice *canon*, la función es
-  `registrar_canon`, no `registrar_pago`.
+- **El nombre en el código sigue al glosario.** Si el glosario dice *cita*, la función es
+  `agendar_cita`, no `crear_reserva`.

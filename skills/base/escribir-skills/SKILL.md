@@ -13,6 +13,27 @@ vez.
 Si es una skill del plugin, lee además [mecanica-de-skills.md](mecanica-de-skills.md):
 frontmatter, invocación, dónde va y cómo se publica.
 
+## Primero, investigar lo que ya existe
+
+Antes de escribir una skill, una plantilla, un candado o una norma nueva, busca lo que ya
+usan los equipos profesionales; se escribe desde cero solo si nada sirve:
+
+1. Busca con `npx skills find <tema>` y en las fuentes de confianza de la sección
+   «Investigar antes de escribir» de `Estandarización de LUPTECX.md` (Anthropic,
+   superpowers, Matt Pocock, Addy Osmani, Sentry, Trail of Bits, el proveedor de la
+   herramienta). Para herramientas, la documentación oficial.
+2. Lee completo el `SKILL.md` de las finalistas y compáralo función por función con las
+   skills que ya tiene el plugin.
+3. Si algo se va a instalar o copiar con scripts, revísalo antes con `skill-scanner` de
+   Sentry.
+4. Presenta al usuario qué encontraste y recomienda una opción: **usar tal cual**,
+   **adaptar** (anotando en `CREDITOS.md` qué se tomó y qué se cambió, y la licencia en
+   `licencias/`) o **escribir propia**. Que la licencia permita lo elegido: MIT y Apache
+   se adaptan citando; CC BY-SA se prefiere instalar.
+5. Anota la decisión en la tabla «Fuentes por función» del plan.
+
+**Terminado cuando:** el usuario vio las opciones con su fuente y su licencia, y eligió.
+
 ## La descripción dice cuándo, no cómo
 
 La descripción de una skill está cargada siempre: es lo que Claude lee para decidir si la

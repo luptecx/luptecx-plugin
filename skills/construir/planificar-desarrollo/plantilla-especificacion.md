@@ -18,7 +18,7 @@ concreto de uso vale más que tres párrafos.>
 ### Lo que SÍ incluye
 - …
 ### Lo que NO incluye
-- … <tan importante como lo anterior: aquí se apoya «esto se cobra aparte»>
+- … <tan importante como lo anterior: aquí se apoya «esto ya es otro proyecto»>
 
 ## Requisitos funcionales
 Agrupados por tema. Cada uno verificable.
@@ -35,9 +35,15 @@ Al menos uno medible por requisito:
 <La regla, con un ejemplo con números.>
 
 ## Casos borde
+Mejor uno de más que uno de menos. Si al leer esta sección queda una situación en la que no
+se sabe qué hace el sistema, no está terminada.
 - ¿Qué pasa si llega vacío, duplicado, en otro formato o fuera de horario?
-- ¿Qué pasa si una integración (Meta, Google) no responde a mitad del proceso?
-- ¿Qué pasa si el mismo mensaje llega dos veces?
+- ¿Qué pasa si una integración (mensajería, pagos, una API del cliente) no responde, tarda o falla a mitad del proceso?
+- ¿Qué pasa si el mismo mensaje llega dos veces, o dos personas hacen lo mismo a la vez?
+- ¿Qué ve el usuario mientras espera, si cancela a mitad o si vuelve días después a un
+  botón viejo?
+- ¿Qué pasa con datos viejos o que faltan (una hoja que cambió, un registro borrado)?
+- ¿Qué funciones vecinas toca, y qué comportamiento actual **no puede cambiar**?
 - <los propios del proyecto>
 
 ## Datos personales
@@ -46,6 +52,6 @@ Qué datos se guardan, dónde, por cuánto tiempo, quién los ve y cómo se borr
 
 ## Restricciones técnicas
 - Lenguaje y versión, dependencias permitidas, servidor.
-- Integraciones y sus límites (plantillas de Meta, cuotas de Google).
+- Integraciones y sus límites (aprobaciones, cuotas, costos por uso).
 - Horario en que no se toca producción.
 ```
