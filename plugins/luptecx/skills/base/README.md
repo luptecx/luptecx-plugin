@@ -12,6 +12,7 @@ cargaría las dos y seguiría procesos distintos.
 | `probar-primero` | Antes de escribir código de producción | Sola o desde otra skill | Fusión: superpowers `test-driven-development` + mattpocock `tdd` |
 | `verificar-antes-de-terminar` | Antes de decir «listo» o subir algo | Sola o desde otra skill | superpowers `verification-before-completion` + definición de terminado de LUPTECX |
 | `revisar-cambios` | Antes del push, antes de desplegar, al cerrar una pieza | Sola o desde otra skill | Fusión: mattpocock `code-review` + superpowers `requesting-` y `receiving-code-review` |
+| `revisar-seguridad` | Al planificar algo con datos de afuera, datos personales o IA; antes del push y de desplegar un cambio que toca una frontera; al cerrar un proyecto | Sola o desde otra skill | addyosmani `security-and-hardening` + OWASP Top 10:2025 y para LLM 2025 + `/security-review` de Claude Code |
 | `retrospectiva` | Después de una sesión que salió mal | Solo a mano: `/luptecx:retrospectiva` | mattpocock `retro` |
 | `traspasar-sesion` | Seguir el trabajo en una sesión limpia | Solo a mano: `/luptecx:traspasar-sesion` | mattpocock `handoff` |
 | `escribir-skills` | Crear o editar skills, `CLAUDE.md` o normas | Sola o desde otra skill | Fusión: mattpocock `writing-for-agents` + superpowers `writing-skills` |
@@ -22,6 +23,7 @@ cargaría las dos y seguiría procesos distintos.
 entrevistar ──► modelar-dominio          (definir: términos y decisiones mientras se habla)
 depurar ──► probar-primero ──► verificar-antes-de-terminar     (un error)
 probar-primero ──► revisar-cambios ──► verificar-antes-de-terminar   (un cambio)
+                   └► revisar-seguridad  (si el cambio toca una frontera)
 retrospectiva ──► escribir-skills        (convertir lo aprendido en candados y normas)
 ```
 
