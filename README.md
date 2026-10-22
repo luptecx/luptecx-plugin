@@ -159,6 +159,18 @@ Con `luptecx` se instalan solas sus dependencias de Trail of Bits (`insecure-def
 `supply-chain-risk-auditor` y `property-based-testing`); la skill de FastAPI y
 `skill-scanner` ya vienen adentro. No hay que instalar nada aparte.
 
+**Si ya tenías `luptecx` de antes de la 0.25.0:** actualizar no instala dependencias nuevas
+y el plugin no carga («Dependency … is not installed»). Se arregla una vez así:
+
+```powershell
+claude plugin marketplace update luptecx
+claude plugin uninstall luptecx@luptecx
+claude plugin install luptecx@luptecx
+```
+
+Debe decir `(+ 3 dependencies: …)`. Las dependencias se descargan por HTTPS desde GitHub;
+no hace falta llave SSH.
+
 **En cada proyecto**, además, la plantilla de procesos genera `.claude/settings.json` con
 el marketplace y `luptecx@luptecx` activado: quien abra el repositorio en Claude Code y no
 lo tenga recibe el aviso para instalarlo. Un plugin de tipo se activa ahí mismo
