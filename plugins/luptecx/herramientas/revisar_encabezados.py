@@ -47,7 +47,8 @@ def revisar(archivo: Path) -> list[str]:
 
 
 def main() -> int:
-    archivos = sorted(RAIZ.glob("**/SKILL.md"))
+    # El nombre exacto: en Windows el glob no distingue mayúsculas y tomaría un «skill.md».
+    archivos = sorted(a for a in RAIZ.glob("**/SKILL.md") if a.name == "SKILL.md")
     fallas = 0
     for archivo in archivos:
         for problema in revisar(archivo):
