@@ -14,7 +14,7 @@ cargaría las dos y seguiría procesos distintos.
 | `revisar-cambios` | Antes del push, antes de desplegar, al cerrar una pieza | Sola o desde otra skill | Fusión: mattpocock `code-review` + superpowers `requesting-` y `receiving-code-review` |
 | `revisar-seguridad` | Al planificar algo con datos de afuera, datos personales o IA; antes del push y de desplegar un cambio que toca una frontera; al cerrar un proyecto | Sola o desde otra skill | addyosmani `security-and-hardening` + OWASP Top 10:2025 y para LLM 2025 + `/security-review` de Claude Code |
 | `retrospectiva` | Después de una sesión que salió mal | Solo a mano: `/luptecx:retrospectiva` | mattpocock `retro` |
-| `traspasar-sesion` | Seguir el trabajo en una sesión limpia | Solo a mano: `/luptecx:traspasar-sesion` | mattpocock `handoff` |
+| `traspasar-sesion` | Seguir el trabajo en una sesión limpia, en vez de `/compact`: al cerrar una pieza o hacia el 60 % del contexto | Sola o con `/luptecx:traspasar-sesion` | mattpocock `handoff` + REMvisual `handoff` |
 | `escribir-skills` | Crear o editar skills, `CLAUDE.md` o normas | Sola o desde otra skill | Fusión: mattpocock `writing-for-agents` + superpowers `writing-skills` |
 
 ## Cómo se encadenan

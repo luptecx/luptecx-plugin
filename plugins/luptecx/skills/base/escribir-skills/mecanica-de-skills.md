@@ -70,8 +70,7 @@ Dos formas de invocarla, que se pagan distinto:
 - **Solo a mano**: `disable-model-invocation: true`. Solo se ejecuta cuando alguien
   escribe `/luptecx:<nombre>`. No ocupa contexto, pero alguien tiene que acordarse de que
   existe, y ninguna otra skill puede invocarla. La descripción pasa a ser un resumen de una
-  línea para personas. Úsalo para lo que se decide a propósito (`retrospectiva`,
-  `traspasar-sesion`).
+  línea para personas. Úsalo para lo que se decide a propósito (`retrospectiva`).
 
 Si una referencia la necesitan dos skills que se invocan solo a mano, no puede vivir en
 ninguna de las dos: va en un archivo aparte al que ambas apuntan.

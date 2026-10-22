@@ -46,7 +46,7 @@ En Claude todas aparecen como `luptecx:<nombre>` (por ejemplo `luptecx:revisar-c
 | base | `revisar-cambios` | Revisión en dos ejes, estándares y especificación, antes del push y de desplegar |
 | base | `revisar-seguridad` | Modelo de amenazas al planificar y revisión de seguridad de cada cambio que toca una frontera (entrada externa, datos personales, secretos, dependencias, IA), con OWASP y el `/security-review` de Claude Code |
 | base | `retrospectiva` | Solo a mano. Convierte lo que salió mal en candados y normas |
-| base | `traspasar-sesion` | Solo a mano. Resume la sesión para seguir en una limpia |
+| base | `traspasar-sesion` | Traspaso para seguir en una sesión limpia en vez de `/compact`: estado de git, intentos fallidos, decisiones y siguiente paso, encadenado con el anterior |
 | base | `escribir-skills` | Cómo escribir skills, `CLAUDE.md` y normas para Claude |
 | vender | `presentacion-ventas-contenido` | Guion de propuestas: diagnóstico + ROI, reencuadre y tres niveles de precio que salen del Portafolio |
 | vender | `propuesta-honorarios-luptecx` | Solo cotizaciones (propuestas de honorarios) en PDF tipo carta comercial, con los precios del Portafolio |
@@ -126,6 +126,8 @@ cierre-de-proyecto             (al entregar)
 
 Ante un error: `depurar` → `probar-primero` → `verificar-antes-de-terminar`.
 Después de una sesión que salió mal: `/luptecx:retrospectiva`.
+Para seguir en una sesión limpia (al cerrar una pieza, al cambiar de tarea o hacia el 60 %
+del contexto, antes de que llegue el `/compact` automático): `luptecx:traspasar-sesion`.
 
 ## `revisar-cambios` y el `/code-review` de Claude Code
 
