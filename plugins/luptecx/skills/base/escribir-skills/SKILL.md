@@ -18,10 +18,11 @@ frontmatter, invocación, dónde va y cómo se publica.
 Antes de escribir una skill, una plantilla, un candado o una norma nueva, busca lo que ya
 usan los equipos profesionales; se escribe desde cero solo si nada sirve:
 
-1. Busca con `npx skills find <tema>` y en las fuentes de confianza de la sección
-   «Investigar antes de escribir» de `Estandarización de LUPTECX.md` (Anthropic,
-   superpowers, Matt Pocock, Addy Osmani, Sentry, Trail of Bits, el proveedor de la
-   herramienta). Para herramientas, la documentación oficial.
+1. Busca con `npx skills find <tema>` y en las fuentes de confianza: `anthropics/skills`,
+   `obra/superpowers`, `mattpocock/skills`, `addyosmani/agent-skills`, `getsentry/skills`,
+   `trailofbits/skills` y el proveedor de la herramienta. Para herramientas, la
+   documentación oficial. Filtra por fuente reconocida, mantenida en los últimos meses, con
+   uso real y con una licencia que permita lo que se va a hacer.
 2. Lee completo el `SKILL.md` de las finalistas y compáralo función por función con las
    skills que ya tiene el plugin.
 3. Si algo se va a instalar o copiar, revísalo antes con `luptecx:skill-scanner` (de
@@ -31,7 +32,9 @@ usan los equipos profesionales; se escribe desde cero solo si nada sirve:
    **adaptar** (anotando en `CREDITOS.md` qué se tomó y qué se cambió, y la licencia en
    `licencias/`) o **escribir propia**. Que la licencia permita lo elegido: MIT y Apache
    se adaptan citando; CC BY-SA se prefiere instalar.
-5. Anota la decisión en la tabla «Fuentes por función» del plan.
+5. Anota la decisión en `CREDITOS.md`: lo adaptado en «De dónde sale cada una», lo que se
+   usa tal cual en «Externas tal cual» y lo descartado, con su porqué, en «Lo que se
+   comparó y no entró».
 
 **Terminado cuando:** el usuario vio las opciones con su fuente y su licencia, y eligió.
 
