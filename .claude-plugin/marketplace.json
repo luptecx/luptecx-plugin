@@ -22,7 +22,7 @@
       "name": "insecure-defaults",
       "source": {
         "source": "git-subdir",
-        "url": "trailofbits/skills",
+        "url": "https://github.com/trailofbits/skills.git",
         "path": "plugins/insecure-defaults",
         "sha": "f0dd11d2b1da17a1ff8c403741fbe1f6bca0f871"
       },
@@ -33,7 +33,7 @@
       "name": "supply-chain-risk-auditor",
       "source": {
         "source": "git-subdir",
-        "url": "trailofbits/skills",
+        "url": "https://github.com/trailofbits/skills.git",
         "path": "plugins/supply-chain-risk-auditor",
         "sha": "f0dd11d2b1da17a1ff8c403741fbe1f6bca0f871"
       },
@@ -44,7 +44,7 @@
       "name": "property-based-testing",
       "source": {
         "source": "git-subdir",
-        "url": "trailofbits/skills",
+        "url": "https://github.com/trailofbits/skills.git",
         "path": "plugins/property-based-testing",
         "sha": "f0dd11d2b1da17a1ff8c403741fbe1f6bca0f871"
       },
