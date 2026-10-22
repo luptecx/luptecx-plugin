@@ -1,0 +1,23 @@
+{
+  "_que_es": "Skills de terceros que el plugin trae copiadas tal cual, fijadas a un commit. Se traen y se actualizan con herramientas/traer_externas.py; nunca se editan a mano. Las que son plugins completos (Trail of Bits) no se copian: van como dependencias en .claude-plugin/marketplace.json.",
+  "skills": [
+    {
+      "nombre": "fastapi",
+      "repositorio": "fastapi/fastapi",
+      "ruta": "fastapi/.agents/skills/fastapi",
+      "commit": "64efa4fe956c8e278960213c120d26255d852193",
+      "licencia": "MIT",
+      "archivo_de_licencia": "licencias/LICENSE-fastapi",
+      "revisada": "2026-10-21: solo documentación, sin scripts; skill-scanner sin hallazgos"
+    },
+    {
+      "nombre": "skill-scanner",
+      "repositorio": "getsentry/skills",
+      "ruta": "skills/skill-scanner",
+      "commit": "f57ada2d0b640406ea7e25b11d636c530e77c58b",
+      "licencia": "Apache-2.0",
+      "archivo_de_licencia": "licencias/LICENSE-sentry",
+      "revisada": "2026-10-21: un script local de solo lectura (scan_skill.py, sin red); los hallazgos del escáner sobre sí mismo son su catálogo de ataques de ejemplo"
+    }
+  ]
+}
