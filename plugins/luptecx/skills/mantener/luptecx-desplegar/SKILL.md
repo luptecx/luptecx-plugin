@@ -42,6 +42,12 @@ Cada punto con su evidencia (`luptecx:verificar-antes-de-terminar`):
       nombre está en el `.env`. Nunca el nombre de algo sin aprobar.
 - [ ] **Plugins de tipo:** si el proyecto activa uno (por ejemplo
       `luptecx-bot-whatsapp`), su lista «Antes de desplegar» también.
+- [ ] **Vuelta atrás lista:** se sabe a qué etiqueta se vuelve (la anterior) y cómo (con
+      `--version`, o restaurando el respaldo si hay migración), y alguien puede mirar la
+      **primera hora** después del despliegue. Si nadie va a estar, se despliega otro día.
+- [ ] **Lo riesgoso, apagable:** una funcionalidad grande o delicada sale detrás de su
+      bandera de activación apagada (`construir-por-piezas`); encenderla es un cambio de
+      configuración, y apagarla es la vuelta atrás más rápida.
 
 Presenta la lista con ✅ / ❌ y para en el primer ❌.
 
@@ -62,15 +68,23 @@ las escribe.
 Si el script se niega, su mensaje dice por qué y qué hacer: se arregla la causa. Nunca se
 fuerza (`--ahora` solo con una razón que el usuario diga en voz alta, y queda anotada).
 
-## 3. Prueba de humo
+## 3. Prueba de humo y la primera hora
 
-El script ya comprobó `/salud`. Además:
+El script ya comprobó `/salud`. Además, enseguida:
 
 - [ ] `git log -1 --oneline` en el servidor coincide con la etiqueta nueva.
 - [ ] Los trabajos programados son los mismos que antes (los lista `/salud`).
-- [ ] El log de la app, sin errores en los primeros minutos.
-- [ ] Si el cambio lo ve el usuario final, probarlo con una cuenta o un teléfono del
-      equipo. Nunca se actúa como si fuera el cliente ni desde sus cuentas.
+- [ ] El camino principal del cliente funciona de punta a punta, probado con una cuenta o
+      un teléfono del equipo. Nunca se actúa como si fuera el cliente ni desde sus cuentas.
+
+Y durante la **primera hora**, quien desplegó mira el log de la app: sin errores nuevos,
+sin respuestas lentas, y los registros llegan y se leen.
+
+**Se vuelve atrás sin discutir** (sección «Si algo sale mal») cuando pasa cualquiera de
+estas: `/salud` falla; aparece un error nuevo que le llega al usuario; el camino principal
+no funciona; hay datos dañados o guardados mal; aparece una falla de seguridad. Primero se
+vuelve atrás y después se investiga: volver atrás no es un fracaso, dejar al cliente con
+algo roto sí.
 
 ## 4. Después
 
@@ -82,6 +96,13 @@ El script ya comprobó `/salud`. Además:
    el despliegue detiene el servicio, el aviso previo es «Mantenimiento programado». El
    usuario lo aprueba y lo manda.
 3. El usuario descarga la llave del agente: `ssh-add -D`.
+
+## Señales de alarma
+
+Desplegar un viernes por la tarde o antes de un festivo; desplegar sin nadie mirando la
+primera hora; configuración de producción hecha de memoria y no desde Bitwarden y el
+`.env.ejemplo`; una versión enorme con muchas cosas a la vez (mejor varias pequeñas, cada
+una con su etiqueta).
 
 ## Si algo sale mal
 

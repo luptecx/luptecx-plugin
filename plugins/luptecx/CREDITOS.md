@@ -66,5 +66,9 @@ externas» en el README del repositorio).
 - **superpowers:** las ocho que ya se habían descartado en nómina (`using-superpowers`,
   `brainstorming`, `writing-plans`, `executing-plans`, `subagent-driven-development`,
   `dispatching-parallel-agents`, `using-git-worktrees`, `finishing-a-development-branch`).
-- **`shipping-and-launch`** (addyosmani): queda como skill personal; `cierre-de-proyecto` la
-  usa de complemento. La lista de despliegue de LUPTECX será `luptecx-desplegar`.
+- **`shipping-and-launch`** (addyosmani, MIT): se comparó con `luptecx-desplegar` el
+  21/10/2026 y no entró, porque las dos se activan con lo mismo. Se tomó lo que nos faltaba y
+  aplica a un solo servidor: la vuelta atrás lista antes de desplegar, cuándo volver atrás
+  sin discutir, la primera hora vigilada, lo riesgoso detrás de una bandera y las señales de
+  alarma. Se dejó lo de aplicaciones web grandes (Core Web Vitals, accesibilidad, despliegue
+  al 5 % de los usuarios, presupuestos de error).

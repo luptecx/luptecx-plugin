@@ -135,10 +135,8 @@ caros.
 
 Sigue `references/produccion-y-marcha-atras.md`: la lista previa a producción adaptada al
 tipo de proyecto y el plan de vuelta atrás (cómo volver a la versión anterior del código,
-de la base de datos y de la configuración, y cuánto tarda cada cosa). Si está instalada la
-skill `shipping-and-launch`, úsala como complemento para monitoreo y despliegue por
-etapas; sus apartados de web (Core Web Vitals, accesibilidad) solo aplican si el proyecto
-tiene interfaz web.
+de la base de datos y de la configuración, y cuánto tarda cada cosa). Cuándo volver atrás
+y qué vigilar después de desplegar están en `luptecx:luptecx-desplegar`.
 
 ### Fase 7 · Informe y aprobación
 

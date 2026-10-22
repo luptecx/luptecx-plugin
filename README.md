@@ -102,7 +102,7 @@ nuestras. **No se editan**: se usan como vienen, en inglés, fijadas a un commit
   marketplace), se revisa el cambio con `luptecx:skill-scanner` y leyéndolo, y se sube con
   su commit. Nunca se apunta a una rama sin fijar.
 - **Revisadas y no incluidas** (21/10/2026): `shipping-and-launch` (Addy Osmani: se pisa con
-  `luptecx-desplegar`), `differential-review` y `fp-check` (se pisan con `revisar-seguridad`),
+  `luptecx-desplegar`, que se quedó con lo que le servía), `differential-review` y `fp-check` (se pisan con `revisar-seguridad`),
   `modern-python` (sus hooks cambian `pip` y `python` por debajo; ya seguimos uv),
   `sharp-edges`, CodeQL y las de contratos inteligentes, C y Rust (no aplican hoy).
 

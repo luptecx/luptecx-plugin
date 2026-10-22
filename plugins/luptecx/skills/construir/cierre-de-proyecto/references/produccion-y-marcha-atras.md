@@ -2,8 +2,8 @@
 
 Antes de dar un proyecto por cerrado tiene que poder responderse, sin improvisar: **¿qué
 hacemos si la próxima versión sale mal?** Todo despliegue tiene que ser reversible,
-observable y, si es grande, gradual. Para el detalle de despliegue por etapas, umbrales y
-monitoreo, la skill `shipping-and-launch` (si está instalada) es el complemento.
+observable y, si es grande, apagable con una bandera de activación. Cuándo volver atrás y
+qué mirar la primera hora están en `luptecx:luptecx-desplegar`.
 
 ## Lista previa a producción
 
