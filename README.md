@@ -194,6 +194,12 @@ plugin como archivo si alguna vez el marketplace no está disponible.
 
 ## Cómo se cambia una skill
 
+Este repositorio tiene los mismos candados que los proyectos: una vez por clon,
+`uvx prek install`. Al hacer commit revisan el formato, los secretos y el tipo del mensaje;
+al hacer push, que el plugin valide, los encabezados de las skills y los casos del hook de
+secretos. El CI (`.github/workflows/plugin.yml`) lo repite en cada push, y `main` está
+protegida: no acepta push forzado ni que la borren.
+
 1. `git pull` y cambio en `plugins/luptecx/skills/<división>/<skill>/`, siguiendo
    `luptecx:escribir-skills` (y su `mecanica-de-skills.md`).
 2. Si es nueva o cambió de lugar, actualizar la tabla del `README.md` de su división y la

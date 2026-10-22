@@ -1,0 +1,75 @@
+# Candados del repositorio del plugin (es público). Se activan una vez por clon con
+# «prek install» y el CI los repite en cada push. Nunca --no-verify: si un candado falla, se
+# arregla la causa.
+#
+#   commit     formato, YAML y JSON válidos, secretos, seguridad de los workflows
+#   commit-msg el mensaje empieza por un tipo de LUPTECX
+#   push       el plugin valida, los encabezados de las skills y los casos del hook de secretos
+default_install_hook_types: [pre-commit, commit-msg, pre-push]
+default_stages: [pre-commit]
+
+# Las skills externas y las licencias se quedan idénticas a su original: nada las reformatea.
+exclude: ^plugins/luptecx/(skills/externas|licencias)/
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  # Secretos: compara contra .secrets.baseline. Revisa también las externas (el exclude de
+  # arriba no aplica a este hook).
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ["--baseline", ".secrets.baseline"]
+        exclude: ^$
+
+  - repo: https://github.com/Mateusz-Grzelinski/actionlint-py
+    rev: v1.7.12.25
+    hooks:
+      - id: actionlint
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.31.0
+    hooks:
+      - id: zizmor
+
+  - repo: local
+    hooks:
+      - id: tipo-de-commit
+        name: El mensaje empieza por un tipo de LUPTECX
+        language: pygrep
+        entry: '\A(?!(inicio|funcionalidad|correccion|pruebas|documentacion|refactorizacion): \S|Merge |Revert |fixup! |squash! )'
+        args: ["--multiline"]
+        stages: [commit-msg]
+
+      - id: plugin-valido
+        name: El marketplace y los plugins validan
+        language: system
+        entry: bash -c 'claude plugin validate . && claude plugin validate plugins/luptecx && claude plugin validate extras/luptecx-bot-whatsapp'
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
+
+      - id: encabezados
+        name: Los encabezados de las skills son YAML válido
+        language: system
+        entry: uv run --script plugins/luptecx/herramientas/revisar_encabezados.py
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
+
+      - id: hook-secretos
+        name: Los casos del hook de secretos pasan
+        language: system
+        entry: python plugins/luptecx/hooks/probar_bloquear_secretos.py
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

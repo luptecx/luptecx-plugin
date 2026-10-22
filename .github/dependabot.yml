@@ -1,0 +1,13 @@
+# Las acciones del CI, fijadas por hash: Dependabot las sube una vez por semana, con 7 días
+# de espera desde que sale cada versión.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      acciones:
+        patterns: ["*"]

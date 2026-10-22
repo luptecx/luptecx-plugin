@@ -1,0 +1,62 @@
+# CI del repositorio del plugin: repite los candados de cada PC (prek), revisa el tipo de
+# cada commit y comprueba que el marketplace y los plugins validan, que los encabezados de
+# las skills son YAML válido y que el hook de secretos sigue bloqueando lo que debe.
+#
+# Ubuntu fijo y acciones fijadas por hash (las sube Dependabot).
+
+name: Plugin
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  candados:
+    name: Candados y validación
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+
+      - name: Los candados de cada PC
+        run: uvx prek run --all-files --show-diff-on-failure
+
+      - name: Cada commit empieza por un tipo de LUPTECX
+        if: github.event_name == 'push'
+        env:
+          ANTES: ${{ github.event.before }}
+          DESPUES: ${{ github.sha }}
+        run: |
+          if [ "$ANTES" = "0000000000000000000000000000000000000000" ]; then
+            rango="$DESPUES"
+          else
+            rango="$ANTES..$DESPUES"
+          fi
+          malos=$(git log --format=%s "$rango" \
+            | grep -Ev '^((inicio|funcionalidad|correccion|pruebas|documentacion|refactorizacion): \S|Merge |Revert )' || true)
+          if [ -n "$malos" ]; then
+            echo "Commits sin tipo (¿prek install en ese PC?):"
+            echo "$malos"
+            exit 1
+          fi
+
+      # Claude Code en una versión fija: solo se usa para validar, no corre ningún modelo.
+      - name: El marketplace y los plugins validan
+        run: |
+          npx -y @anthropic-ai/claude-code@2.1.307 plugin validate .
+          npx -y @anthropic-ai/claude-code@2.1.307 plugin validate plugins/luptecx
+          npx -y @anthropic-ai/claude-code@2.1.307 plugin validate extras/luptecx-bot-whatsapp
+
+      - name: Los encabezados de las skills son YAML válido
+        run: uv run --script plugins/luptecx/herramientas/revisar_encabezados.py
+
+      - name: Los casos del hook de secretos pasan
+        run: python3 plugins/luptecx/hooks/probar_bloquear_secretos.py
