@@ -14,7 +14,7 @@ Para los proyectos cuyo `CLAUDE.md` declara «Stack: Python». Se suma a lo com�
 | Pruebas | **pytest** | unittest |
 | API web | **FastAPI**, siguiendo la skill oficial `fastapi` | — |
 | Base de datos | SQLAlchemy con migraciones de **Alembic**; PostgreSQL en producción y SQLite en local. Lo genera la plantilla con «base de datos»: cada cambio de un modelo va con su migración (una prueba lo vigila 🔒) | Crear tablas a mano en producción, `create_all` |
-| Respaldo | `respaldo.sh` de la plantilla: cifrado con `age` desde el origen y copiado fuera del servidor; `restaurar.sh` con la llave de Bitwarden | Respaldos sin cifrar o solo en el servidor |
+| Respaldo | `respaldo.sh` de la plantilla: cifrado con `age` desde el origen y copiado a Cloudflare R2 (bucket `luptecx-respaldos`, una carpeta por proyecto, bloqueo de borrado de 7 días); `restaurar.sh` con la llave de Bitwarden | Respaldos sin cifrar, solo en el servidor o en cuentas personales (Google Drive, Dropbox) |
 | Configuración | `pydantic-settings`, leída de variables de entorno | Constantes con valores de producción |
 | Cifras del reporte mensual | `registrar_evento()` de `app/metricas.py` (plantilla de procesos), con los eventos de «Qué se mide» de la especificación | Contar a mano en la hoja del cliente, o un servicio externo de analítica |
 | Despliegue | Docker con Caddy delante | — |
