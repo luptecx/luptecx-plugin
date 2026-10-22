@@ -1,6 +1,6 @@
 {
   "name": "luptecx-bot-whatsapp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Opcional. Reglas de LUPTECX para proyectos que conversan por WhatsApp con la Cloud API de Meta: invariantes, costuras, accesos, cifras y lista previa al despliegue. Se activa solo en el proyecto que lo necesita; el plugin general es luptecx.",
   "author": {
     "name": "LUPTECX",

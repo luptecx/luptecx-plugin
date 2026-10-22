@@ -1,14 +1,36 @@
 ---
 name: bot-whatsapp
-description: Reglas de LUPTECX para un proyecto que conversa por WhatsApp con la Cloud API de Meta. Úsala al diseñar, escribir, revisar, probar o desplegar el webhook, el envío de mensajes o plantillas de Meta, la deduplicación por message_id, o al pedirle al cliente los accesos de Meta. Se suma a luptecx:luptecx-codigo.
+description: Reglas de LUPTECX para un proyecto que conversa por WhatsApp con la Cloud API de Meta. Úsala al diseñar, escribir, revisar, probar o desplegar el webhook, el envío de mensajes o plantillas de Meta, la deduplicación por message_id, al pedirle al cliente los accesos de Meta, o al sumar un cliente a un producto que atienden varios. Se suma a luptecx:luptecx-codigo.
 ---
 
 # Proyecto que conversa por WhatsApp
 
 Para los proyectos que activan este plugin en su `.claude/settings.json`. Se suma a
 `luptecx:luptecx-codigo` (las reglas de todo proyecto), no la reemplaza. Son lecciones que
-costaron errores reales en el primer bot de LUPTECX; cada proyecto las cumple con su propio
-código y su propio diseño, no copiando archivos de otro cliente.
+costaron errores reales en el primer bot de LUPTECX.
+
+## Un cliente o varios
+
+- **Proyecto a medida** (un solo cliente): cumple estas reglas con su propio código y su
+  propio diseño, sin copiar archivos de otro cliente. 👁
+- **Producto** (el mismo servicio vendido a varios clientes, decisión del 22/10/2026): un
+  producto de LUPTECX vive en un solo repositorio y un solo despliegue. Sus clientes son
+  filas y configuración validada, nunca un repositorio, una rama, un archivo copiado ni un
+  `if` con su nombre. La plantilla `copier` genera el repositorio del producto, no uno por
+  cliente. 👁
+
+En los dos casos lo de un cliente nunca se mezcla con lo de otro. En un producto eso no lo
+garantizan repositorios separados sino la base de datos y las pruebas:
+
+- Cada tabla de negocio lleva el id del cliente (`concesionario_id`, `cliente_id`…),
+  obligatorio, y toda consulta filtra por él. 👁
+- El cliente se identifica en el borde, antes de tocar nada: en WhatsApp, por el
+  `phone_number_id` del webhook. Lo que llega a un número que no es de ningún cliente se
+  descarta. 👁
+- La configuración de cada cliente se valida con pydantic y se guarda en la base, no en el
+  repositorio, porque trae datos reales. 👁
+- Una prueba de aislamiento con dos clientes corre en el CI: lo que entra por el número de
+  uno nunca lee, escribe ni responde con datos del otro. 🔒
 
 ## Arquitectura 👁
 
@@ -90,6 +112,7 @@ Se suman a `metricas.md` de `luptecx-reporte-mensual`:
 Se suma a la lista previa de `luptecx-desplegar`:
 
 - [ ] **Plantillas de Meta:** si la versión manda una plantilla nueva, Meta ya la aprobó y
-      su nombre está en el `.env`. Nunca el nombre de una plantilla sin aprobar.
+      su nombre está en el `.env` (en un producto, en la configuración de ese cliente).
+      Nunca el nombre de una plantilla sin aprobar.
 - [ ] Después de desplegar, lo que se ve en WhatsApp se prueba con un teléfono del equipo y
       el número de prueba. Nunca se escribe como si fuera el cliente ni desde su número.

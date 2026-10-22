@@ -4,6 +4,12 @@ Reglas que solo sirven a los proyectos que conversan por WhatsApp con la Cloud A
 Van aparte del plugin general `luptecx` para que ninguna skill general cargue lo de un tipo
 de proyecto.
 
+Un proyecto a medida cumple estas reglas con su propio código, sin copiar archivos de otro
+cliente. Un producto (el mismo servicio vendido a varios clientes) vive en un solo
+repositorio y un solo despliegue, con sus clientes como filas y configuración validada:
+nunca un repositorio, una rama, un archivo copiado ni un `if` por cliente. El detalle está
+en la skill `bot-whatsapp`.
+
 Se activa por proyecto, en su `.claude/settings.json`:
 
 ```json

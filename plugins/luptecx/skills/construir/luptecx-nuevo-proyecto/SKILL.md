@@ -8,8 +8,14 @@ description: Arrancar un proyecto de LUPTECX después de que el cliente aceptó 
 Deja todo proyecto nuevo igual desde el primer día: el proyecto en Notion con sus tareas,
 el repositorio generado con la **plantilla de procesos** (candados activados y CI en verde)
 y la lista de accesos que hay que pedirle al cliente. Termina entregándole el turno a
-`luptecx:planificar-desarrollo`. Cada proyecto es distinto: lo que se repite es este
-arranque, no el código.
+`luptecx:planificar-desarrollo`. Cada proyecto a medida es distinto: lo que se repite es
+este arranque, no el código.
+
+Un **producto** (el mismo servicio vendido a varios clientes) se arranca así una sola vez,
+con el nombre del producto y no el de un cliente: vive en un solo repositorio y un solo
+despliegue. Un cliente nuevo de un producto que ya existe no pasa por el paso 3: entra como
+filas y configuración validada en la base del producto, nunca como un repositorio, una
+rama, un archivo copiado ni un `if` con su nombre.
 
 La usan los dos socios. Hace falta `gh` con permiso en la organización `luptecx`, `uv`,
 `prek` y acceso a Notion.
