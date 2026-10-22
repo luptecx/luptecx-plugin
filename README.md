@@ -194,6 +194,21 @@ plugin como archivo si alguna vez el marketplace no está disponible.
 
 ## Cómo se cambia una skill
 
+**Evaluaciones de las skills críticas** (`plugins/luptecx/evals/`): seis casos que
+comprueban lo que más cuesta si falla (un issue sin datos personales, no desplegar con el CI
+en rojo, una cotización sin precios inventados ni comisiones, la revisión de seguridad que
+encuentra la inyección, un aviso sin jerga, una funcionalidad que no se cobra aparte). Al
+cambiar una de esas skills, antes de subirla, desde `plugins/luptecx`:
+
+```powershell
+claude plugin eval . --no-publish --trust-plugin -j 3
+```
+
+Llama al modelo con las credenciales del PC: la primera vez hay que iniciar sesión en el
+`claude` de la terminal. Por defecto corre cada caso 3 veces con el plugin y 3 sin él, y
+muestra cuánto mejora el plugin; para probar rápido, `--runs 1 --ablation none`. Los
+resultados quedan en `evals/results/` (ignorada por git).
+
 Este repositorio tiene los mismos candados que los proyectos: una vez por clon,
 `uvx prek install`. Al hacer commit revisan el formato, los secretos y el tipo del mensaje;
 al hacer push, que el plugin valide, los encabezados de las skills y los casos del hook de
