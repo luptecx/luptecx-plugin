@@ -105,8 +105,11 @@ categoría de OWASP Top 10:2025 (A) o de OWASP para aplicaciones con LLM 2025 (L
   con el mínimo permiso y con sus argumentos validados en el código. Lo que escribe, borra,
   paga, decide sobre una persona o le escribe a alguien nuevo pasa por una persona o por
   una regla del código.
-- **Consumo sin tope (LLM10):** tope de tokens por respuesta, de turnos por conversación y
-  de conversaciones por remitente; límite de gasto en la cuenta del proveedor.
+- **Consumo sin tope (LLM10):** en el código, tope de tokens por respuesta, de turnos por
+  conversación y de conversaciones por remitente: es lo que frena a quien abusa del
+  servicio. La cuenta del proveedor es de la empresa y no lleva un tope global (decisión del
+  21/10/2026): cada proyecto usa su propia clave, para ver su gasto aparte, y el gasto se
+  revisa cada mes en el reporte y en el cierre.
 - **Desinformación (LLM09):** lo que el modelo afirma sobre precios, inventario o
   condiciones sale de los datos del cliente, no de su memoria; si no está en los datos, dice
   que no sabe y pasa a una persona.

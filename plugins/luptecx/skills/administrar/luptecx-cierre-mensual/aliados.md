@@ -34,9 +34,10 @@ Notas.
 ## Cómo se registra
 
 La comisión se debe **cuando el cliente paga**, no antes: un pago del cliente En Mora no
-genera comisión hasta que entra. Si el pago inicial se paga por partes (por ejemplo, la
-mitad al empezar y la mitad al salir en vivo), se pregunta en qué cuota se le paga al
-aliado su parte del onboarding, y se anota en la ficha del cliente en el CRM.
+genera comisión hasta que entra. **La parte del aliado en el onboarding se le paga
+completa cuando el proyecto inicia**, con el primer pago del cliente, aunque el cliente
+pague el pago inicial por partes (por ejemplo, la mitad al empezar y la mitad al salir en
+vivo). Decisión del 21/10/2026; si un acuerdo dice otra cosa, lo dicen sus Notas.
 
 | Caso | Ingreso (Client Payments) | Gasto (Business Expenses) |
 |---|---|---|
