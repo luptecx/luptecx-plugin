@@ -34,6 +34,7 @@ plantilla (`copier.yml`) y tres más:
 | nombre, slug, cliente, descripción | La propuesta; el cliente, como está en el CRM |
 | tipo (`servicio`, `automatizacion`, `script`, `otro`) y stack (`python` u `otro`) | La propuesta; en la duda, se pregunta. `servicio` es lo que corre siempre: un bot, un agente o una API |
 | servicio web y despliegue | Por defecto, sí para un servicio en Python |
+| base de datos | Sí si el proyecto guarda datos propios (conversaciones, registros, estados). Trae PostgreSQL, migraciones y el respaldo cifrado; su puesta a punta (llaves de `age`, destino fuera del servidor) está en `docs/PUESTA_EN_PRODUCCION.md` |
 | Plugins de tipo | Solo si el proyecto es de un tipo que ya tiene el suyo (hoy, `luptecx-bot-whatsapp` para lo que conversa por WhatsApp con Meta). Si no hay, ninguno |
 | dominio, puerto y franja prohibida | Solo si se despliega. El puerto, distinto a los ocupados: mira la página Servidor de Notion |
 | datos personales | Sí si toca teléfonos, cédulas o nombres |
