@@ -86,6 +86,8 @@ categoría de OWASP Top 10:2025 (A) o de OWASP para aplicaciones con LLM 2025 (L
   porqué en el commit.
 - pip-audit en el CI y Dependabot vigilan lo ya reportado; un paquete malicioso nuevo no lo
   ven, por eso la espera.
+- Antes de agregarla, `supply-chain-risk-auditor` (Trail of Bits, viene con el plugin) mira
+  quién la mantiene, si está abandonada y si trae scripts de instalación.
 
 ## IA (OWASP para aplicaciones con LLM 2025)
 

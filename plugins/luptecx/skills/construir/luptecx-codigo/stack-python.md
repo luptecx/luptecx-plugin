@@ -22,10 +22,9 @@ Decisión del 15/10/2026 para proyectos **nuevos**; los que ya existen siguen co
 tienen hasta que se migren a propósito. Herramientas de Astral (uv, ruff, ty), como las
 recomiendan la skill oficial de FastAPI y `modern-python` de Trail of Bits.
 
-**Con la skill oficial `fastapi`** (instalada por usuario con
-`npx skills add fastapi/fastapi -s fastapi -g -a claude-code --copy`): se siguen sus
-prácticas de FastAPI (`Annotated`, tipos de retorno, `def` salvo que todo sea async, un
-router con su prefijo). Donde choque con esta tabla o con lo común de `SKILL.md`, gana
+**Con la skill oficial `fastapi`** (viene con el plugin como `luptecx:fastapi`, copiada tal
+cual de su repositorio): se siguen sus prácticas de FastAPI (`Annotated`, tipos de retorno,
+`def` salvo que todo sea async, un router con su prefijo). Donde choque con esta tabla o con lo común de `SKILL.md`, gana
 LUPTECX: el código va en español, una dependencia nueva se justifica (también Asyncer) y la
 base de datos es SQLAlchemy con Alembic aunque la skill prefiera SQLModel, salvo que el
 proyecto deje escrita otra decisión.

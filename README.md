@@ -78,6 +78,34 @@ amarillo lo pendiente. Se corre con `uv run --script`.
 `plugins/luptecx/herramientas/asegurar_claude.py` aplica los ajustes de seguridad de
 LUPTECX a Claude Code en el PC donde se corre (ver «Cómo se instala»).
 
+## Skills externas (de terceros, tal cual)
+
+El plugin trae también skills de otros equipos que nos sirven y no se pisan con las
+nuestras. **No se editan**: se usan como vienen, en inglés, fijadas a un commit revisado.
+
+| Skill | De | Cómo viene | La usa |
+|---|---|---|---|
+| `luptecx:fastapi` | FastAPI (oficial), MIT | Copia en `plugins/luptecx/skills/externas/` | `luptecx-codigo` (stack Python) |
+| `luptecx:skill-scanner` | Sentry, Apache-2.0 | Copia en `plugins/luptecx/skills/externas/` | `escribir-skills`, antes de instalar o copiar una skill |
+| `insecure-defaults` (comando `/insecure-defaults:audit`) | Trail of Bits, CC BY-SA 4.0 | Dependencia: plugin propio en el marketplace | `revisar-seguridad`, modo proyecto entero |
+| `supply-chain-risk-auditor` | Trail of Bits, CC BY-SA 4.0 | Dependencia | `revisar-seguridad`, al agregar una dependencia |
+| `property-based-testing` | Trail of Bits, CC BY-SA 4.0 | Dependencia | `probar-primero`, para reglas que valen para todas las entradas |
+
+- **Copias** (`plugins/luptecx/externas.json`): skills sueltas con licencia que permite
+  copiarlas. Se traen o actualizan con `python herramientas/traer_externas.py` (desde
+  `plugins/luptecx`), que las baja en el commit fijado con su licencia.
+- **Dependencias** (`.claude-plugin/marketplace.json`, fuente `git-subdir` con `sha`):
+  plugins completos con comandos, agentes o scripts, o con licencia que pide no mezclarlos
+  (CC BY-SA). `luptecx` los declara en `dependencies`: **al instalar `luptecx` en Claude
+  Code se instalan solos**. En claude.ai, si se sube el plugin como archivo, no vienen.
+- **Para actualizar una:** se cambia su commit (en `externas.json` o en el `sha` del
+  marketplace), se revisa el cambio con `luptecx:skill-scanner` y leyéndolo, y se sube con
+  su commit. Nunca se apunta a una rama sin fijar.
+- **Revisadas y no incluidas** (21/10/2026): `shipping-and-launch` (Addy Osmani: se pisa con
+  `luptecx-desplegar`), `differential-review` y `fp-check` (se pisan con `revisar-seguridad`),
+  `modern-python` (sus hooks cambian `pip` y `python` por debajo; ya seguimos uv),
+  `sharp-edges`, CodeQL y las de contratos inteligentes, C y Rust (no aplican hoy).
+
 ## El flujo de desarrollo
 
 ```
@@ -126,6 +154,10 @@ conectar la cuenta de GitHub. Si el marketplace no carga, se sube el archivo:
 `python empaquetar.py` deja `dist/luptecx-<versión>.plugin` (sin los plugins de tipo de
 `extras/`), y en **Customize › Plugins** se sube ese archivo. Subido así no se actualiza
 solo: cada versión nueva se vuelve a subir.
+
+Con `luptecx` se instalan solas sus dependencias de Trail of Bits (`insecure-defaults`,
+`supply-chain-risk-auditor` y `property-based-testing`); la skill de FastAPI y
+`skill-scanner` ya vienen adentro. No hay que instalar nada aparte.
 
 **En cada proyecto**, además, la plantilla de procesos genera `.claude/settings.json` con
 el marketplace y `luptecx@luptecx` activado: quien abra el repositorio en Claude Code y no

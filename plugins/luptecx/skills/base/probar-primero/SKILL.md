@@ -77,6 +77,14 @@ suite en verde antes y después.
 
 Repite con la siguiente prueba.
 
+## Pruebas por propiedades
+
+Cuando el código tiene una regla que vale para **todas** las entradas (un cálculo de dinero,
+una conversión de fechas, un validador, leer y volver a escribir un formato), una prueba por
+propiedades con Hypothesis busca el caso que la rompe en vez de probar tres ejemplos. Para
+escribirlas o revisarlas, la skill `property-based-testing` de Trail of Bits (viene con el
+plugin). Lo demás sigue con pruebas de ejemplo: no todo tiene una propiedad.
+
 ## Dobles de prueba: solo en los bordes
 
 Usa dobles **solo en los bordes del sistema**: una API externa (el proveedor y su doble de

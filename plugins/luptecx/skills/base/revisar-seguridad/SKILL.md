@@ -69,11 +69,14 @@ Si no toca ninguno, la revisión de seguridad termina aquí y el informe lo dice
 2. Corre la revisión de seguridad de Claude Code (la skill `security-review`, el comando
    `/security-review`) sobre el mismo cambio. Lo que encuentre se verifica igual que lo
    propio: se busca el camino real de explotación antes de reportarlo.
-3. Si cambiaron las dependencias, cada paquete nuevo pasa por `supply-chain-risk-auditor`
-   de Trail of Bits si está instalado; si no, por la sección «Dependencias» de los
-   controles.
-4. En el modo **proyecto entero**, además, `insecure-defaults` de Trail of Bits si está
-   instalado (valores inseguros por defecto que solo se ven en producción).
+3. Si cambiaron las dependencias, cada paquete nuevo pasa por la skill
+   `supply-chain-risk-auditor` de Trail of Bits (viene con el plugin como dependencia):
+   avisos de seguridad, proyecto abandonado, scripts de instalación. Además, la sección
+   «Dependencias» de los controles.
+4. En el modo **proyecto entero**, además, el comando `/insecure-defaults:audit` de Trail of
+   Bits (también viene con el plugin): valores inseguros por defecto que solo se ven en
+   producción. Gasta varios agentes: se corre una vez por puesta en producción, no en cada
+   cambio.
 
 Un hallazgo sin camino de explotación posible en este proyecto es ⚪, no 🔴: lo que se
 reporta es lo explotable.

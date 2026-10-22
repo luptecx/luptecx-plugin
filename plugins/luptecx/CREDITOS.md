@@ -47,6 +47,17 @@ empresa (Python y pytest, push directo a `main`, Ley 1581).
 | `luptecx-nuevo-proyecto` | Propia (15/10/2026) | De las guías de arranque de agencias: el cliente invita a nuestra cuenta en vez de dar contraseñas, y lo imprescindible se separa de lo que llega después. De getsentry `agents-md`: el `CLAUDE.md` se llena al final, corto y apuntando a los documentos | No había skill pública de arranque que sirviera: las de «kickoff» son de ventas y marketing |
 | Hook `hooks/bloquear-git-peligroso.sh` | mattpocock `git-guardrails-claude-code` | El hook `PreToolUse` que bloquea los comandos de git peligrosos antes de que corran | Va dentro del plugin (llega a los dos socios en todos los proyectos), no por proyecto; `git push` normal pasa (se sube directo a `main`) y solo se bloquea forzarlo, también con `+rama`; se suman `--no-verify` y `commit -n`; mira cada parte del comando y no el texto entre comillas; cubre las herramientas Bash y PowerShell; sin `jq` |
 
+## Externas tal cual (21/10/2026)
+
+No son adaptaciones: se usan como vienen, fijadas a un commit revisado (ver «Skills
+externas» en el README del repositorio).
+
+| Skill | Fuente y commit | Licencia | Cómo |
+|---|---|---|---|
+| `fastapi` | `fastapi/fastapi` · `fastapi/.agents/skills/fastapi` · `64efa4f` | MIT · [licencias/LICENSE-fastapi](licencias/LICENSE-fastapi) | Copia |
+| `skill-scanner` | `getsentry/skills` · `skills/skill-scanner` · `f57ada2` | Apache-2.0 · [licencias/LICENSE-sentry](licencias/LICENSE-sentry) | Copia, sin cambios |
+| `insecure-defaults`, `supply-chain-risk-auditor`, `property-based-testing` | `trailofbits/skills` · `plugins/<nombre>` · `f0dd11d` | CC BY-SA 4.0 | Dependencia; no se copian |
+
 ## Lo que se comparó y no entró
 
 - **mattpocock:** `triage`, `wayfinder`, `to-tickets` e `implement-spec` como skills

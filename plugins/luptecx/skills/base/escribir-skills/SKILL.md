@@ -24,8 +24,9 @@ usan los equipos profesionales; se escribe desde cero solo si nada sirve:
    herramienta). Para herramientas, la documentación oficial.
 2. Lee completo el `SKILL.md` de las finalistas y compáralo función por función con las
    skills que ya tiene el plugin.
-3. Si algo se va a instalar o copiar con scripts, revísalo antes con `skill-scanner` de
-   Sentry.
+3. Si algo se va a instalar o copiar, revísalo antes con `luptecx:skill-scanner` (de
+   Sentry, viene con el plugin): instrucciones escondidas, scripts, permisos y secretos.
+   Sus hallazgos se verifican a mano; muchos son ejemplos, no ataques.
 4. Presenta al usuario qué encontraste y recomienda una opción: **usar tal cual**,
    **adaptar** (anotando en `CREDITOS.md` qué se tomó y qué se cambió, y la licencia en
    `licencias/`) o **escribir propia**. Que la licencia permita lo elegido: MIT y Apache
