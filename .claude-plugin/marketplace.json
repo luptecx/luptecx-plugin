@@ -5,7 +5,7 @@
     "email": "camilob@luptecx.com"
   },
   "metadata": {
-    "description": "Plugins de LUPTECX: luptecx (general, para todo proyecto) y los opcionales por tipo de proyecto. Cada push a main es la versión nueva para los dos socios."
+    "description": "Plugins de LUPTECX: luptecx (general, para todo proyecto, con sus dependencias de seguridad y pruebas de Trail of Bits fijadas a un commit) y los opcionales por tipo de proyecto. Cada push a main es la versión nueva para los dos socios."
   },
   "plugins": [
     {
@@ -17,6 +17,39 @@
       "name": "luptecx-bot-whatsapp",
       "source": "./extras/luptecx-bot-whatsapp",
       "description": "Opcional, por proyecto. Reglas para proyectos que conversan por WhatsApp con la Cloud API de Meta."
+    },
+    {
+      "name": "insecure-defaults",
+      "source": {
+        "source": "git-subdir",
+        "url": "trailofbits/skills",
+        "path": "plugins/insecure-defaults",
+        "sha": "f0dd11d2b1da17a1ff8c403741fbe1f6bca0f871"
+      },
+      "description": "De Trail of Bits, tal cual. Audita valores inseguros por defecto (secretos de respaldo, CORS abierto, depuración, credenciales por defecto) antes de una primera puesta en producción. Lo usa luptecx:revisar-seguridad.",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "supply-chain-risk-auditor",
+      "source": {
+        "source": "git-subdir",
+        "url": "trailofbits/skills",
+        "path": "plugins/supply-chain-risk-auditor",
+        "sha": "f0dd11d2b1da17a1ff8c403741fbe1f6bca0f871"
+      },
+      "description": "De Trail of Bits, tal cual. Audita el riesgo de las dependencias (avisos, proyectos abandonados, scripts de instalación) antes de agregar una. Lo usa luptecx:revisar-seguridad.",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "property-based-testing",
+      "source": {
+        "source": "git-subdir",
+        "url": "trailofbits/skills",
+        "path": "plugins/property-based-testing",
+        "sha": "f0dd11d2b1da17a1ff8c403741fbe1f6bca0f871"
+      },
+      "description": "De Trail of Bits, tal cual. Pruebas por propiedades con Hypothesis para cálculos, fechas, validadores y conversiones. Lo sugiere luptecx:probar-primero.",
+      "license": "CC-BY-SA-4.0"
     }
   ]
 }
