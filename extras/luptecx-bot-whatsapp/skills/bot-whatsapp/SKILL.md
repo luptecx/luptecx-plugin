@@ -11,8 +11,8 @@ costaron errores reales en el primer bot de LUPTECX.
 
 ## Un cliente o varios
 
-- **Proyecto a medida** (un solo cliente): cumple estas reglas con su propio código y su
-  propio diseño, sin copiar archivos de otro cliente. 👁
+- **El código se puede reutilizar** de un proyecto a otro. Lo que nunca pasa de un cliente
+  a otro son sus datos, su configuración ni sus secretos. 👁
 - **Producto** (el mismo servicio vendido a varios clientes, decisión del 22/10/2026): un
   producto de LUPTECX vive en un solo repositorio y un solo despliegue. Sus clientes son
   filas y configuración validada, nunca un repositorio, una rama, un archivo copiado ni un
