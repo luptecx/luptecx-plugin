@@ -7,7 +7,7 @@ Para los proyectos cuyo `CLAUDE.md` declara «Stack: Python». Se suma a lo com�
 
 | Para | Se usa | En vez de |
 |---|---|---|
-| Versión | Python 3.11 o superior (`requires-python` en `pyproject.toml`) | — |
+| Versión | Python 3.12 o superior (`requires-python` en `pyproject.toml` y `.python-version`), el que instala uv: `uv python install 3.12` y, una vez por PC, `python-preference = "only-managed"` en `%APPDATA%\uv\uv.toml` | El Python del sistema, de conda o de la tienda de Windows: si se actualiza o se borra, el `.venv` deja de arrancar |
 | Dependencias y entorno | **uv**: `uv add`, `uv sync`, `uv run`; `uv.lock` versionado | pip, `requirements.txt`, activar el entorno a mano |
 | Lint y formato | **ruff** (`ruff check` y `ruff format`) | flake8, black, isort |
 | Tipos | **ty** (`ty check`, 🔒 candado de push y CI) | mypy, pyright |

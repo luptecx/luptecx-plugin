@@ -49,7 +49,7 @@ la que pasa el dato y vuelve el error **estructuralmente imposible**:
 2. **Lógica de negocio:** comprueba que el dato tiene sentido para *esta* operación.
 3. **Guardas de entorno:** impide lo peligroso en contextos concretos (por ejemplo, que las
    pruebas nunca escriban en una hoja que no sea la de prueba, o que nada mande mensajes
-   reales si `ENTORNO != "produccion"`).
+   reales si `ENTORNO != "production"`, el valor que usa la plantilla).
 4. **Rastro:** un log con contexto justo antes de la operación peligrosa, para el forense.
 
 Prueba cada capa: intenta saltarte la primera y comprueba que la segunda lo atrapa. Esto

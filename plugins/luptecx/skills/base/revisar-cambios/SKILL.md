@@ -55,7 +55,7 @@ vacío. Un punto malo o un diff vacío se detectan aquí, no a mitad de la revis
 
 1. `docs/ESPECIFICACION.md` y, si se está construyendo por piezas, la pieza en el plan de
    `docs/ARQUITECTURA.md`.
-2. Las **invariantes** del `CLAUDE.md` («reglas que no se pueden romper») y
+2. Las **invariantes** del `CLAUDE.md` (en «Lo propio de este proyecto») y
    `docs/decisiones/`.
 3. La tarea de Notion o el issue de GitHub citados en los commits o en la conversación.
 4. Si no hay nada, pregunta. Si no existe especificación, este eje se omite y el informe
@@ -63,7 +63,8 @@ vacío. Un punto malo o un diff vacío se detectan aquí, no a mitad de la revis
 
 **Estándares:**
 
-1. El `CLAUDE.md` del proyecto (idioma, cómo se trabaja, invariantes, comandos) y
+1. El `CLAUDE.md` del proyecto («Reglas de LUPTECX», comandos y «Lo propio de este
+   proyecto») y
    cualquier `CONTRIBUTING.md` o guía de estilo dentro de los módulos (por ejemplo, la guía
    de mensajes al cliente).
 2. La skill `luptecx:luptecx-codigo`, si está instalada: las convenciones de la empresa.

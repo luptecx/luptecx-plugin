@@ -76,14 +76,11 @@ WhatsApp → router del webhook → deduplica por message_id → conversación (
 - Monitoreo: un endpoint `/salud` que responda a `GET` y a `HEAD`, y aviso externo de las
   tareas programadas.
 
-## Costuras que casi siempre conviene tener 👁
+## Costuras 👁
 
-Se suman al diseño de módulos de `luptecx:planificar-desarrollo`:
-
-- El **proveedor de WhatsApp** (enviar mensaje, enviar plantilla), con su doble de pruebas.
-- El **almacenamiento del cliente** (Google Sheets u otro), con su doble.
-- El **reloj** (la hora de Bogotá inyectada), para probar fechas y alertas sin esperar.
-- Un solo módulo de **textos al usuario**, para que lo que se le dice esté en un sitio.
+Además de las que tiene casi todo proyecto (`diseno-de-modulos.md` de
+`luptecx:planificar-desarrollo`: almacenamiento del cliente, reloj y textos al usuario),
+el **proveedor de WhatsApp** (enviar mensaje, enviar plantilla), con su doble de pruebas.
 
 ## Accesos que se le piden al cliente
 

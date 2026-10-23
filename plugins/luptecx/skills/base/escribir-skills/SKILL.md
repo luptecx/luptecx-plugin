@@ -113,6 +113,8 @@ frase, ancla el comportamiento con pocas palabras. Busca los tríos que se repit
 ## Probar la skill
 
 Una skill es código para un agente: se prueba. Antes de escribirla, mira qué hace Claude
-**sin** ella en dos o tres casos reales; después, con ella. Si no cambia nada, sobra. Para
-pruebas más serias (casos de evaluación, comparar versiones, afinar la descripción), usa la
-skill `skill-creator` de Anthropic si está disponible.
+**sin** ella en dos o tres casos reales; después, con ella. Si no cambia nada, sobra. Las
+skills del plugin donde un error cuesta más tienen sus casos en `plugins/luptecx/evals/`
+(`python herramientas/evaluar.py`, ver el README del plugin): una skill así se cambia con sus casos en
+verde, y una skill nueva de ese peso suma el suyo. Para afinar una descripción o comparar
+versiones, la skill `skill-creator` de Anthropic si está disponible.

@@ -1,6 +1,6 @@
 ---
 name: cierre-de-proyecto
-description: Auditoría y limpieza de un repositorio entero cuando un proyecto se cierra, se entrega o pasa a mantenimiento. Úsala siempre que el usuario diga que va a cerrar, terminar, entregar, «dejar bien» o «dejar limpio» un proyecto, que el código ya es la base y solo quedan cambios pequeños, que quiere quitar lo que sobra del repositorio (archivos basura, scripts desechables, código muerto, documentación vieja), revisar todo antes de producción, preparar la versión final o un traspaso a otro equipo, aunque no diga «auditoría». No es para revisar un solo cambio (eso es `luptecx:revisar-cambios`) ni para hacer un despliegue concreto.
+description: Auditoría y limpieza de un repositorio entero cuando un proyecto se cierra, se va a entregar o pasa a mantenimiento. Úsala siempre que el usuario diga que va a cerrar, terminar, «dejar bien» o «dejar limpio» un proyecto, que el código ya es la base y solo quedan cambios pequeños, que quiere quitar lo que sobra del repositorio (archivos basura, scripts desechables, código muerto, documentación vieja), revisar todo antes de producción, preparar la versión final o un traspaso a otro equipo, aunque no diga «auditoría». No es para revisar un solo cambio (`luptecx:revisar-cambios`), para desplegar (`luptecx-desplegar`) ni para la entrega al cliente de lo que ya está en producción (`luptecx-entrega`).
 ---
 
 # Cierre de proyecto
@@ -97,7 +97,7 @@ con decoradores, fixtures de pytest, entradas de consola, `getattr`, plantillas,
 ### Fase 4 · Revisión del código entero
 
 Esto no es la revisión de un cambio: es leer el proyecto como lo leería quien lo va a
-mantener. Tiene dos partes, y las dos se hacen:
+mantener. Tiene tres partes, y las tres se hacen:
 
 1. **Calidad y riesgos** — `references/revision-codigo.md`: corrección, seguridad,
    código muerto, pruebas, claridad y operación.
@@ -107,7 +107,6 @@ mantener. Tiene dos partes, y las dos se hacen:
    que dicen la especificación y las decisiones registradas? Sus dos tablas, Estándares y
    Especificación, pasan tal cual al informe de cierre, por separado, para que un eje no
    tape al otro.
-
 3. **Seguridad** — invoca `luptecx:revisar-seguridad` en modo **proyecto entero**. Su
    tabla pasa tal cual al informe de cierre, en «Calidad y riesgos».
 
@@ -125,7 +124,7 @@ caros.
 - Los números que da la documentación (cuántas pruebas, cuántos archivos, versiones)
   coinciden con la realidad.
 - Las rutas, nombres de archivo y variables de entorno citados existen; el archivo de
-  ejemplo de variables (`.env.example`) coincide con lo que la configuración lee.
+  ejemplo de variables (`.env.ejemplo`) coincide con lo que la configuración lee.
 - Documentos que describen planes ya cumplidos o sistemas retirados: se borran (git
   guarda la historia) o se mueven a un histórico con una línea que diga que lo son.
   Pregunta qué prefiere el usuario.

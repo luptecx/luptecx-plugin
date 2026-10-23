@@ -1,6 +1,6 @@
 ---
 name: luptecx-corregir-error
-description: "Corregir un error de un proyecto de LUPTECX de punta a punta, desde el issue hasta que el cliente tiene el arreglo. Úsala cuando haya que arreglar un error ya reportado (un issue con la etiqueta `error`, una tarea de Notion de tipo Error), cuando el usuario diga «arregla el issue #N», «corrige esto» o «está fallando en…», o cuando `luptecx-reportar-error` termine y toque arreglarlo."
+description: "Corregir un error de un proyecto de LUPTECX de punta a punta, desde el issue hasta que el cliente tiene el arreglo. Úsala cuando haya que arreglar un error ya reportado (un issue con la etiqueta `error`, una tarea de Notion de tipo Error), cuando el usuario diga «arregla el issue #N», «corrige lo que reportó <cliente>» o «en producción está fallando…», o cuando `luptecx-reportar-error` termine y toque arreglarlo. Un error que aparece mientras se construye una pieza, sin cliente afectado, es `depurar`."
 ---
 
 # Corregir un error

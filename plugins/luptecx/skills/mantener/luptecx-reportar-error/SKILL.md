@@ -1,6 +1,6 @@
 ---
 name: luptecx-reportar-error
-description: Registrar lo que reporta o pide un cliente de LUPTECX antes de que alguien toque código. Úsala cuando llegue un mensaje, audio o captura de un cliente con una falla («el bot no responde», «me sumó mal el pago», «no me llegó el aviso»), cuando alguien diga reportar un error, abrir un issue o «anótalo para Camilo», o cuando el cliente pida algo nuevo para su bot.
+description: Registrar lo que reporta o pide un cliente de LUPTECX antes de que alguien toque código. Úsala cuando llegue un mensaje, audio o captura de un cliente con una falla («el bot no responde», «me sumó mal el pago», «no me llegó el aviso»), cuando alguien diga reportar un error, abrir un issue o «anótalo para Camilo», o cuando el cliente pida algo nuevo para su sistema.
 ---
 
 # Reportar un error

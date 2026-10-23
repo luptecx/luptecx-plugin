@@ -1,6 +1,6 @@
 ---
 name: planificar-desarrollo
-description: Definir qué se va a construir y cómo, antes de escribir código. Úsala al empezar un proyecto, un script, una automatización, un bot o una herramienta que se va a mantener; al agregar una funcionalidad grande a un proyecto existente; o cuando el usuario diga «nuevo proyecto», «quiero construir», «vamos a desarrollar», «planifiquemos» o pida ayuda para pensar el código antes de escribirlo. No se usa si el usuario pide explícitamente un prototipo desechable o «modo rápido».
+description: Definir qué se va a construir y cómo, antes de escribir código. Úsala al diseñar un proyecto, un script, una automatización, un bot o una herramienta que se va a mantener; cuando el usuario diga «quiero construir», «vamos a desarrollar», «planifiquemos» o pida ayuda para pensar el código antes de escribirlo; o cuando `luptecx-nuevo-proyecto` o `luptecx-nueva-funcionalidad` lleguen al paso de planificar. Arrancar el proyecto de un cliente que aceptó la propuesta es primero `luptecx-nuevo-proyecto`; un pedido del cliente en un proyecto en marcha es `luptecx-nueva-funcionalidad`. No se usa si el usuario pide explícitamente un prototipo desechable o «modo rápido».
 ---
 
 # Planificar el desarrollo
@@ -127,7 +127,9 @@ las tareas en Notion, ofrece crear una tarea por pieza.
 1. Commit con tipo: `documentacion: especificación y arquitectura de <qué>`, y push.
 2. Di al usuario cómo sigue: «Para construir, una pieza por sesión:
    `luptecx:construir-por-piezas` con la pieza 1». Recomiéndale limpiar el contexto
-   antes de empezar la primera.
+   antes de empezar la primera. Si en la sesión quedó algo que no está en los documentos
+   (pendientes del cliente, intentos fallidos, preparativos a medias), ofrece antes
+   `luptecx:traspasar-sesion`.
 
 ## Reglas transversales
 

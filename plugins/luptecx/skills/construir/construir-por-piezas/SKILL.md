@@ -108,7 +108,9 @@ Invoca `luptecx:verificar-antes-de-terminar` con la definición de terminado del
 
 Recomienda **limpiar el contexto** antes de la siguiente pieza: cada pieza está completa
 en los documentos, así que la conversación anterior ya no hace falta y una sesión limpia
-razona mejor. Di cuál es la siguiente pieza que ya se puede empezar.
+razona mejor. Di cuál es la siguiente pieza que ya se puede empezar. Si en la sesión quedó
+algo que no está en los documentos ni en el commit (un intento que falló, un pendiente,
+una duda abierta), ofrece antes `luptecx:traspasar-sesion`.
 
 ## El desarrollador tiene la última palabra
 

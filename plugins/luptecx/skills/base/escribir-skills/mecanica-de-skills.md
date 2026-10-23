@@ -12,6 +12,7 @@ cliente donde se usa:
 | `construir` | Planificar, construir, entregar y cerrar un proyecto |
 | `mantener` | Errores, funcionalidades, despliegue, reportes al cliente |
 | `administrar` | Cierre mensual, comunicación con el cliente, portafolio |
+| `externas` | Skills de terceros copiadas tal cual con `herramientas/traer_externas.py`; no se editan |
 
 Una división nueva se agrega también a la lista `skills` de `plugins/luptecx/.claude-plugin/plugin.json`;
 sin eso no carga. Al agregar o quitar una skill, se actualiza la tabla del `README.md` de
@@ -88,6 +89,8 @@ la licencia a `licencias/` y se anota en `CREDITOS.md` de dónde viene y qué se
 
 ## Publicar un cambio
 
-El proceso está en el `README.md` del plugin: subir la versión en `plugin.json`, commit con
-tipo, push, empaquetar con `python empaquetar.py` y avisar al otro socio para que los dos
-instalen la versión nueva. Antes de empaquetar, `claude plugin validate .` tiene que pasar.
+El proceso está en el `README.md` del plugin («Cómo se cambia una skill»): subir la versión
+en `plugin.json`, las evaluaciones si se tocó una skill que las tiene, commit con tipo,
+push (el candado de push valida el plugin y los encabezados) y avisar al otro socio para
+que los dos actualicen. `python empaquetar.py` solo hace falta si el plugin se sube como
+archivo.

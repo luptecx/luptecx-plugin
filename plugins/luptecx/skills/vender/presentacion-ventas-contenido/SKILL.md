@@ -1,13 +1,13 @@
 ---
 name: "presentacion-ventas-contenido"
-description: "Estructura y contenido de presentaciones de venta y propuestas comerciales a clientes (sobre todo automatizaciones). Úsala para armar o revisar el guion de una propuesta. No define el diseño."
+description: "Guion de una presentación de venta o propuesta comercial en slides para un posible cliente: qué dice y en qué orden. Úsala cuando el usuario diga «hazme la presentación para…», «armemos la propuesta comercial», «qué le presentamos a…», cuando `luptecx-diagnostico` concluya que hay que hacer propuesta, o para revisar el guion de una. La cotización formal en PDF tipo carta es `propuesta-honorarios-luptecx`; el diseño de las slides, `luptecx-estilo-visual`."
 ---
 
 # Contenido de presentaciones de venta
 
-Esta skill define **qué dice** una presentación de ventas y **en qué orden**. No define cómo se ve. Para una presentación de LUPTECX, combínala con la skill `luptecx-estilo-visual`: primero se arma el guion con esta skill y después se diseña con la otra. Si el usuario pide otra marca u otro formato, esta skill sigue sirviendo igual.
+Esta skill define **qué dice** una presentación de ventas y **en qué orden**. No define cómo se ve. Para una presentación de LUPTECX, combínala con la skill `luptecx:luptecx-estilo-visual`: primero se arma el guion con esta skill y después se diseña con la otra. Si el usuario pide otra marca u otro formato, esta skill sigue sirviendo igual.
 
-**Cuándo usarla:** propuestas comerciales, presentaciones para cerrar un cliente o ofrecer un servicio, y cotizaciones en formato de slides.
+**Cuándo usarla:** propuestas comerciales y presentaciones para cerrar un cliente u ofrecer un servicio. Una cotización en PDF tipo carta (alcance, honorarios, firma de aceptación) no es esta skill: es `luptecx:propuesta-honorarios-luptecx`.
 **Cuándo no:** informes de resultados a clientes actuales, capacitaciones, presentaciones de universidad, pitch a inversionistas ni presentaciones internas. Esas tienen otra lógica.
 
 ## En qué se basa
@@ -170,7 +170,7 @@ Visual sugerido: cifra grande / gráfica de barras / 3 tarjetas / dos columnas /
 Notas del presentador: 2–4 frases de lo que se dice en voz alta
 ```
 
-- Si la presentación es de LUPTECX, pasa este guion a `luptecx-estilo-visual` para diseñarlo. En el campo "Visual sugerido" usa los layouts de esa skill (L01…L13).
+- Si la presentación es de LUPTECX, pasa este guion a `luptecx:luptecx-estilo-visual` para diseñarlo. En el campo "Visual sugerido" usa los layouts de esa skill (L01…L13).
 - Si el usuario solo pidió el contenido, entrega el guion y ofrece diseñarlo.
 
 ---

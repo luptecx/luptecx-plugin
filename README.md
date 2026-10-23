@@ -18,8 +18,8 @@ plugins/luptecx/skills/
 └── administrar/   comunicación con el cliente, cierre mensual, portafolio
 ```
 
-Cada carpeta tiene su `README.md` con las skills que ya existen y las pendientes del plan
-de estandarización. Las de etapa dicen *qué* se hace; las de base, *cómo* se hace bien.
+Cada carpeta tiene su `README.md` con sus skills y cómo se encadenan. Las de etapa dicen
+*qué* se hace; las de base, *cómo* se hace bien.
 Una sola skill por función, y **ninguna es de un proyecto ni de un tipo de proyecto**.
 
 El plugin general vive en `plugins/luptecx/` (manifiesto, skills, hooks, herramientas,
@@ -78,6 +78,9 @@ amarillo lo pendiente. Se corre con `uv run --script`.
 `plugins/luptecx/herramientas/asegurar_claude.py` aplica los ajustes de seguridad de
 LUPTECX a Claude Code en el PC donde se corre (ver «Cómo se instala»).
 
+`plugins/luptecx/herramientas/evaluar.py` corre las evaluaciones de las skills críticas con
+el plugin cargado de verdad (ver «Cómo se cambia una skill»).
+
 ## Skills externas (de terceros, tal cual)
 
 El plugin trae también skills de otros equipos que nos sirven y no se pisan con las
@@ -121,10 +124,15 @@ construir-por-piezas           (una sesión limpia por pieza)
   probar-primero → explicar → revisar-cambios → verificar-antes-de-terminar → commit y push
         │
         ▼
-cierre-de-proyecto             (al entregar)
+cierre-de-proyecto             (antes de la primera puesta en producción)
+        │
+        ▼
+luptecx-desplegar ──► luptecx-entrega ──► mantener
 ```
 
-Ante un error: `depurar` → `probar-primero` → `verificar-antes-de-terminar`.
+Ante un error mientras se construye: `depurar` → `probar-primero` →
+`verificar-antes-de-terminar`. Ante uno que reportó un cliente: `luptecx-reportar-error` →
+`luptecx-corregir-error`, que encadena las mismas.
 Después de una sesión que salió mal: `/luptecx:retrospectiva`.
 Para seguir en una sesión limpia (al cerrar una pieza, al cambiar de tarea o hacia el 60 %
 del contexto, antes de que llegue el `/compact` automático): `luptecx:traspasar-sesion`.
@@ -139,8 +147,9 @@ nombre ya lo usa Claude Code y taparía al nuestro.
 
 ## Cómo se instala
 
-El repositorio es también un marketplace (`.claude-plugin/marketplace.json`). Es privado:
-hace falta haber entrado a GitHub en el PC (`gh auth login`).
+El repositorio es también un marketplace (`.claude-plugin/marketplace.json`). Es
+**público**: no lleva datos de clientes, secretos ni identificadores de Notion (esos viven
+en la página «Mapa de Notion para Claude»). Los proyectos y la plantilla sí son privados.
 
 **En Claude Code, para todos los proyectos** (una vez por PC; queda en el usuario):
 
@@ -151,8 +160,8 @@ claude plugin install luptecx@luptecx
 
 **En la app de escritorio o claude.ai (chat y Cowork):** primero se quita el `luptecx`
 que esté subido como archivo. Luego **Customize › Plugins › Add marketplace**, escribir
-`luptecx/luptecx-plugin` e instalar `luptecx`. Como el repositorio es privado, puede pedir
-conectar la cuenta de GitHub. Si el marketplace no carga, se sube el archivo:
+`luptecx/luptecx-plugin` e instalar `luptecx`. Si el marketplace no carga, se sube el
+archivo:
 `python empaquetar.py` deja `dist/luptecx-<versión>.plugin` (sin los plugins de tipo de
 `extras/`), y en **Customize › Plugins** se sube ese archivo. Subido así no se actualiza
 solo: cada versión nueva se vuelve a subir.
@@ -190,9 +199,22 @@ Es idempotente, guarda una copia de la configuración de antes y cuenta desde la
 sesión. El aislamiento (`/sandbox`) de Claude Code no funciona en Windows nativo, solo en
 WSL2: por eso los permisos y el hook de secretos son la barrera.
 
-Las versiones nuevas: `claude plugin marketplace update luptecx` en Claude Code, o
-**Check for updates** en la app. `python empaquetar.py` sigue sirviendo para subir el
-plugin como archivo si alguna vez el marketplace no está disponible.
+**Las versiones nuevas**, en Claude Code (el primer comando solo trae el catálogo; los
+otros instalan, cada uno en el alcance donde está el plugin):
+
+```powershell
+claude plugin marketplace update luptecx
+claude plugin update luptecx@luptecx --scope user
+claude plugin update luptecx@luptecx --scope project              # desde la carpeta de cada proyecto
+claude plugin update luptecx-bot-whatsapp@luptecx --scope project # solo en los proyectos que lo activan
+```
+
+y se reinicia Claude Code. En la app: **Check for updates**. `python empaquetar.py` sigue
+sirviendo para subir el plugin como archivo si alguna vez el marketplace no está disponible.
+
+**El Python de cada PC** (una vez): los proyectos usan el Python que instala uv, nunca el del
+sistema ni el de conda, para que un `.venv` no se caiga cuando ese otro Python cambie:
+`uv python install 3.12` y, en `%APPDATA%\uv\uv.toml`, `python-preference = "only-managed"`.
 
 ## Cómo se cambia una skill
 
@@ -203,13 +225,18 @@ encuentra la inyección, un aviso sin jerga, una funcionalidad que no se cobra a
 cambiar una de esas skills, antes de subirla, desde `plugins/luptecx`:
 
 ```powershell
-claude plugin eval . --no-publish --trust-plugin -j 3
+python herramientas/evaluar.py -j 3
 ```
 
-Llama al modelo con las credenciales del PC: la primera vez hay que iniciar sesión en el
-`claude` de la terminal. Por defecto corre cada caso 3 veces con el plugin y 3 sin él, y
-muestra cuánto mejora el plugin; para probar rápido, `--runs 1 --ablation none`. Los
-resultados quedan en `evals/results/` (ignorada por git).
+No se usa `claude plugin eval .` directo: cada caso corre en una sesión aislada sin las
+dependencias de Trail of Bits, el plugin no carga y el caso mide al modelo solo (pasó hasta
+el 23/10/2026). `evaluar.py` evalúa una copia sin `dependencies` y le pasa tal cual el resto
+de argumentos. Llama al modelo con las credenciales del PC: la primera vez hay que iniciar
+sesión en el `claude` de la terminal. Por defecto corre cada caso 3 veces con el plugin y 3
+sin él, y muestra cuánto mejora el plugin (el 23/10/2026: 1.00 con plugin en los seis,
++0.50 de media); para probar rápido, `--runs 1 --ablation none`, y un solo caso con
+`--case <nombre>`. Cuesta unos 5 USD la suite completa. Los resultados quedan en
+`evals/results/` (ignorada por git).
 
 Este repositorio tiene los mismos candados que los proyectos: una vez por clon,
 `uvx prek install`. Al hacer commit revisan el formato, los secretos y el tipo del mensaje;
@@ -230,8 +257,8 @@ protegida: no acepta push forzado ni que la borren.
 4. Subir la versión en `plugins/luptecx/.claude-plugin/plugin.json` (`0.4.0` → `0.5.0` si agrega o cambia
    comportamiento; `0.4.1` si solo corrige redacción).
 5. Commit con tipo (`funcionalidad: …`, `correccion: …`) y push a `main`.
-6. Avisar al otro socio. Cada uno, en **Customize › Plugins**, abre el marketplace `luptecx`
-   y elige **Check for updates** (o deja activada la sincronización automática).
+6. Avisar al otro socio. Cada uno actualiza como dice «Las versiones nuevas» (Claude Code)
+   o, en la app, **Customize › Plugins** › marketplace `luptecx` › **Check for updates**.
 
 Las skills que vienen de repositorios de terceros, y qué se les cambió, están en
 [CREDITOS.md](plugins/luptecx/CREDITOS.md); sus licencias, en `plugins/luptecx/licencias/`.

@@ -1,6 +1,6 @@
 # Guion de la capacitación
 
-Se lee en el paso 4. Una sesión en vivo de **30 a 45 minutos** con las personas que van a
+Se lee en el paso 2 de `luptecx-entrega`. Una sesión en vivo de **30 a 45 minutos** con las personas que van a
 usar el sistema. Sale del manual: se enseña lo que el manual dice, en el mismo orden y con
 las mismas palabras.
 

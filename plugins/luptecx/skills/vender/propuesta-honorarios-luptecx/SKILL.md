@@ -11,7 +11,7 @@ necesita la propuesta de honorarios formal. Es una carta comercial en PDF tamañ
 2 a 3 páginas, con membrete de LUPTECX. El cliente la acepta firmando; el contrato viene
 después, con `luptecx:luptecx-contrato-servicio`.
 
-**No es una presentación.** No usa el estilo de las slides (`luptecx-estilo-visual`): sin fondos negros, tarjetas, cifras gigantes ni portada. Debe verse como un documento de una firma de servicios profesionales: blanco, sobrio, texto corrido, secciones numeradas y tablas de líneas finas.
+**No es una presentación.** No usa el estilo de las slides (`luptecx:luptecx-estilo-visual`): sin fondos negros, tarjetas, cifras gigantes ni portada. Debe verse como un documento de una firma de servicios profesionales: blanco, sobrio, texto corrido, secciones numeradas y tablas de líneas finas.
 
 **Cuándo usarla:** solo para cotizaciones y propuestas de honorarios, de uno o varios
 servicios (un asistente o agente, una automatización, un desarrollo, publicidad).
@@ -31,7 +31,7 @@ reuniones y la presentación de ventas que se le mostró. Después pregunta **en
 tanda** lo que falte. Usa AskUserQuestion si está disponible.
 
 **Los precios salen del Portafolio** de Notion, igual que en
-`presentacion-ventas-contenido` (Paso 5): la ficha del producto, con sus tres niveles. Si el
+`luptecx:presentacion-ventas-contenido` (Paso 5): la ficha del producto, con sus tres niveles. Si el
 producto no tiene ficha o le falta un precio, se pregunta y, con el permiso del usuario, se
 escribe en la ficha antes de usarlo. Si el usuario quiere otro precio para este cliente, se
 usa el suyo y se le dice cuál dice el Portafolio. Un servicio a la medida que no es un
@@ -289,13 +289,18 @@ Guarda este script como `render_doc.py`, fuera de la carpeta de la propuesta. Ú
 python3 render_doc.py propuesta-<cliente>/propuesta.html LTX-AAAA-NNN
 ```
 
+En el PC (Windows, Claude Code), con uv: `uv run --with playwright python render_doc.py …`.
+Ahí Chromium no viene instalado: la primera vez, `uv run --with playwright playwright
+install chromium`. En el entorno de claude.ai ya viene: no ejecutes `playwright install`.
+
 El script hace tres cosas:
 - genera el PDF con el pie numerado;
-- crea una imagen por página (`pagina-1.png`, `pagina-2.png`…) para revisar;
-- usa Chromium, que ya viene con Playwright (no ejecutes `playwright install`), y `pdftoppm` (de poppler-utils).
+- si hay `pdftoppm` (de poppler-utils), crea una imagen por página (`pagina-1.png`,
+  `pagina-2.png`…) para revisar; si no lo hay, el PDF se revisa directo con Read;
+- usa el Chromium de Playwright.
 
 ```python
-import sys, pathlib, subprocess
+import sys, pathlib, shutil, subprocess
 from playwright.sync_api import sync_playwright
 
 html = pathlib.Path(sys.argv[1]).resolve()
@@ -313,7 +318,8 @@ with sync_playwright() as p:
     pg.pdf(path=str(pdf), format="Letter", print_background=True, prefer_css_page_size=True,
            display_header_footer=True, header_template="<span></span>", footer_template=pie)
     b.close()
-subprocess.run(["pdftoppm", "-png", "-r", "80", str(pdf), str(html.parent / "pagina")], check=True)
+if shutil.which("pdftoppm"):
+    subprocess.run(["pdftoppm", "-png", "-r", "80", str(pdf), str(html.parent / "pagina")], check=True)
 print(pdf)
 ```
 
@@ -323,7 +329,7 @@ Si Google Fonts no carga (sin red), instala `@fontsource/poppins` y `@fontsource
 
 ## Paso 7 · Revisión antes de entregar
 
-Mira **cada página** con la herramienta Read y verifica:
+Mira **cada página** con la herramienta Read (las imágenes o el PDF) y verifica:
 
 1. ¿Son 2 a 3 páginas, sin huecos grandes en blanco? Si una tabla saltó de página y dejó media página vacía, reordena o recorta texto.
 2. ¿Ninguna tabla está partida entre páginas, ni hay un título solo al final de una página?
@@ -337,7 +343,7 @@ Mira **cada página** con la herramienta Read y verifica:
 
 ## Paso 8 · Entrega y versiones
 
-- Nombre del archivo: `Cotizacion-LUPTECX-<Cliente>-<NNN>.pdf`. Envíalo con SendUserFile. Si hay una carpeta conectada en el computador del usuario, guárdalo también ahí.
+- Nombre del archivo: `Cotizacion-LUPTECX-<Cliente>-<NNN>.pdf`. En claude.ai, envíalo con SendUserFile y, si hay una carpeta conectada en el computador del usuario, guárdalo también ahí. En Claude Code, déjalo en la carpeta del cliente (fuera de cualquier repositorio) y di la ruta completa.
 - **Nunca sobrescribas una versión anterior.** Cada cambio va en un archivo nuevo (`…-v2`), y se guarda el HTML de cada versión.
 - **Nunca borres archivos sin preguntar.**
 - **Rastro en Notion:** en el CRM, el cliente pasa a **Propuesta Enviada** (si estaba antes

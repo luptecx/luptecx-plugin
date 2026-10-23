@@ -25,6 +25,8 @@ depurar ──► probar-primero ──► verificar-antes-de-terminar     (un e
 probar-primero ──► revisar-cambios ──► verificar-antes-de-terminar   (un cambio)
                    └► revisar-seguridad  (si el cambio toca una frontera)
 retrospectiva ──► escribir-skills        (convertir lo aprendido en candados y normas)
+traspasar-sesion                         (al cerrar una pieza o la planificación, si queda
+                                          algo fuera de los documentos)
 ```
 
 ## Y el `/code-review` de Claude Code

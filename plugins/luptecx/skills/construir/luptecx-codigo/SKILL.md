@@ -80,7 +80,7 @@ CLAUDE.md                 corto: «Reglas de LUPTECX» (con stack y tipo) y lo p
 CHANGELOG.md              qué cambió en cada versión, para quien lo lea dentro de un año
 docs/ESPECIFICACION.md    qué hace y para quién (planificar-desarrollo)
 docs/ARQUITECTURA.md      cómo está hecho y el plan de piezas
-docs/PUESTA_EN_PRODUCCION.md
+docs/PUESTA_EN_PRODUCCION.md  si se despliega, con docs/RECUPERACION.md
 docs/GLOSARIO.md          palabras del negocio (modelar-dominio)
 docs/decisiones/          decisiones difíciles de revertir, con fecha
 .pre-commit-config.yaml   los candados (prek)

@@ -16,8 +16,9 @@ despliegue. Un cliente nuevo de un producto que ya existe no pasa por el paso 3:
 filas y configuración validada en la base del producto, nunca como un repositorio, una
 rama, un archivo copiado ni un `if` con su nombre.
 
-La usan los dos socios. Hace falta `gh` con permiso en la organización `luptecx`, `uv`,
-`prek` y acceso a Notion.
+La usan los dos socios. Hace falta `gh` con permiso en la organización `luptecx`, `uv` con
+su propio Python (`uv python install 3.12` y `python-preference = "only-managed"` en
+`%APPDATA%\uv\uv.toml`, una vez por PC), `prek` y acceso a Notion.
 
 ## 0. Hay una propuesta aceptada
 

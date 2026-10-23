@@ -5,7 +5,7 @@ description: "Estilo visual oficial de LUPTECX (dirección B \"Contraste\"). Ús
 
 # Estilo visual LUPTECX · Dirección B "Contraste"
 
-Esta skill define **cómo se ve** cualquier presentación de LUPTECX: ventas, informes a clientes, capacitaciones, pitch o documentos en formato slide. **No define el contenido ni la estructura.** Eso lo pone el usuario u otra skill; para ventas, `presentacion-ventas-contenido`. Si las dos aplican, primero se arma el contenido y después se viste con esta skill.
+Esta skill define **cómo se ve** cualquier presentación de LUPTECX: ventas, informes a clientes, capacitaciones, pitch o documentos en formato slide. **No define el contenido ni la estructura.** Eso lo pone el usuario u otra skill; para ventas, `luptecx:presentacion-ventas-contenido`. Una cotización en PDF tipo carta no usa este estilo: es `luptecx:propuesta-honorarios-luptecx`. Si las dos aplican, primero se arma el contenido y después se viste con esta skill.
 
 Guía visual de referencia, con ejemplos renderizados y los logos: https://claude.ai/artifact/DVYbGuTpXnKVdiXzbCLcfY. Se lee con la herramienta Artifact (`action: "read"`).
 

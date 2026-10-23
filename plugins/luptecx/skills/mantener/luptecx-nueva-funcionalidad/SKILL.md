@@ -34,8 +34,8 @@ problema y el alcance, no solo el requisito nuevo.
   mismos datos): sigue.
 - **Es otro producto** (otro problema, otro usuario u otro sistema): no es una
   funcionalidad sino un proyecto nuevo. Para y díselo al usuario; va por la etapa de
-  vender (`luptecx:luptecx-diagnostico` cuando exista), y el mensaje al cliente es «Pedido
-  que es otro producto» de `luptecx:luptecx-comunicacion-cliente`.
+  vender (`luptecx:luptecx-diagnostico`), y el mensaje al cliente es «Pedido que es otro
+  producto» de `luptecx:luptecx-comunicacion-cliente`.
 - **Choca con algo que la especificación excluye a propósito** (una decisión del dueño, la
   Ley 1581, un límite de una plataforma externa): para y pregunta, citando la línea.
 

@@ -1,6 +1,6 @@
 ---
 name: depurar
-description: Diagnóstico disciplinado de errores, antes de proponer cualquier arreglo. Úsala ante un bug, una prueba que falla, un comportamiento inesperado, algo que el cliente reporta como roto, un error intermitente, algo que se puso lento o un fallo de CI o de despliegue, aunque parezca simple o haya prisa.
+description: Diagnóstico disciplinado de errores, antes de proponer cualquier arreglo. Úsala ante un bug, una prueba que falla, un comportamiento inesperado, un error intermitente, algo que se puso lento o un fallo de CI o de despliegue, aunque parezca simple o haya prisa. Si es un error que reportó un cliente o que está en producción, el proceso completo (issue, despliegue y aviso) es `luptecx-corregir-error`, que usa esta.
 ---
 
 # Depurar

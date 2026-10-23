@@ -29,15 +29,15 @@ Saltarse un paso no es verificar: es suponer.
 | «El error quedó arreglado» | El lazo de `luptecx:depurar` con el síntoma original, en verde | «Cambié el código» |
 | «La prueba de regresión sirve» | Rojo-verde comprobado: quitar el arreglo → falla; restaurarlo → pasa | Que pase una vez |
 | «El CI está en verde» | `gh run list --branch main --limit 1` con el estado del commit que subiste | Que el hook local pasó |
-| «Hay migración» | El archivo en `migraciones/` y `alembic upgrade head` corriendo sobre una base de prueba | Que cambió `models.py` |
+| «Hay migración» | El archivo en `migraciones/` y `alembic upgrade head` corriendo sobre una base de prueba | Que cambió `app/modelos.py` |
 | «Cumple lo pedido» | Releer la especificación o la pieza y marcar cada criterio, uno por uno | Que las pruebas pasan |
 | «El subagente terminó» | El `git diff` con los cambios que dice que hizo | Su informe de éxito |
 
 ## La definición de terminado
 
 Cuando la afirmación es «terminé» (una pieza, una corrección, una funcionalidad), además de
-la compuerta revisa la **definición de terminado** del proyecto: está en su `CLAUDE.md`, en
-la sección «Cómo se trabaja». Si el proyecto no la tiene, usa la de LUPTECX:
+la compuerta revisa la **definición de terminado** de LUPTECX. Si el `CLAUDE.md` del
+proyecto le suma algo (en «Lo propio de este proyecto»), se revisa también:
 
 - [ ] Hay una prueba que fallaba antes del cambio y ahora pasa.
 - [ ] La suite pasa en local y el CI está en verde (o, si aún no se subió, queda dicho que
