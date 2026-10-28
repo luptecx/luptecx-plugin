@@ -73,3 +73,8 @@ externas» en el README del repositorio).
   sin discutir, la primera hora vigilada, lo riesgoso detrás de una bandera y las señales de
   alarma. Se dejó lo de aplicaciones web grandes (Core Web Vitals, accesibilidad, despliegue
   al 5 % de los usuarios, presupuestos de error).
+- **WhatsApp** (27/10/2026, para `diseno-de-mensajes.md` de `luptecx-bot-whatsapp`):
+  `gokapso/agent-skills` (`integrate-whatsapp`, `automate-whatsapp`) va atado a la
+  plataforma Kapso, y `claude-office-skills/whatsapp-automation`, a flujos de n8n. Ninguna
+  cubre el diseño de los mensajes ni el tono; se escribió propia desde la documentación de
+  Meta.

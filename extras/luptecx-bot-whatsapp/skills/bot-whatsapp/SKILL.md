@@ -1,6 +1,6 @@
 ---
 name: bot-whatsapp
-description: Reglas de LUPTECX para un proyecto que conversa por WhatsApp con la Cloud API de Meta. Úsala al diseñar, escribir, revisar, probar o desplegar el webhook, el envío de mensajes o plantillas de Meta, la deduplicación por message_id, al pedirle al cliente los accesos de Meta, o al sumar un cliente a un producto que atienden varios. Se suma a luptecx:luptecx-codigo.
+description: Reglas de LUPTECX para un proyecto que conversa por WhatsApp con la Cloud API de Meta. Úsala al diseñar, escribir, revisar, probar o desplegar el webhook, el envío de mensajes o plantillas de Meta, la deduplicación por message_id, al pedirle al cliente los accesos de Meta, o al sumar un cliente a un producto que atienden varios. También al redactar o diseñar lo que lee el usuario (textos, botones, listas, carrusel, fotos, el tono del bot o las instrucciones de un modelo que conversa), o cuando un mensaje «suena a bot». Se suma a luptecx:luptecx-codigo.
 ---
 
 # Proyecto que conversa por WhatsApp
@@ -69,6 +69,18 @@ WhatsApp → router del webhook → deduplica por message_id → conversación (
 4. **Desde el 01/10/2026 Meta cobra cada mensaje de servicio:** lo que se pueda decir en
    una sola burbuja (texto con sus botones) va en una. 👁
 5. **Se prueba con el número de prueba de Meta**, nunca con el número real del cliente. 👁
+6. **El bot nunca dice ser una persona.** Suena humano, pero si le preguntan, dice que es
+   automático y ofrece pasar con alguien: las políticas de WhatsApp prohíben engañar y
+   piden una vía directa a una persona. 👁
+
+## Los mensajes que lee el usuario
+
+Antes de redactar o cambiar un texto fijo, un mensaje con botones, una lista, un carrusel,
+el envío de fotos o las instrucciones de un modelo que conversa, lee
+[diseno-de-mensajes.md](diseno-de-mensajes.md): qué componente usar, los límites de cada
+uno, cómo se lee humano, el ritmo (el indicador de «escribiendo…») y cómo se revisa en un
+celular. **Terminado cuando** cada mensaje nuevo cabe en sus límites con los datos más
+largos posibles y se vio en el número de prueba.
 
 ## Antes de producción
 
