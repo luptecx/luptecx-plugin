@@ -199,6 +199,14 @@ Es idempotente, guarda una copia de la configuración de antes y cuenta desde la
 sesión. El aislamiento (`/sandbox`) de Claude Code no funciona en Windows nativo, solo en
 WSL2: por eso los permisos y el hook de secretos son la barrera.
 
+El hook sí deja que Claude corra los programas del proyecto con las variables del `.env` de
+desarrollo (`uv run --env-file .env python -m app.trabajador`, una herramienta de
+`herramientas/`, `fastapi`, `alembic` o `pytest`): cargan los secretos en ese proceso sin
+mostrárselos, y así Claude prueba solo lo que necesita un token. Sigue bloqueado lo que
+podría imprimirlos con `--env-file`: `python -c`, un intérprete, un shell, otro módulo y
+`.env.production`. Lo que queda es que un módulo del propio proyecto imprima un secreto:
+por eso el código nunca registra ni imprime tokens (`luptecx:revisar-seguridad`).
+
 **Las versiones nuevas**, en Claude Code (el primer comando solo trae el catálogo; los
 otros instalan, cada uno en el alcance donde está el plugin):
 

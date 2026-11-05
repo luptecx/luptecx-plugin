@@ -43,6 +43,17 @@ BLOQUEAR = [
     "gh auth token",
     "gh auth status --show-token",
     "ls && cat .env",
+    "echo `cat .env`",
+    # Con --env-file, solo los programas del proyecto: lo demás puede imprimir los secretos.
+    'uv run --env-file .env python -c "import os; print(os.environ)"',
+    "uv run --env-file .env python",
+    "uv run --env-file .env bash -c env",
+    "uv run --env-file .env python -m site",
+    "uv run --env-file .env python -m application",
+    "uv run --env-file .env.production python -m app.trabajador",
+    "uv run --env-file .env python -m app.trabajador; cat .env",
+    "uv run --env-file .env python -m app.trabajador $(cat .env)",
+    "uv run --env-file .env python -m app.trabajador --env-file .env",
 ]
 
 DEJAR = [
@@ -60,6 +71,13 @@ DEJAR = [
     "uv run python -m app.metricas 2026-10",
     "echo $HOME",
     "cat app/configuracion.py",
+    # Los programas del proyecto con las variables del .env: Claude no ve los valores.
+    "uv run --env-file .env python -m app.trabajador",
+    "uv run --env-file .env python -m herramientas.plantillas estado demo",
+    "uv run --env-file .env python -m herramientas.plantillas estado demo | tail -5",
+    "uv run --env-file=.env fastapi dev app/main.py",
+    'uv run --env-file ".env" alembic upgrade head',
+    "uv run --env-file .env pytest -k plantillas",
 ]
 
 

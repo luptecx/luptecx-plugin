@@ -32,7 +32,18 @@ bloquear() {
 }
 
 # Fin de un nombre de archivo: espacio, comillas (escapadas o no), redirección, separador.
-fin='([[:space:]"'"'"'\\>;|)]|$)'
+fin='([[:space:]"'"'"'`\\>;|)]|$)'
+
+# `uv run --env-file .env <programa del proyecto>` carga los secretos en ese proceso sin
+# mostrárselos a Claude: así corre el trabajador, una herramienta o las pruebas que
+# necesitan los tokens. Solo con lo que el proyecto ya trae (un módulo de app/,
+# herramientas/ o pruebas/, fastapi, alembic o pytest); código en línea (python -c), un
+# intérprete, un shell u otro módulo podrían imprimirlos, y siguen bloqueados. Solo el .env
+# de desarrollo, nunca .env.production.
+comillas='(\\?["'"'"'])?'
+env_file='--env-file([[:space:]]+|=)'"$comillas"'(\./)?\.env'"$comillas"
+programa_del_proyecto='(python[0-9.]*[[:space:]]+-m[[:space:]]+(app|herramientas|pruebas)(\.[A-Za-z0-9_]+)*|fastapi|alembic|pytest)([[:space:]]|$)'
+con_env_file='^[[:space:]]*uv[[:space:]]+run[[:space:]]+'"$env_file"'[[:space:]]+'"$programa_del_proyecto"
 
 # Cada parte del comando por separado: ; && || | y saltos de línea (\n escapado en el JSON).
 partes=$(printf '%s' "$comando" | sed -E 's/\\n|&&|\|\||;|\|/\n/g')
@@ -40,6 +51,11 @@ partes=$(printf '%s' "$comando" | sed -E 's/\\n|&&|\|\||;|\|/\n/g')
 while IFS= read -r parte; do
   # Un mensaje de commit puede nombrar un archivo .env sin leerlo.
   printf '%s' "$parte" | grep -qE '(^|[[:space:]"])git[[:space:]]+commit([[:space:]]|$)' && continue
+
+  # Se quita el primer --env-file .env y el resto de la parte se revisa como cualquier otra:
+  # otra mención del .env, un $(cat .env) o una variable con un secreto siguen bloqueando.
+  printf '%s' "$parte" | grep -qE "$con_env_file" \
+    && parte=$(printf '%s' "$parte" | sed -E "s#$env_file##")
 
   printf '%s' "$parte" | grep -qE '(^|[[:space:]/"'"'"'=<])\.env(\.local|\.production)?'"$fin" \
     && bloquear "el comando usa un archivo .env, que tiene los secretos del proyecto"
