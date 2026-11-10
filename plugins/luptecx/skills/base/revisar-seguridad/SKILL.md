@@ -67,8 +67,21 @@ Si no toca ninguno, la revisión de seguridad termina aquí y el informe lo dice
 1. Por cada frente marcado, lee su sección de [controles.md](controles.md) y comprueba cada
    control contra el código. Cada hallazgo lleva archivo, línea y el control que incumple.
 2. Corre la revisión de seguridad de Claude Code (la skill `security-review`, el comando
-   `/security-review`) sobre el mismo cambio. Lo que encuentre se verifica igual que lo
-   propio: se busca el camino real de explotación antes de reportarlo.
+   `/security-review`) sobre el mismo cambio, **en un sub-agente** (`general-purpose`). Está
+   hecha para el PR de una rama, y eso choca con LUPTECX de dos formas:
+   - Arma su diff con los commits de la rama contra `origin/HEAD`: con el cambio sin commit
+     o en `main`, le llega vacío. El encargo del sub-agente le da el diff del paso 2 (el
+     punto fijo y los archivos nuevos) y le pide revisar ese si el suyo llega vacío.
+   - Termina con «Your final reply must contain the markdown report and nothing else».
+     Dentro del sub-agente, esa respuesta final es la suya y vuelve aquí como resultado;
+     corrida en esta conversación, cerraba el turno con su informe y dejaba sin hacer el
+     paso 4 y lo que seguía (commit, push).
+
+   Si no hay sub-agentes, se corre aquí y su informe es un resultado intermedio: en la
+   misma respuesta se sigue con el paso 4 y con la skill que pidió la revisión.
+
+   Lo que encuentre se verifica igual que lo propio: se busca el camino real de explotación
+   antes de reportarlo.
 3. Si cambiaron las dependencias, cada paquete nuevo pasa por la skill
    `supply-chain-risk-auditor` de Trail of Bits (viene con el plugin como dependencia):
    avisos de seguridad, proyecto abandonado, scripts de instalación. Además, la sección
@@ -82,7 +95,7 @@ Un hallazgo sin camino de explotación posible en este proyecto es ⚪, no 🔴:
 reporta es lo explotable.
 
 **Terminado cuando:** cada control de cada frente marcado está comprobado o tiene un
-hallazgo, y la revisión de Claude Code corrió.
+hallazgo, y la revisión de Claude Code corrió sobre el diff del cambio (no uno vacío).
 
 ## 4. Informe
 
